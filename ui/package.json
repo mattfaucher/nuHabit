@@ -1,0 +1,49 @@
+{
+  "name": "ui",
+  "version": "1.0.0",
+  "description": "UI Package",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "compile": "webpack --mode production",
+    "watch-server-hmr": "webpack -w --config webpack.serverHMR.js",
+    "dev-all": "rm dist/* && npm run watch-server-hmr & sleep 5 && npm start",
+    "lint": "eslint server src browser --ext js,jsx"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattfaucher/nuHabit.git"
+  },
+  "author": "Ciara, Noam, Matt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattfaucher/nuHabit/issues"
+  },
+  "homepage": "https://github.com/mattfaucher/nuHabit#readme",
+  "dependencies": {
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-react": "^7.14.5",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "babel-polyfill": "^6.26.0",
+    "bootstrap": "^5.0.2",
+    "dotenv": "^10.0.0",
+    "eslint": "^7.31.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.12",
+    "path": "^0.12.7",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.1",
+    "react-router-dom": "^5.2.0",
+    "webpack": "^5.45.1",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.7.2"
+  }
+}
