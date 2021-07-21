@@ -16,7 +16,7 @@ const element = (
 	</Router>
 );
 
-ReactDOM.hydrate(element, document.getElementById('content'));
+//ReactDOM.hydrate(element, document.getElementById('content'));
 
 if (module.hot) {
 	module.hot.accept();
