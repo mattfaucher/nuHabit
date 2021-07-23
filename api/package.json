@@ -1,0 +1,30 @@
+{
+    "name": "nuhabit",
+    "version": "1.0.0",
+    "description": "---",
+    "main": "index.js",
+    "devDependencies": {},
+    "scripts": {
+      "start": "nodemon -e js,graphql server.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/mattfaucher/nuHabit.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/mattfaucher/nuHabit/issues"
+    },
+    "homepage": "https://github.com/mattfaucher/nuHabit#readme",
+    "dependencies": {
+      "apollo-server-express": "^2.25.2",
+      "dotenv": "^6.2.0",
+      "express": "^4.17.1",
+      "graphql": "^15.0.0",
+      "mongodb": "^3.6.9",
+      "nodemon": "^1.19.4"
+    }
+  }
+  
