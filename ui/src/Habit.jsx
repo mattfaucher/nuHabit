@@ -19,19 +19,13 @@ export default class Habit extends React.Component {
 		return (
 			<Card className='shadow-lg p-3 mb-5 bg-white rounded' style={cardStyle}>
 				<Card.Body>
-				<Container fluid>
 					<Row>
-						<Col>
-							<Card.Title>HABIT TITLE</Card.Title>
-						</Col>
-						<Col>
-							<ButtonGroup>
-								<ToggleButton type="checkbox">Complete</ToggleButton>
-								<Button id="edit">Edit</Button>
-							</ButtonGroup>
-						</Col>
+						<Card.Title>HABIT TITLE</Card.Title>
+						<ButtonGroup>
+							<ToggleButton type="checkbox">Complete</ToggleButton>
+							<Button id="edit">Edit</Button>
+						</ButtonGroup>
 					</Row>
-				</Container>
 				</Card.Body>
 			</Card>
 		);
