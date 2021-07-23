@@ -12,9 +12,7 @@ export default class HabitList extends React.Component {
 
 	render() {
 		return (
-			<Row xs={1} sm={1} md={1} lg={1} xl={1} xxl={1}>
-				<Habit />
-			</Row>
+			<Habit />	
 		);
 	}
 }
