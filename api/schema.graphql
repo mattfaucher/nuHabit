@@ -22,7 +22,6 @@ type User {
   email: String
 }
 
-
 "Toned down Issue, used as inputs, without server generated values."
 input HabitInputs {
   title: String!
@@ -43,8 +42,8 @@ input HabitUpdateInputs {
 ##### Top level declarations
 type Query {
   title: String!
-  user: User!
-  habitsList(title: String!)
+  #user: User!
+  habitsList(title: String): [Habit!]!
   habit(id: Int!): Habit!
 }
 type Mutation {
@@ -52,5 +51,4 @@ type Mutation {
   habitUpdate(id: Int!, changes: HabitUpdateInputs!): Habit!
   habitDelete(id: Int!): Boolean!
   habitRestore(id: Int!): Boolean!
-}
 }

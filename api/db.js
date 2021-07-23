@@ -4,7 +4,7 @@ const { MongoClient } = require('mongodb');
 let db;
 
 async function connectToDb() {
-  const url = process.env.DB_URL || 'mongodb+srv://<username>:<password>@cluster0.dagan.mongodb.net/nuhabit?retryWrites=true&w=majority';
+  const url = process.env.DB_URL || 'mongodb://localhost/habits';
   const client = new MongoClient(url, { useNewUrlParser: true });
   await client.connect();
   console.log('Connected to MongoDB at', url);
