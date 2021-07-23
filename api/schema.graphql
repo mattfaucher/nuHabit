@@ -43,7 +43,7 @@ input HabitUpdateInputs {
 type Query {
   title: String!
   #user: User!
-  habitsList(title: String): [Habit!]!
+  habitsList(title: String, isGood: Boolean, increments: Increments): [Habit!]!
   habit(id: Int!): Habit!
 }
 type Mutation {

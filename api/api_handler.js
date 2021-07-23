@@ -2,14 +2,14 @@ const fs = require('fs');
 require('dotenv').config();
 const { ApolloServer } = require('apollo-server-express');
 
-const GraphQLDate = require('./graphql_date.js');
-const habit = require('./habits.js');
+const GraphQLDate = require('./graphql_date');
+const habit = require('./habits');
 
 const resolvers = {
   Query: {
-      //user: auth.resolveUser,
-      //habitsList: habit.list,
-      habit: habit.get,
+    // user: auth.resolveUser,
+    habitsList: habit.list,
+    habit: habit.get,
   },
   Mutation: {
     habitAdd: habit.add,

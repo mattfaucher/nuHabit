@@ -3,28 +3,32 @@
     "version": "1.0.0",
     "description": "---",
     "main": "index.js",
-    "devDependencies": {},
     "scripts": {
-      "start": "nodemon -e js,graphql -w . -w .env server.js",
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "nodemon -e js,graphql -w . -w .env server.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/mattfaucher/nuHabit.git"
+        "type": "git",
+        "url": "git+https://github.com/mattfaucher/nuHabit.git"
     },
     "author": "",
     "license": "ISC",
     "bugs": {
-      "url": "https://github.com/mattfaucher/nuHabit/issues"
+        "url": "https://github.com/mattfaucher/nuHabit/issues"
     },
     "homepage": "https://github.com/mattfaucher/nuHabit#readme",
     "dependencies": {
-      "apollo-server-express": "^2.25.2",
-      "dotenv": "^6.2.0",
-      "express": "^4.17.1",
-      "graphql": "^15.0.0",
-      "mongodb": "^3.6.9",
-      "nodemon": "^1.19.4"
+        "apollo-server-express": "^2.25.2",
+        "cors": "^2.8.5",
+        "dotenv": "^6.2.0",
+        "express": "^4.17.1",
+        "graphql": "^15.0.0",
+        "mongodb": "^3.6.9",
+        "nodemon": "^1.19.4"
+    },
+    "devDependencies": {
+      "eslint": "^5.16.0",
+      "eslint-config-airbnb-base": "^13.2.0",
+      "eslint-plugin-import": "^2.23.4"
     }
-  }
-  
+}
