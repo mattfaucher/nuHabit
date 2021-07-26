@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Grid } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
-import HabitList from './HabitList.jsx';
+import Contents from './Contents.jsx';
 
 export default class Page extends React.Component {
 	static async fetchData(cookie) {
@@ -14,9 +14,11 @@ export default class Page extends React.Component {
 
 	render() {
 		return (
-			<Container fluid>
-				<HabitList />
-			</Container>
+			<div>
+				<Container fluid>
+					<Contents />
+				</Container>
+			</div>
 		);
 	}
 }
