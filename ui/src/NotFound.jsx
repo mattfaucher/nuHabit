@@ -1,4 +1,5 @@
 import React from 'react'
+import { Alert } from 'react-bootstrap';
 
 export default class NotFound extends React.Component {
 	constructor(props) {
@@ -7,7 +8,9 @@ export default class NotFound extends React.Component {
 	
 	render() {
 		return (
-			<h2>Page Not Found.</h2>
+			<Alert variant='danger'>
+				Page Not Found!
+			</Alert>
 		);
 	}
 }

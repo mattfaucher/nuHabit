@@ -21,7 +21,6 @@ export default class HabitList extends React.Component {
 			<Container fluid>
 				{habits}
 			</Container>
-
 		);
 	}
 }
