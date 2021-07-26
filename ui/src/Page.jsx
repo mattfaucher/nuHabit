@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Grid } from 'react-bootstrap';
 
 import HabitList from './HabitList.jsx';
 
@@ -13,7 +14,9 @@ export default class Page extends React.Component {
 
 	render() {
 		return (
-			<HabitList />
+			<Container fluid>
+				<HabitList />
+			</Container>
 		);
 	}
 }
