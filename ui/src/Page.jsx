@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap';
 
 import Navigation from './Navigation.jsx';
 import Contents from './Contents.jsx';
+import Footer from './Footer.jsx';
 
 export default class Page extends React.Component {
 	static async fetchData(cookie) {
@@ -20,6 +21,7 @@ export default class Page extends React.Component {
 				<Container fluid>
 					<Contents />
 				</Container>
+				<Footer />
 			</div>
 		);
 	}

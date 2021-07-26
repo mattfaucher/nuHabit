@@ -23,8 +23,6 @@ export default class Navigation extends React.Component {
 				expand="lg" 
 				bg="dark"
 				variant="dark"
-				expanded={this.state.toggle}
-				collapseOnSelect={true} 
 				>
 				<Container>
 					<Navbar.Brand href="/habits">nuHabit</Navbar.Brand>
