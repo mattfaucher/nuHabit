@@ -1,0 +1,55 @@
+scalar GraphQLDate
+
+enum Increments {
+  Daily
+  Weekly
+  Monthly
+}
+
+type Habit {
+  _id: ID!
+  id: Int!
+  title: String!
+  increments: Increments!
+  created: GraphQLDate!
+  isGood: Boolean!
+  count: Int!
+}
+
+type User {
+  signedIn: Boolean!
+  name: String!
+  email: String!
+  habitList: [Habit!]!
+}
+
+"Toned down Issue, used as inputs, without server generated values."
+input HabitInputs {
+  title: String!
+  increments: Increments!
+  isGood: Boolean!
+}
+
+"""
+Inputs for issueUpdate: all are optional. Whichever is specified will
+be set to the given value, undefined fields will remain unmodified.
+"""
+input HabitUpdateInputs {
+  title: String
+  increments: Increments
+  isGood: Boolean
+}
+
+##### Top level declarations
+type Query {
+  title: String!
+  user: User!
+  habitsList(title: String, isGood: Boolean, increments: Increments): [Habit!]!
+  habit(id: Int!): Habit!
+}
+type Mutation {
+  habitAdd(habit: HabitInputs!): Habit!
+  habitUpdate(id: Int!, changes: HabitUpdateInputs!): Habit!
+  habitDelete(id: Int!): Boolean!
+  habitRestore(id: Int!): Boolean!
+}
