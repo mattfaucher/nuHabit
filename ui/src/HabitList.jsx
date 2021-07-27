@@ -7,6 +7,18 @@ import Habit from './Habit.jsx';
 import AddHabit from './AddHabit.jsx';
 
 export default class HabitList extends React.Component {
+	static async fetchData(match) {
+		const query = `query user(
+			$email: String
+		){
+			habitsList(
+				title: $title
+				isGood: $isGood
+				increments: $increments
+			)
+		}`
+	}
+
 	constructor(props) {
 		super(props);
 	}
