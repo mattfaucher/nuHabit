@@ -1,8 +1,9 @@
-// Import all the components here
-import Page from './Page.jsx';
+import HabitList from './HabitList.jsx';
+import NotFound from './NotFound.jsx';
 
 const routes = [
-	{ path: '/', component: Page },
+  { path: '/habits', component: HabitList },
+  { path: '*', component: NotFound },
 ];
 
 export default routes;

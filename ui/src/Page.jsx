@@ -1,6 +1,9 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 
-import HabitList from './HabitList.jsx';
+import Navigation from './Navigation.jsx';
+import Contents from './Contents.jsx';
+import Footer from './Footer.jsx';
 
 export default class Page extends React.Component {
 	static async fetchData(cookie) {
@@ -13,7 +16,13 @@ export default class Page extends React.Component {
 
 	render() {
 		return (
-			<HabitList />
+			<div>
+				<Navigation />
+				<Container fluid>
+					<Contents />
+				</Container>
+				<Footer />
+			</div>
 		);
 	}
 }

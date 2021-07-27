@@ -6,6 +6,7 @@ import {
 export default class Habit extends React.Component {
 	constructor(props) {
 		super(props);
+		this.title = props.title;
 		this.checked = false;
 	}
 
@@ -13,19 +14,22 @@ export default class Habit extends React.Component {
 	// and input fields
 	render() {
 		return (
-			<Container fluid="sm">
+			<Container style={{width: '40%'}}>
 				<Card border='dark' className='shadow-lg p-3 mb-5 bg-white rounded'>
 					<Card.Body>
 						<Row>
 							<Col className="col-8" align="left">
-								<Card.Text>HABIT TITLE</Card.Text>
+								<Card.Text>{this.title}</Card.Text>
 							</Col>
 							<Col className="col-2 col-xs-1" align="center">
 								<ToggleButton
+									className="btn btn-md"
 									id="toggle-check"
 									type="checkbox"
 									variant="primary"
 									checked={false}
+									// use variable here based on completion time interval
+									disabled={false}
 									value="1"
 									onChange={(e) => setChecked(e.currentTarget.checked)}
 								>
@@ -33,7 +37,7 @@ export default class Habit extends React.Component {
 								</ToggleButton>
 							</Col>
 							<Col className="col-2 col-xs-1" align="center">
-								<Button className="btn btn-secondary btn-lg">Edit</Button>
+								<Button className="btn btn-secondary btn-sm">Edit</Button>
 							</Col>
 						</Row>
 					</Card.Body>

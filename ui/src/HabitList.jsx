@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-	Row
+	Container,
 } from 'react-bootstrap';
 
 import Habit from './Habit.jsx';
@@ -11,8 +11,16 @@ export default class HabitList extends React.Component {
 	}
 
 	render() {
+		const habits = [
+			<Habit title="Eat Healthy" />,
+			<Habit title="Workout" />,
+			<Habit title="Go to bed early" />
+		];
+
 		return (
-			<Habit />	
+			<Container fluid>
+				{habits}
+			</Container>
 		);
 	}
 }
