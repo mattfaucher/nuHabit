@@ -1,43 +1,50 @@
 import React from 'react';
 import {
-	Card, Button, ToggleButton, Row, Col, Container
+	Card, Button, Row, Col, Container
 } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+library.add(faBars);
 
 export default class Habit extends React.Component {
 	constructor(props) {
 		super(props);
 		this.title = props.title;
-		this.checked = false;
+		this.done = false;
+		this.completedTask.bind(this);
+	}
+
+	completedTask(e) {
+		if (!this.done) this.done = true;
 	}
 
 	// Render a single Habit card, with Title, coloring/progress bar
 	// and input fields
 	render() {
 		return (
-			<Container style={{width: '40%'}}>
+			<Container style={{ width: '40%' }}>
 				<Card border='dark' className='shadow-lg p-3 mb-5 bg-white rounded'>
 					<Card.Body>
 						<Row>
-							<Col className="col-8" align="left">
+							<Col className="col-6 col-xs-2" align="left">
 								<Card.Text>{this.title}</Card.Text>
 							</Col>
-							<Col className="col-2 col-xs-1" align="center">
-								<ToggleButton
-									className="btn btn-md"
-									id="toggle-check"
-									type="checkbox"
+							<Col className="col-6 col-xs-2" align="right">
+								<Button
+									onClick={this.completedTask}
+									size="sm"
 									variant="primary"
-									checked={false}
 									// use variable here based on completion time interval
-									disabled={false}
-									value="1"
-									onChange={(e) => setChecked(e.currentTarget.checked)}
+									disabled={this.done}
+								// change disabled to true when done
 								>
 									Done
-								</ToggleButton>
-							</Col>
-							<Col className="col-2 col-xs-1" align="center">
-								<Button className="btn btn-secondary btn-sm">Edit</Button>
+								</Button>
+								{' '}
+								<Button variant="secondary" size="sm">
+									<FontAwesomeIcon icon={faBars} />
+								</Button>
 							</Col>
 						</Row>
 					</Card.Body>

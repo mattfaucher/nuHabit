@@ -18,7 +18,7 @@ export default class Page extends React.Component {
 		return (
 			<div>
 				<Navigation />
-				<Container fluid>
+				<Container fluid style={{marginTop: '25px'}}>
 					<Contents />
 				</Container>
 				<Footer />

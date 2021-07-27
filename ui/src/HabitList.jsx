@@ -4,6 +4,7 @@ import {
 } from 'react-bootstrap';
 
 import Habit from './Habit.jsx';
+import AddHabit from './AddHabit.jsx';
 
 export default class HabitList extends React.Component {
 	constructor(props) {
@@ -18,9 +19,12 @@ export default class HabitList extends React.Component {
 		];
 
 		return (
-			<Container fluid>
-				{habits}
-			</Container>
+			<div>
+				<AddHabit />
+				<Container fluid>
+					{habits}
+				</Container>
+			</div>
 		);
 	}
 }
