@@ -18,8 +18,9 @@ type Habit {
 
 type User {
   signedIn: Boolean!
-  name: String
-  email: String
+  name: String!
+  email: String!
+  habitList: [Habit!]!
 }
 
 "Toned down Issue, used as inputs, without server generated values."
@@ -42,7 +43,7 @@ input HabitUpdateInputs {
 ##### Top level declarations
 type Query {
   title: String!
-  #user: User!
+  user: User!
   habitsList(title: String, isGood: Boolean, increments: Increments): [Habit!]!
   habit(id: Int!): Habit!
 }

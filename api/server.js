@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
-const { connectToDb } = require('./db.js');
-const { installHandler } = require('./api_handler.js');
+const { connectToDb } = require('./db');
+const { installHandler } = require('./api_handler');
 
 const app = express();
 
