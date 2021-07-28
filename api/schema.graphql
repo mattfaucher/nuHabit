@@ -43,7 +43,7 @@ input HabitUpdateInputs {
 ##### Top level declarations
 type Query {
   title: String!
-  user: User!
+  users: [User!]!
   habitsList(title: String, isGood: Boolean, increments: Increments): [Habit!]!
   habit(id: Int!): Habit!
 }
