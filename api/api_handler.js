@@ -3,11 +3,12 @@ require('dotenv').config();
 const { ApolloServer } = require('apollo-server-express');
 
 const GraphQLDate = require('./graphql_date');
+const users = require('./users');
 const habit = require('./habits');
 
 const resolvers = {
   Query: {
-    // user: auth.resolveUser,
+    users: users.userList,
     habitsList: habit.list,
     habit: habit.get,
   },
