@@ -7,16 +7,16 @@ enum Increments {
 }
 
 type User {
-  signedIn: Boolean!
+  _id: ID!
   name: String!
   email: String!
+  signedIn: Boolean!
   habitList: [Habit!]
-  deletedHabitLIst: [Habit!]
+  deletedHabits: [Habit!]
 }
 
 type Habit {
   _id: ID!
-  id: Int!
   title: String!
   increments: Increments!
   created: GraphQLDate!
@@ -44,6 +44,7 @@ input HabitUpdateInputs {
 ##### Top level declarations
 type Query {
   users: [User!]
+  userHabits(_id: ID!): [Habit!]
   habitsList(title: String, isGood: Boolean, increments: Increments): [Habit!]!
   habit(id: Int!): Habit!
 }

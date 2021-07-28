@@ -8,9 +8,8 @@ const habit = require('./habits');
 
 const resolvers = {
   Query: {
-    users: users.userList,
-    habitsList: habit.list,
-    habit: habit.get,
+    users: users.getUsers,
+    userHabits: users.getHabits,
   },
   Mutation: {
     habitAdd: habit.add,
