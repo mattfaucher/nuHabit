@@ -16,7 +16,7 @@ type User {
 }
 
 type Habit {
-  _id: ID!
+  id: Int!
   title: String!
   increments: Increments!
   created: GraphQLDate!

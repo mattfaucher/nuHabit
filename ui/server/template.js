@@ -21,7 +21,7 @@ export default function template(body, initialData, userData) {
 
 <body>
   <!-- Page generated from template. -->
-  <div id="contents">${body}</div>
+  <div id="content">${body}</div>
   <script>
     window.__INITIAL_DATA__ = ${serialize(initialData)}
     window.__USER_DATA__ = ${serialize(userData)} 

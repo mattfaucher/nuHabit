@@ -8,41 +8,50 @@ import Habit from './Habit.jsx';
 import AddHabit from './AddHabit.jsx';
 
 export default class HabitList extends React.Component {
-	static async fetchData(match) {
+	static async fetchData(match = null) {
+		// TODO remove hardcoding once login stuff is completed
+		const vars = { _id: "6101848e618bac249a9b8780" };
 		const query = `query ($_id: ID!) {
 			userHabits(_id: $_id) {
-				title increments count isGood created
+				id title increments count isGood created
 			}
-		}`
-		
-		const data = await graphQLFetch(query);
+		}`;
+
+		const data = await graphQLFetch(query, vars);
 		return data;
 	}
 
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
+		this.state = {};
 	}
 
 	componentDidMount() {
-		const { habits } = this.state;
-		if (habits = null) this.loadData();
+		const { habitsList } = this.state;
+		if (habitsList == null) this.loadData();
 	}
-	
+
+	componentDidUpdate(prevProps) {
+		const { habitsList } = prevProps;
+	}
+
 	async loadData() {
-		const data = await HabitList.fetchData(match);
+		const data = await HabitList.fetchData();
 		if (data) {
-			this.setState({
-				habits: data.habitList,
-			});
+			this.setState({ habitsList: data.userHabits });
 		}
 	}
 
 	render() {
-		const habits = [
-			<Habit title="Eat Healthy" />,
-			<Habit title="Workout" />,
-			<Habit title="Go to bed early" />
-		];
+		let habits = [];
+		if (this.state.habitsList) {
+			habits = this.state.habitsList.map(
+				habit => <Habit
+					key={habit.id}
+					title={habit.title}
+					created={JSON.stringify(habit.created)}
+					/>);
+		}
 
 		return (
 			<div>
