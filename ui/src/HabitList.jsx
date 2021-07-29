@@ -25,7 +25,7 @@ export default class HabitList extends React.Component {
 			habits,
 		};
 	}
-	
+
 	componentDidMount() {
 		const { habits } = this.state;
 		if (habits = null) this.loadData();

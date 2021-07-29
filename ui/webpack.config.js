@@ -43,7 +43,7 @@ const browserConfig = {
 	},
 	plugins: [
 		new webpack.DefinePlugin({
-			__isBrowswer__: 'true',
+			__isBrowser__: 'true',
 		}),
 	],
 	devtool: 'source-map',
@@ -79,7 +79,7 @@ const serverConfig = {
 	},
 	plugins: [
 		new webpack.DefinePlugin({
-			__isBrowswer__: 'false',
+			__isBrowser__: 'false',
 		}),
 	],
 	devtool: 'source-map',
