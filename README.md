@@ -1,7 +1,4 @@
-# nuHabit: Habit Tracking
-
+# **nuHabit**: easy habit tracking
+## Ciara Williams, Noam Gal, Matt Faucher
 ---
-
-Description...etc
-
-Hello World!
+Description here :)
