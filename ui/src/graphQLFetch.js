@@ -17,7 +17,8 @@ graphQLFetch(query, variables = {}, showError = null, cookie = null) {
     if (cookie) headers.Cookie = cookie;
     const response = await fetch(apiEndpoint, {
       method: 'POST',
-      credentials: 'include',
+      // TODO this causes CORS error, need proxy?
+      //credentials: 'include',
       headers,
       body: JSON.stringify({ query, variables }),
     });

@@ -2,6 +2,8 @@ import React from 'react';
 import {
 	Card, Button, Row, Col, Container, Form
 } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default class AddHabit extends React.Component {
 	constructor(props) {
@@ -20,7 +22,9 @@ export default class AddHabit extends React.Component {
 								</Form>
 							</Col>
 							<Col className="col-2" align="right">
-								<Button variant='success'>+</Button>
+								<Button variant='success'>
+									<FontAwesomeIcon icon={faPlus} />
+								</Button>
 							</Col>
 						</Row>
 					</Card.Body>

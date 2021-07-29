@@ -3,20 +3,23 @@ import {
 	Card, Button, Row, Col, Container
 } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-library.add(faBars);
 
 export default class Habit extends React.Component {
 	constructor(props) {
 		super(props);
+		this.id = props.id;
 		this.title = props.title;
+		this.increments = props.increments;
+		this.count = props.count;
+		this.isGood = props.isGood;
+		this.created = props.created;
 		this.done = false;
 		this.completedTask.bind(this);
 	}
 
 	completedTask(e) {
-		if (!this.done) this.done = true;
+		// TODO code for disabling the button
 	}
 
 	// Render a single Habit card, with Title, coloring/progress bar
@@ -28,7 +31,7 @@ export default class Habit extends React.Component {
 					<Card.Body>
 						<Row>
 							<Col className="col-6 col-xs-2" align="left">
-								<Card.Text>{this.title}</Card.Text>
+								<Card.Text>{this.title} started on {this.created}</Card.Text>
 							</Col>
 							<Col className="col-6 col-xs-2" align="right">
 								<Button
