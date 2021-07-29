@@ -3,3 +3,8 @@ deploy
 .env
 .DS_STORE
 dist
+app.bundle.js
+app.bundle.js.map
+vendor.bundle.js
+vendor.bundle.js.LICENSE.txt
+vendor.bundle.js.map

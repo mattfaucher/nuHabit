@@ -6,21 +6,22 @@ enum Increments {
   Monthly
 }
 
+type User {
+  _id: ID!
+  name: String!
+  email: String!
+  signedIn: Boolean!
+  habitList: [Habit!]
+  deletedHabits: [Habit!]
+}
+
 type Habit {
   _id: ID!
-  id: Int!
   title: String!
   increments: Increments!
   created: GraphQLDate!
   isGood: Boolean!
   count: Int!
-}
-
-type User {
-  signedIn: Boolean!
-  name: String!
-  email: String!
-  habitList: [Habit!]!
 }
 
 "Toned down Issue, used as inputs, without server generated values."
@@ -42,8 +43,8 @@ input HabitUpdateInputs {
 
 ##### Top level declarations
 type Query {
-  title: String!
-  user: User!
+  users: [User!]
+  userHabits(_id: ID!): [Habit!]
   habitsList(title: String, isGood: Boolean, increments: Increments): [Habit!]!
   habit(id: Int!): Habit!
 }
