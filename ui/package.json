@@ -7,7 +7,7 @@
     "start": "node dist/server.js",
     "compile": "webpack --mode production",
     "watch-server-hmr": "webpack -w --config webpack.serverHMR.js",
-    "dev-all": "rm dist/* && npm run watch-server-hmr & sleep 5 && npm start",
+    "dev-all": "rm dist/* && npm run watch-server-hmr & sleep 3 && npm start",
     "lint": "eslint server src browser --ext js,jsx"
   },
   "repository": {
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/mattfaucher/nuHabit#readme",
   "dependencies": {
+    "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.8",
     "@babel/preset-react": "^7.14.5",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
@@ -43,9 +44,10 @@
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
+    "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
     "serialize-javascript": "^6.0.0",
-    "webpack": "^5.45.1",
+    "webpack": "^4.12.6",
     "webpack-dev-middleware": "^5.0.0",
     "webpack-hot-middleware": "^2.25.0",
     "webpack-node-externals": "^3.0.0"

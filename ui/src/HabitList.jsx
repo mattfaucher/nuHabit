@@ -21,9 +21,6 @@ export default class HabitList extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			habits,
-		};
 	}
 
 	componentDidMount() {
