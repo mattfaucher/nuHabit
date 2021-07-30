@@ -20,7 +20,9 @@ async function render(req, res) {
 		initialData = await activeRoute.component.fetchData(match, search, req.headers.cookie);
 	}
 
-	const userData = await Page.fetchData(req.headers.cookie);
+	// todo: commented out for something else
+	//const userData = await Page.fetchData(req.headers.cookie);
+	const userData = {};
 
 	store.initialData = initialData;
 	store.userData = userData;

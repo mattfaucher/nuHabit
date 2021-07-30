@@ -1,13 +1,14 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import { withAuth0 } from '@auth0/auth0-react';
 
 import Navigation from './Navigation.jsx';
 import Contents from './Contents.jsx';
 import Footer from './Footer.jsx';
 
-export default class Page extends React.Component {
+class Page extends React.Component {
 	static async fetchData(cookie) {
-		console.log(cookie);
+		console.log("hi");
 	}
 
 	constructor() {
@@ -26,3 +27,5 @@ export default class Page extends React.Component {
 		);
 	}
 }
+
+export default withAuth0(Page);

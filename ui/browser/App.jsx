@@ -2,8 +2,8 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Auth0Provider } from '@auth0/auth0-react';
 
-import Auth0ProviderWithHistory from '../src/Auth0ProviderWithHistory.jsx';
 import Page from '../src/Page.jsx';
 import store from '../src/store.js';
 
@@ -12,11 +12,14 @@ store.initialData = window.__INITIAL_DATA__;
 store.userData = window.__USER_DATA__;
 
 const element = (
-	<Router>
-		<Auth0ProviderWithHistory>
+	<Auth0Provider
+		domain={process.env.REACT_APP_AUTH0_DOMAIN || 'dev-2h0ect8n.us.auth0.com'}	
+		clientId={process.env.REACT_APP_AUTH0_CLIENT_ID || 'kWjqq2l8kxOjeyEuTTUAvR8hhWQBL38B'}
+	>
+		<Router>
 			<Page />
-		</Auth0ProviderWithHistory>
-	</Router>
+		</Router>
+	</Auth0Provider>
 );
 
 // TODO: Starting the app with hydrate causes console error
