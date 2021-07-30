@@ -7,18 +7,18 @@ import Footer from './Footer.jsx';
 
 export default class Page extends React.Component {
 	static async fetchData(cookie) {
-		//empty
+		console.log(cookie);
 	}
 
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 	}
 
 	render() {
 		return (
 			<div>
 				<Navigation />
-				<Container fluid style={{marginTop: '25px'}}>
+				<Container fluid style={{ marginTop: '25px' }}>
 					<Contents />
 				</Container>
 				<Footer />
