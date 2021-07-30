@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/mattfaucher/nuHabit#readme",
   "dependencies": {
+    "@auth0/auth0-react": "^1.6.0",
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.8",
     "@babel/preset-react": "^7.14.5",

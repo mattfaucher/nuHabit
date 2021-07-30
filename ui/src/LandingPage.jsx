@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+
+import AuthButton from './AuthButton.jsx';
 
 export default class LandingPage extends React.Component {
 	constructor(props) {
@@ -8,8 +9,10 @@ export default class LandingPage extends React.Component {
 
 	render() {
 		return (
-			<h1>Landing Page</h1>	
-			
+			<div>
+				<h1>Landing Page</h1>
+				<AuthButton />
+			</div>
 		);
 	}
 }

@@ -19,6 +19,8 @@ async function render(req, res) {
 		const search = index !== -1 ? req.url.substr(index) : null;
 		initialData = await activeRoute.component.fetchData(match, search, req.headers.cookie);
 	}
+
+	// TODO : do we need this?
 	const userData = await Page.fetchData(req.headers.cookie);
 
 	store.initialData = initialData;

@@ -12,7 +12,9 @@ store.userData = window.__USER_DATA__;
 
 const element = (
 	<Router>
-		<Page />
+		<Auth0ProviderWithHistory>
+			<Page />
+		</Auth0ProviderWithHistory>
 	</Router>
 );
 
