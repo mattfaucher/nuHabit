@@ -16,7 +16,10 @@ const element = (
 	</Router>
 );
 
-ReactDOM.hydrate(element, document.getElementById('content'));
+// TODO: Starting the app with hydrate causes console error
+// Link: https://stackoverflow.com/questions/46865880/react-16-warning-expected-server-html-to-contain-a-matching-div-in-div-due
+ReactDOM.render(element, document.getElementById('content'));
+//ReactDOM.hydrate(element, document.getElementById('content'));
 
 if (module.hot) {
 	module.hot.accept();
