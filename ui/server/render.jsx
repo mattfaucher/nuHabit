@@ -20,7 +20,6 @@ async function render(req, res) {
 		initialData = await activeRoute.component.fetchData(match, search, req.headers.cookie);
 	}
 
-	// TODO : do we need this?
 	const userData = await Page.fetchData(req.headers.cookie);
 
 	store.initialData = initialData;
@@ -31,6 +30,7 @@ async function render(req, res) {
 			<Page />
 		</StaticRouter>
 	);
+
 	const body = ReactDOMServer.renderToString(element);
 	
 	if (context.url) {

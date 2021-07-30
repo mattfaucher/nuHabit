@@ -7,7 +7,7 @@ import Footer from './Footer.jsx';
 
 export default class Page extends React.Component {
 	static async fetchData(cookie) {
-		//empty for now
+		console.log(cookie);
 	}
 
 	constructor() {

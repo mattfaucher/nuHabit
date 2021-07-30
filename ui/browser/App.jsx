@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import Auth0ProviderWithHistory from '../src/Auth0ProviderWithHistory.jsx';
 import Page from '../src/Page.jsx';
 import store from '../src/store.js';
 
