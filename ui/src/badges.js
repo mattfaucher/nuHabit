@@ -24,7 +24,18 @@ const badges = {
 	}
 };
 
+const bronzeImage = require("nuHabbit/badges/bronze.jpg")
+const silverImage = require("nuHabbit/badges/silver.jpg")
+const goldImage = require("nuHabbit/badges/gold.jpg")
+const check1 = require("nuHabbit/badges/check1.jpg")
+const check2 = require("nuHabbit/badges/check2.jpg")
+const check3 = require("nuHabbit/badges/check3.jpg")
+const one = require("nuHabbit/badges/one.jpg")
+const two = require("nuHabbit/badges/two.jpg")
+const three = require("nuHabbit/badges/three.jpg")
+
+
 // add all the badge img urls into array, 0->8 indexed (9) badges
-const badgeArray = ["img1", "badge2"];
+const badgeArray = ["bronzeImage", "silverImage", "goldImage", "check1", "check2", "check3", "one", "two", "three"];
 
 export default { badgeArray, badges };
