@@ -8,3 +8,4 @@ app.bundle.js.map
 vendor.bundle.js
 vendor.bundle.js.LICENSE.txt
 vendor.bundle.js.map
+config.js

@@ -8,9 +8,11 @@ class Navigation extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: props.user.given_name + ' ' + props.user.family_name,
+			name: props.user.name,
+			nickname: props.user.nickname,
 			email: props.user.email,
 			picture: props.user.picture,
+			id: props.user.sub,
 		};
 	}
 
@@ -33,8 +35,12 @@ class Navigation extends React.Component {
 							<img src={this.state.picture} style={{width: '40px', borderRadius: '100px', marginRight: '5px'}}></img>
 							{this.state.name}	
 						</Nav.Item>
-						<LogoutButton />
-					</Nav>	
+					</Nav>
+					<Nav className="ml-auto">
+						<Nav.Item>
+							<LogoutButton />
+						</Nav.Item>
+					</Nav>
 				</Container>
 			</Navbar>
 		);
