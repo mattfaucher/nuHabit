@@ -37,7 +37,7 @@ export default class Habit extends React.Component {
 		  ));
 		  
 		return (
-			<Container style={{ width: '40%' }}>
+			<Container fluid="md">
 				<Card border='dark' className='shadow-lg p-3 mb-5 bg-white rounded'>
 					<Card.Body>
 						<Row>

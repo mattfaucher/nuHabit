@@ -2,12 +2,13 @@ import React from 'react'
 import {
 	Container,
 } from 'react-bootstrap';
+import { withAuth0 } from '@auth0/auth0-react';
 
 import graphQLFetch from './graphQLFetch.js';
 import Habit from './Habit.jsx';
 import AddHabit from './AddHabit.jsx';
 
-export default class HabitList extends React.Component {
+class HabitList extends React.Component {
 	static async fetchData(match = null) {
 		// TODO remove hardcoding once login stuff is completed
 		const vars = { _id: "6101848e618bac249a9b8780" };
@@ -43,6 +44,9 @@ export default class HabitList extends React.Component {
 	}
 
 	render() {
+		// TODO use this data to get query id for fetch
+		const user = this.props.auth0.user;
+
 		let habits = [];
 		if (this.state.habitsList) {
 			habits = this.state.habitsList.map(
@@ -66,3 +70,5 @@ export default class HabitList extends React.Component {
 		);
 	}
 }
+
+export default withAuth0(HabitList);
