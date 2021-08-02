@@ -46,6 +46,7 @@ class HabitList extends React.Component {
 	render() {
 		// TODO use this data to get query id for fetch
 		const user = this.props.auth0.user;
+		console.log(user);
 
 		let habits = [];
 		if (this.state.habitsList) {
