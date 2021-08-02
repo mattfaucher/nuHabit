@@ -50,6 +50,9 @@ export default class HabitList extends React.Component {
 					key={habit.id}
 					title={habit.title}
 					created={JSON.stringify(habit.created)}
+					id={habit.id}
+					count={habit.count}
+					increments={habit.increments}
 					/>);
 		}
 
