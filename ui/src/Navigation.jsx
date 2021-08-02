@@ -1,41 +1,50 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import { withAuth0 } from '@auth0/auth0-react';
 
-export default class Navigation extends React.Component {
+import LogoutButton from './LogoutButton.jsx';
+
+class Navigation extends React.Component {
 	constructor(props) {
 		super(props);
-		const toggleNav = () => {
-			this.setState({ toggle: !this.state.toggle} );
-			console.log(this.state.toggle);
-			return this.state.toggle;
-		}
-
 		this.state = {
-			toggle: false,
-			toggleNav: toggleNav,
-		}
+			name: props.user.name,
+			nickname: props.user.nickname,
+			email: props.user.email,
+			picture: props.user.picture,
+			id: props.user.sub,
+		};
 	}
 
 	render() {
 		return (
 			<Navbar
-				sticky="top" 
-				expand="lg" 
+				sticky="top"
+				expand="lg"
 				bg="dark"
 				variant="dark"
-				>
+			>
 				<Container>
 					<Navbar.Brand href="/habits">nuHabit</Navbar.Brand>
-						<Nav className="me-auto">
-							<Nav.Link href="/completed">Completed Habits</Nav.Link>
-							<Nav.Link href="/collection">Collection</Nav.Link>
-						</Nav>
-						<Nav className="ml-auto">
-							<Nav.Link href="/signin">Sign in</Nav.Link>
-							<Nav.Link href="/about">About</Nav.Link>
-						</Nav>
+					<Nav className="me-auto">
+						<Nav.Link href="/completed">Completed Habits</Nav.Link>
+						<Nav.Link href="/collection">Collection</Nav.Link>
+					</Nav>
+					<Nav className="ml-auto">
+						<Nav.Item style={{color: 'white', marginRight: '10px'}}>
+							<img src={this.state.picture} style={{width: '40px', borderRadius: '100px', marginRight: '5px'}}></img>
+							{this.state.name}	
+						</Nav.Item>
+					</Nav>
+					<Nav className="ml-auto">
+						<Nav.Item>
+							<LogoutButton />
+						</Nav.Item>
+					</Nav>
 				</Container>
 			</Navbar>
 		);
 	}
 }
+
+export default withAuth0(Navigation);
