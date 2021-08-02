@@ -3,7 +3,7 @@ import HabitList from './HabitList.jsx';
 import NotFound from './NotFound.jsx';
 
 const routes = [
-  { path: '/', component: LandingPage },
+  { path: '/home', component: LandingPage },
   { path: '/habits', component: HabitList },
   { path: '*', component: NotFound },
 ];
