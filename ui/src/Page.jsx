@@ -18,12 +18,15 @@ class Page extends React.Component {
 	}
 
 	render() {
-		const { isAuthenticated, isLoading, error } = this.props.auth0;
+		const { isAuthenticated, isLoading, error, user } = this.props.auth0;
+		// Get's current user data
+		// return loading screen to avoid weird flicker
 		if (isLoading) {
 			return (
 				<Alert variant='info'>Loading!</Alert>
 			);
 		}
+		// handle any errors output
 		if (error) {
 			return (
 				<Alert variant='danger'>Oops! Something went wrong!</Alert>
@@ -37,7 +40,7 @@ class Page extends React.Component {
 			>
 				{isAuthenticated ?
 					<div>
-						<Navigation />
+						<Navigation user={user} />
 						<Container fluid style={{ marginTop: '25px' }}>
 							<Contents />
 						</Container>
