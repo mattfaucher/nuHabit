@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Auth0Provider } from '@auth0/auth0-react';
 
+
 import Page from '../src/Page.jsx';
 import store from '../src/store.js';
 
