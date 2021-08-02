@@ -2,7 +2,6 @@ import React from 'react';
 import {
 	Card, Button, Row, Col, Container
 } from 'react-bootstrap';
-import { Link, Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -27,7 +26,7 @@ export default class Habit extends React.Component {
 	// and input fields
 	render() {
 		return (
-			<Container style={{ width: '40%' }}>
+			<Container fluid="md">
 				<Card border='dark' className='shadow-lg p-3 mb-5 bg-white rounded'>
 					<Card.Body>
 						<Row>
