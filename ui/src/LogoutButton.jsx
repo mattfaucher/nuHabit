@@ -8,7 +8,7 @@ const LogoutButton = () => {
 			className="btn btn-danger btn-block"
 			onClick={() =>
 				logout({
-					returnTo: window.location.origin,
+					returnTo: 'http://localhost:8000/home',
 				})
 			}
 		>
