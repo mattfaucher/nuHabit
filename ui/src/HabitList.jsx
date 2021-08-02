@@ -9,11 +9,10 @@ import Habit from './Habit.jsx';
 import AddHabit from './AddHabit.jsx';
 
 class HabitList extends React.Component {
-	static async fetchData(match = null) {
-		// TODO remove hardcoding once login stuff is completed
-		const vars = { _id: "6101848e618bac249a9b8780" };
-		const query = `query ($_id: ID!) {
-			userHabits(_id: $_id) {
+	async fetchData(email) {
+		const vars = { 'email': email };
+		const query = `query ($email: String!) {
+			userHabits(email: $email) {
 				id title increments count isGood created
 			}
 		}`;
@@ -22,50 +21,51 @@ class HabitList extends React.Component {
 		return data;
 	}
 
-	constructor() {
-		super();
-		this.state = {};
+	constructor(props) {
+		super(props);
+		this.state = {
+			habitsList: null,
+		};
 	}
 
-	componentDidMount() {
-		const { habitsList } = this.state;
-		if (habitsList == null) this.loadData();
+	async componentDidMount() {
+		const data = await this.fetchData(this.props.auth0.user.email);
+		this.setState({
+			habitsList: data,
+		});
 	}
 
-	componentDidUpdate(prevProps) {
-		const { habitsList } = prevProps;
-	}
-
-	async loadData() {
-		const data = await HabitList.fetchData();
-		if (data) {
-			this.setState({ habitsList: data.userHabits });
+	async componentDidUpdate() {
+		if (this.state.data === undefined) {
+			const data = await this.fetchData(this.props.auth0.user.email);
+			this.setState({
+				habitsList: data,
+			});
 		}
 	}
 
 	render() {
-		// TODO use this data to get query id for fetch
-		const user = this.props.auth0.user;
-		console.log(user);
-
-		let habits = [];
-		if (this.state.habitsList) {
-			habits = this.state.habitsList.map(
-				habit => <Habit
+		let habitsList;
+		if (this.state.habitsList !== undefined) {
+			habitsList = this.state.habitsList;
+			if (habitsList && habitsList.length > 0) {
+				habitsList.map(habit => <Habit
 					key={habit.id}
 					title={habit.title}
 					created={JSON.stringify(habit.created)}
-					id={habit.id}
 					count={habit.count}
 					increments={habit.increments}
-					/>);
+				/>);
+			}
 		}
+
+
 
 		return (
 			<div>
 				<AddHabit />
 				<Container fluid>
-					{habits}
+					{habitsList}
 				</Container>
 			</div>
 		);
