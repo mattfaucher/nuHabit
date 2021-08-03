@@ -23,12 +23,16 @@ class HabitList extends React.Component {
 
 	constructor(props) {
 		super(props);
+		console.log(props);
 		this.state = {
 			habitsList: null,
 		};
 	}
 
 	async componentDidMount() {
+		if (this.props.auth0 === undefined) {
+			return;
+		}
 		const data = await this.fetchData(this.props.auth0.user.email);
 		this.setState({
 			habitsList: data,
@@ -45,10 +49,12 @@ class HabitList extends React.Component {
 	}
 
 	render() {
-		let habitsList;
+		let habitsList = [];
 		if (this.state.habitsList !== undefined) {
+
 			habitsList = this.state.habitsList;
 			if (habitsList && habitsList.length > 0) {
+			console.log("ENTER");
 				habitsList.map(habit => <Habit
 					key={habit.id}
 					title={habit.title}
@@ -58,8 +64,6 @@ class HabitList extends React.Component {
 				/>);
 			}
 		}
-
-
 
 		return (
 			<div>

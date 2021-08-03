@@ -11,17 +11,8 @@ async function connectToDb() {
   db = client.db();
 }
 
-async function getNextSequence(name) {
-  const result = await db.collection('counters').findOneAndUpdate(
-    { _id: name },
-    { $inc: { current: 1 } },
-    { returnOriginal: false },
-  );
-  return result.value.current;
-}
-
 function getDb() {
   return db;
 }
 
-module.exports = { connectToDb, getNextSequence, getDb };
+module.exports = { connectToDb, getDb };

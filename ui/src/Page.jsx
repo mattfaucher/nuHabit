@@ -13,8 +13,8 @@ class Page extends React.Component {
 		console.log("PAGE FETCH DATA");
 	}
 
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 	}
 
 	render() {
@@ -42,7 +42,7 @@ class Page extends React.Component {
 					<div>
 						<Navigation user={user} />
 						<Container fluid style={{ marginTop: '25px' }}>
-							<Contents />
+							<Contents user={this.props.auth0.user} />
 						</Container>
 						<Footer />
 					</div>
