@@ -1,5 +1,5 @@
 // Key = array index of badgeArray, value = count comparison
-const badges = {
+export const badges = {
 	day: {
 		0: 1,
 		1: 7,
@@ -36,6 +36,6 @@ const three = require("nuHabbit/badges/three.jpg")
 
 
 // add all the badge img urls into array, 0->8 indexed (9) badges
-const badgeArray = ["bronzeImage", "silverImage", "goldImage", "check1", "check2", "check3", "one", "two", "three"];
+export const badgeArray = ["bronzeImage", "silverImage", "goldImage", "check1", "check2", "check3", "one", "two", "three"];
 
 export default { badgeArray, badges };
