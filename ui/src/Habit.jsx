@@ -31,10 +31,6 @@ export default class Habit extends React.Component {
 
 	render() {
 		const habitDetails = `/details/${this.id},${this.title},${this.count},${this.increments}`; 
-
-		const FancyLink = React.forwardRef((props, ref) => (
-			<a ref={ref} {...props}> {this.props} {props.children}</a>
-		  ));
 		  
 		return (
 			<Container fluid="md">

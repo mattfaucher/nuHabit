@@ -1,5 +1,5 @@
 // Key = array index of badgeArray, value = count comparison
-const badges = {
+export const badges = {
 	day: {
 		0: 1,
 		1: 7,
@@ -28,7 +28,9 @@ const path = '../badges/';
 const jpg = '.jpg';
 
 // add all the badge img urls into array, 0->8 indexed (9) badges
-let badgeArr = [
+
+
+export const badgeArr = [
 	'bronze', 'silver', 'gold',
 	'check1', 'check2', 'check3',
 	'one', 'two', 'three'
@@ -36,5 +38,6 @@ let badgeArr = [
 
 // map each badge to create the file path
 const badgeArray = badgeArr.map(file => path + file + jpg);
+
 
 export default { badgeArray, badges };
