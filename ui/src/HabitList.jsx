@@ -1,8 +1,8 @@
 import React from 'react'
 import {
-	Container,
+	Container, Alert,
 } from 'react-bootstrap';
-import { withAuth0 } from '@auth0/auth0-react';
+import { withAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
 import graphQLFetch from './graphQLFetch.js';
 import Habit from './Habit.jsx';
@@ -21,59 +21,50 @@ class HabitList extends React.Component {
 		return data;
 	}
 
-	constructor(props) {
-		super(props);
-		console.log(props);
+	constructor() {
+		super();
 		this.state = {
-			habitsList: null,
+			habitsList: [],
 		};
 	}
 
 	async componentDidMount() {
-		if (this.props.auth0 === undefined) {
-			return;
-		}
 		const data = await this.fetchData(this.props.auth0.user.email);
+		const userData = await data;
 		this.setState({
-			habitsList: data,
+			habitsList: userData.userHabits,
 		});
 	}
 
-	async componentDidUpdate() {
-		if (this.state.data === undefined) {
+	async componentDidUpdate(prevProps) {
+		if (prevProps !== this.props) {
 			const data = await this.fetchData(this.props.auth0.user.email);
+			const userData = await data;
 			this.setState({
-				habitsList: data,
+				habitsList: userData.userHabits,
 			});
 		}
 	}
 
 	render() {
-		let habitsList = [];
-		if (this.state.habitsList !== undefined) {
-
-			habitsList = this.state.habitsList;
-			if (habitsList && habitsList.length > 0) {
-			console.log("ENTER");
-				habitsList.map(habit => <Habit
-					key={habit.id}
-					title={habit.title}
-					created={JSON.stringify(habit.created)}
-					count={habit.count}
-					increments={habit.increments}
-				/>);
-			}
-		}
-
 		return (
 			<div>
 				<AddHabit />
 				<Container fluid>
-					{habitsList}
+					{this.state.habitsList.map(habit => (
+						<Habit
+							key={habit.id}
+							title={habit.title}
+							created={JSON.stringify(habit.created)}
+							count={habit.count}
+							increments={habit.increments}
+						/>))}
 				</Container>
 			</div>
 		);
 	}
 }
 
-export default withAuth0(HabitList);
+export default withAuth0(withAuthenticationRequired(HabitList, {
+	onRedirecting: () => (<Alert variant='info'>Redirecting...</Alert>)
+}));
