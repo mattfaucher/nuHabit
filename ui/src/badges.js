@@ -24,7 +24,20 @@ export const badges = {
 	}
 };
 
+const path = '../badges/';
+const jpg = '.jpg';
+
 // add all the badge img urls into array, 0->8 indexed (9) badges
-export const badgeArray = ["img1", "badge2"];
+
+
+export const badgeArr = [
+	'bronze', 'silver', 'gold',
+	'check1', 'check2', 'check3',
+	'one', 'two', 'three'
+];
+
+// map each badge to create the file path
+const badgeArray = badgeArr.map(file => path + file + jpg);
+
 
 export default { badgeArray, badges };

@@ -3,14 +3,12 @@ scalar GraphQLDate
 enum Increments {
   Daily
   Weekly
-  Monthly
 }
 
 type User {
   _id: ID!
   name: String!
   email: String!
-  signedIn: Boolean!
   habitList: [Habit!]
   deletedHabits: [Habit!]
 }
@@ -53,6 +51,8 @@ type Query {
     created: GraphQLDate
     id: Int
   ): [Habit!]!
+  userHabits(email: String!): [Habit!]
+  habitsList(title: String, isGood: Boolean, increments: Increments): [Habit!]!
   habit(id: Int!): Habit!
 }
 type Mutation {

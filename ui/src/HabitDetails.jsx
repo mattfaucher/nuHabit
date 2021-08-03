@@ -4,13 +4,14 @@ import {badges} from './badges';
 
 export default class HabitDetails extends React.Component {
 
-	constructor(props) {
-		super(props);
-		this.state = { 
+  constructor(props) {
+    super(props);
+    this.state = {
       title: this.props.match.params.title,
       count: this.props.match.params.count,
       increments: this.props.match.params.increments
     };
+
 	}
 
   correctBadges() {
@@ -21,9 +22,7 @@ export default class HabitDetails extends React.Component {
 
 
 	render() {
-    
-      
-    
+   
       return (
         <div className=".container-fluid">
           
@@ -34,15 +33,5 @@ export default class HabitDetails extends React.Component {
                 <p className="card-text">Count: {this.state.count}</p>
               </div>
             </div>
-        </div>
-       
-      </div>
-
-
-        
-        
-            
-
-        );
   }
 }

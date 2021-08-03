@@ -9,12 +9,8 @@ import Footer from './Footer.jsx';
 import config from '../config.js';
 
 class Page extends React.Component {
-	static async fetchData(cookie) {
-		console.log("PAGE FETCH DATA");
-	}
-
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 	}
 
 	render() {
@@ -42,7 +38,7 @@ class Page extends React.Component {
 					<div>
 						<Navigation user={user} />
 						<Container fluid style={{ marginTop: '25px' }}>
-							<Contents />
+							<Contents user={this.props.auth0.user} />
 						</Container>
 						<Footer />
 					</div>
