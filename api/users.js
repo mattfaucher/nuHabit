@@ -15,6 +15,9 @@ async function getHabits(_, email) {
 	return habits;
 }
 
+// todo
+// async function addHabit(_, { user }) {}
+
 module.exports = {
-	getUsers, getHabits,
+	getUsers, getHabits, //addHabit,
 };
