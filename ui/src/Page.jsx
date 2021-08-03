@@ -9,10 +9,6 @@ import Footer from './Footer.jsx';
 import config from '../config.js';
 
 class Page extends React.Component {
-	static async fetchData(cookie) {
-		console.log("PAGE FETCH DATA");
-	}
-
 	constructor(props) {
 		super(props);
 	}
