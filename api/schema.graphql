@@ -45,7 +45,14 @@ input HabitUpdateInputs {
 type Query {
   users: [User!]
   userHabits(_id: ID!): [Habit!]
-  habitsList(title: String, isGood: Boolean, increments: Increments): [Habit!]!
+  habitsList(
+    title: String
+    isGood: Boolean
+    increments: Increments
+    count: Int
+    created: GraphQLDate
+    id: Int
+  ): [Habit!]!
   habit(id: Int!): Habit!
 }
 type Mutation {

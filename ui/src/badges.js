@@ -1,5 +1,5 @@
 // Key = array index of badgeArray, value = count comparison
-const badges = {
+export const badges = {
 	day: {
 		0: 1,
 		1: 7,
@@ -25,6 +25,6 @@ const badges = {
 };
 
 // add all the badge img urls into array, 0->8 indexed (9) badges
-const badgeArray = ["img1", "badge2"];
+export const badgeArray = ["img1", "badge2"];
 
 export default { badgeArray, badges };
