@@ -15,12 +15,7 @@ export default class HabitDetails extends React.Component {
     };
   }
 
-
-
   render() {
-    const tempImage = badgeArray[0];
-    console.log(badgeArray);
-
     const cardStyle = {
       display: "flex",
       flex: "1 1 auto"
@@ -28,7 +23,6 @@ export default class HabitDetails extends React.Component {
 
     return (
       <div className=".container-fluid">
-
         <div className="d-grid gap-3">
           <div className="card text-center" style={{ width: "100%" }}>
             <div className="card-body">
@@ -37,25 +31,18 @@ export default class HabitDetails extends React.Component {
             </div>
           </div>
 
-
           <div className="col d-flex align-items-center">
             <div className="card w-50" style={cardStyle}>
               <div className="card-img-top d-flex align-items-center bg-light">
                 <div>
-                  <img className="img-fluid" src="tempImage" alt="Card image cap" />
+                  <img className="img-fluid" src={badgeArray[0]} alt="Card image" />
                 </div>
-                <p className="col p-2 me-auto">{this.increments}: </p>
+                <p className="col p-2 me-auto">{this.state.increments}: </p>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-
-
-
-
-
     );
   }
 }
