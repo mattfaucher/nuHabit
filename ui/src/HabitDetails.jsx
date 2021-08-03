@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {badgeArray} from badges.js;
 
 export default class HabitDetails extends React.Component {
 
@@ -15,6 +15,7 @@ export default class HabitDetails extends React.Component {
 
 
 	render() {
+    const tempImage = badgeArray[0];
 
     const cardStyle = {
       display: "flex",
@@ -31,13 +32,13 @@ export default class HabitDetails extends React.Component {
                 <p className="card-text">Count: {this.state.count}</p>
               </div>
             </div>
+            
        
-        
             <div className="col d-flex align-items-center">
               <div className="card w-50" style={cardStyle}>
                 <div className="card-img-top d-flex align-items-center bg-light">
                   <div>
-                    <img className="img-fluid" src="http://via.placeholder.com/150x150/1f1a38/ffffff?text=Image" alt="Card image cap" />
+                    <img className="img-fluid" src="tempImage" alt="Card image cap" />
                   </div>
                   <p className="col p-2 me-auto">{this.increments}: </p>
                 </div>
