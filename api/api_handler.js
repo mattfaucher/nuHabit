@@ -4,7 +4,6 @@ const { ApolloServer } = require('apollo-server-express');
 
 const GraphQLDate = require('./graphql_date');
 const users = require('./users');
-const habit = require('./habits');
 
 const resolvers = {
   Query: {
@@ -12,10 +11,6 @@ const resolvers = {
     userHabits: users.getHabits,
   },
   Mutation: {
-    habitAdd: habit.add,
-    habitUpdate: habit.update,
-    habitDelete: habit.delete,
-    habitRestore: habit.restore,
   },
   GraphQLDate,
 };

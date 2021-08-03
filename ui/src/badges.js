@@ -1,5 +1,5 @@
 // Key = array index of badgeArray, value = count comparison
-export const badges = {
+const badges = {
 	day: {
 		0: 1,
 		1: 7,
@@ -24,18 +24,17 @@ export const badges = {
 	}
 };
 
-const bronzeImage = require("nuHabbit/badges/bronze.jpg")
-const silverImage = require("nuHabbit/badges/silver.jpg")
-const goldImage = require("nuHabbit/badges/gold.jpg")
-const check1 = require("nuHabbit/badges/check1.jpg")
-const check2 = require("nuHabbit/badges/check2.jpg")
-const check3 = require("nuHabbit/badges/check3.jpg")
-const one = require("nuHabbit/badges/one.jpg")
-const two = require("nuHabbit/badges/two.jpg")
-const three = require("nuHabbit/badges/three.jpg")
-
+const path = '../badges/';
+const jpg = '.jpg';
 
 // add all the badge img urls into array, 0->8 indexed (9) badges
-export const badgeArray = ["bronzeImage", "silverImage", "goldImage", "check1", "check2", "check3", "one", "two", "three"];
+let badgeArr = [
+	'bronze', 'silver', 'gold',
+	'check1', 'check2', 'check3',
+	'one', 'two', 'three'
+];
+
+// map each badge to create the file path
+const badgeArray = badgeArr.map(file => path + file + jpg);
 
 export default { badgeArray, badges };

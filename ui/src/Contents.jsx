@@ -4,11 +4,12 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import routes from './routes.js';
 
 export default function Contents(user) {
-	const userData = user.user;
+	const userData = user;
+
 	return (
 		<Switch>
 			{<Redirect exact from="/" to="/habits" />}
-			{routes.map(attrs => <Route {...attrs} key={attrs.path} />)}
+			{routes.map(attrs => <Route {...attrs} key={attrs.path} user={userData} />)}
 		</Switch>
 	);
 }

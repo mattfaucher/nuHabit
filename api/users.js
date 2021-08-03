@@ -8,10 +8,9 @@ async function getUsers(_, { }) {
 	return users;
 }
 
-async function getHabits(_, { _id }) {
+async function getHabits(_, email) {
 	const db = getDb();
-	const id = ObjectId(_id);
-	const user = await db.collection('users').findOne(id);
+	const user = await db.collection('users').findOne(email);
 	const habits = user.habitList;
 	return habits;
 }
