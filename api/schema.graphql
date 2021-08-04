@@ -24,17 +24,19 @@ type Habit {
   isDone: Boolean!
 }
 
-"Toned down Issue, used as inputs, without server generated values."
+input UserInput {
+  name: String!
+  email: String!
+}
+
+" Mandatory inputs for creating a new Habit"
 input HabitInputs {
   title: String!
   increments: Increments!
   isGood: Boolean!
 }
 
-"""
-Inputs for issueUpdate: all are optional. Whichever is specified will
-be set to the given value, undefined fields will remain unmodified.
-"""
+"Optional Inputs for Editing/Updating an existing habit"
 input HabitUpdateInputs {
   title: String
   increments: Increments
@@ -44,6 +46,7 @@ input HabitUpdateInputs {
 
 ##### Top level declarations
 type Query {
+  user(email: String): User
   users: [User!]
   habitsList(
     title: String
@@ -64,8 +67,5 @@ type Query {
   ): [Habit!]!
 }
 type Mutation {
-  habitAdd(habit: HabitInputs!): Habit!
-  habitUpdate(id: Int!, changes: HabitUpdateInputs!): Habit!
-  habitDelete(id: Int!): Boolean!
-  habitRestore(id: Int!): Boolean!
+  insertUser(user: UserInput!): User!
 }

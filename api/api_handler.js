@@ -7,10 +7,12 @@ const users = require('./users');
 
 const resolvers = {
   Query: {
+    user: users.findUser,
     users: users.getUsers,
     userHabits: users.getHabits,
   },
   Mutation: {
+    insertUser: users.insertUser,
   },
   GraphQLDate,
 };

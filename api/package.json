@@ -19,6 +19,7 @@
     "homepage": "https://github.com/mattfaucher/nuHabit#readme",
     "dependencies": {
         "apollo-server-express": "^2.25.2",
+        "body-parser": "^1.19.0",
         "cors": "^2.8.5",
         "dotenv": "^6.2.0",
         "express": "^4.17.1",

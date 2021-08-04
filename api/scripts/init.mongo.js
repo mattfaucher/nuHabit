@@ -25,7 +25,9 @@ const users = [
 				'count': 10,
 				'isDone': false
 			},
-		]
+		],
+		'deletedHabits': [],
+		'completedHabits': [],
 	},
 	{
 		'name': 'Ciara',
