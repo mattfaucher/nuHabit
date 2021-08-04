@@ -10,21 +10,28 @@ import AddHabit from './AddHabit.jsx';
 
 class HabitList extends React.Component {
 	async fetchData(email) {
-		const vars = { 'email': email };
+		let vars = { 'email': email };
 		const query = `query ($email: String!) {
 			userHabits(email: $email) {
 				id title increments count isGood created
 			}
 		}`;
-
 		const data = await graphQLFetch(query, vars);
 		// if null, create new user
-		if (!data) {
+		if (!data.userHabits) {
 			const newUser = {
 				name: this.props.auth0.user.name,
 				email: this.props.auth0.user.email,
 			};
-			// TODO add mutation
+
+			vars = { 'user': newUser }
+			const mutation = `mutation ($user: UserInput!) {
+				insertUser(user: $user) {
+					name email
+				}
+			}`;
+			const data = await graphQLFetch(mutation, vars);
+			return data;
 		}
 		return data;
 	}
@@ -38,19 +45,21 @@ class HabitList extends React.Component {
 
 	async componentDidMount() {
 		const data = await this.fetchData(this.props.auth0.user.email);
-		const userData = await data;
-		this.setState({
-			habitsList: userData.userHabits,
-		});
+		if (data.userHabits) {
+			this.setState({
+				habitsList: data.userHabits,
+			});
+		}
 	}
 
 	async componentDidUpdate(prevProps) {
 		if (prevProps !== this.props) {
 			const data = await this.fetchData(this.props.auth0.user.email);
-			const userData = await data;
-			this.setState({
-				habitsList: userData.userHabits,
-			});
+			if (data.userHabits) {
+				this.setState({
+					habitsList: data.userHabits,
+				});
+			}
 		}
 	}
 
@@ -61,13 +70,13 @@ class HabitList extends React.Component {
 				<Container fluid>
 					{this.state.habitsList ?
 						this.state.habitsList.map(habit => (
-						<Habit
-							key={habit.id}
-							title={habit.title}
-							created={JSON.stringify(habit.created)}
-							count={habit.count}
-							increments={habit.increments}
-						/>)) :
+							<Habit
+								key={habit.id}
+								title={habit.title}
+								created={JSON.stringify(habit.created)}
+								count={habit.count}
+								increments={habit.increments}
+							/>)) :
 						// render empty
 						<div></div>}
 				</Container>

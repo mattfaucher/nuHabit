@@ -22,8 +22,10 @@ async function insertUser(_, args) {
 	const newUser = {
 		name: args.user.name,
 		email: args.user.email,
+		habitList: [],
 	};
 	await db.collection('users').insertOne(newUser);
+	// find it make sure it exists
 	const savedUser = await db.collection('users').findOne(args.user);
 	return savedUser;
 }
