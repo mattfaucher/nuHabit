@@ -25,9 +25,7 @@ const users = [
 				'count': 10,
 				'isDone': false
 			},
-		],
-		'deletedHabits': [],
-		'completedHabits': [],
+		]
 	},
 	{
 		'name': 'Ciara',
@@ -52,10 +50,3 @@ const count = db.users.count();
 print('Inserted', count, 'issues');
 
 db.deleted_habits.remove({});
-
-db.users.createIndex({ id: 1 }, { unique: true });
-db.users.createIndex({ status: 1 });
-db.users.createIndex({ created: 1 });
-db.users.createIndex({ title: 'text', description: 'text' });
-
-db.deleted_habits.createIndex({ id: 1 }, { unique: true });

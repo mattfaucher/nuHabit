@@ -13,7 +13,7 @@ class HabitList extends React.Component {
 		// get the user if they exist
 		const user = await this.userExists(email);
 		// if null, create new user
-		if (!user) {
+		if (!user.user) {
 			const newUser = {
 				name: this.props.auth0.user.name,
 				email: this.props.auth0.user.email,
@@ -23,9 +23,6 @@ class HabitList extends React.Component {
 				insertUser(user: $user) {
 					name
 					email
-					habitList {
-						title
-					}
 				}
 			}`;
 			const data = await graphQLFetch(mutation, vars);
@@ -41,16 +38,9 @@ class HabitList extends React.Component {
 	// Query to find if user exists
 	async userExists(email) {
 		const vars = { 'email': email };
-
-		const query = `query (
-			$email: String!) {
-			userHabits(email: $email) {
-				id title increments count isGood created isDone
-
 		const query = `query ($email: String!) {
-			user (email: $email) {
+			user(email: $email) {
 				name email
-
 			}
 		}`;
 		const data = await graphQLFetch(query, vars);
@@ -60,15 +50,16 @@ class HabitList extends React.Component {
 	// Query to get the habits for a user
 	async getHabits(email) {
 		const vars = { 'email': email };
-		const query = `query ($email: String!){
-			userHabits(email:$email) {
+		const query = `query($email: String!){
+			userHabits(email: $email) {
 				id
 				title
 				isGood
 				count
 				increments
+				isDone
 			}
-		}`;
+		} `;
 		const data = await graphQLFetch(query, vars);
 		return data;
 	}
