@@ -5,6 +5,7 @@ import SourceMapSupport from 'source-map-support';
 import render from './render.jsx';
 
 const app = express();
+const bodyParser = require('body-parser');
 
 SourceMapSupport.install();
 dotenv.config();
@@ -46,7 +47,6 @@ app.get('/env.js', (req, res) => {
   const env = {
     UI_API_ENDPOINT: process.env.UI_API_ENDPOINT,
     UI_AUTH_ENDPOINT: process.env.UI_AUTH_ENDPOINT,
-    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   };
   res.set('Content-Type', 'application/javascript');
   res.send(`window.ENV = ${JSON.stringify(env)}`);
