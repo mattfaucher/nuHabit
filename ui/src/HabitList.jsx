@@ -18,6 +18,14 @@ class HabitList extends React.Component {
 		}`;
 
 		const data = await graphQLFetch(query, vars);
+		// if null, create new user
+		if (!data) {
+			const newUser = {
+				name: this.props.auth0.user.name,
+				email: this.props.auth0.user.email,
+			};
+			// TODO add mutation
+		}
 		return data;
 	}
 
@@ -51,14 +59,17 @@ class HabitList extends React.Component {
 			<div>
 				<AddHabit />
 				<Container fluid>
-					{this.state.habitsList.map(habit => (
+					{this.state.habitsList ?
+						this.state.habitsList.map(habit => (
 						<Habit
 							key={habit.id}
 							title={habit.title}
 							created={JSON.stringify(habit.created)}
 							count={habit.count}
 							increments={habit.increments}
-						/>))}
+						/>)) :
+						// render empty
+						<div></div>}
 				</Container>
 			</div>
 		);

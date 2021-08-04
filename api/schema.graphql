@@ -11,6 +11,7 @@ type User {
   email: String!
   habitList: [Habit!]
   deletedHabits: [Habit!]
+  completedHabits: [Habit!]
 }
 
 type Habit {
@@ -20,6 +21,11 @@ type Habit {
   created: GraphQLDate!
   isGood: Boolean!
   count: Int!
+}
+
+input UserInput {
+  name: String!
+  email: String!
 }
 
 " Mandatory inputs for creating a new Habit"
@@ -40,9 +46,7 @@ input HabitUpdateInputs {
 type Query {
   users: [User!]
   userHabits(email: String!): [Habit!]
-  habitsList(title: String, isGood: Boolean, increments: Increments): [Habit!]!
-  habit(id: Int!): Habit!
 }
 type Mutation {
-  addHabit(habit: HabitInputs!): Habit!
+  insertUser(user: UserInput!): User!
 }

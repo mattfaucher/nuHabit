@@ -23,11 +23,13 @@ const users = [
 				'isGood': true,
 				'count': 10
 			},
-		]
+		],
+		'deletedHabits': [],
+		'completedHabits': [],
 	},
 	{
 		'name': 'Ciara',
-		'email': 'ciara@gmail.com',
+		'email': 'cwil290831@gmail.com',
 		'habitList': [
 			{
 				'id': 1,

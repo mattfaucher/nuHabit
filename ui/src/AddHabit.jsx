@@ -64,8 +64,6 @@ export default class AddHabit extends React.Component {
 			justifyContent: 'center',
 			marginTop: '20px',
 		};
-		
-		console.log(this.state);
 
 		return (
 			<Container fluid="md">

@@ -1,6 +1,5 @@
 const { UserInputError } = require('apollo-server-express');
 const { getDb } = require('./db');
-const { ObjectId } = require('mongodb');
 
 async function getUsers(_, { }) {
 	const db = getDb();
@@ -15,9 +14,20 @@ async function getHabits(_, email) {
 	return habits;
 }
 
-// todo
-// async function addHabit(_, { user }) {}
+async function insertUser(_, args) {
+	const db = getDb();
+	const userExists = await db.collection('users').findOne(args.user);
+	// check for duplicate, throw error if needed
+	if (userExists) throw new Error('User with this email already exists');
+	const newUser = {
+		name: args.user.name,
+		email: args.user.email,
+	};
+	await db.collection('users').insertOne(newUser);
+	const savedUser = await db.collection('users').findOne(args.user);
+	return savedUser;
+}
 
 module.exports = {
-	getUsers, getHabits, //addHabit,
+	getUsers, getHabits, insertUser,
 };
