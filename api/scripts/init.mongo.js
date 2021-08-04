@@ -4,9 +4,8 @@ db.users.remove({});
 
 const users = [
 	{
-		'signedIn': false,
 		'name': 'Matt',
-		'email': 'email@email.com',
+		'email': 'mfauch4444@gmail.com',
 		'habitList': [
 			{
 				'id': 1,
@@ -14,14 +13,25 @@ const users = [
 				'increments': 'Daily',
 				'created': new Date(),
 				'isGood': true,
-				'count': 5
+				'count': 5,
+				'isDone': false
 			},
-		]
+			{
+				'id': 2,
+				'title': 'Study DSA',
+				'increments': 'Daily',
+				'created': new Date(),
+				'isGood': true,
+				'count': 10,
+				'isDone': false
+			},
+		],
+		'deletedHabits': [],
+		'completedHabits': [],
 	},
 	{
-		'signedIn': false,
 		'name': 'Ciara',
-		'email': 'email@email.com',
+		'email': 'cwil290831@gmail.com',
 		'habitList': [
 			{
 				'id': 1,
@@ -29,7 +39,8 @@ const users = [
 				'increments': 'Daily',
 				'created': new Date(),
 				'isGood': true,
-				'count': 5
+				'count': 20,
+				'isDone': false
 			},
 		]
 	}

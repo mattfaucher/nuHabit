@@ -3,16 +3,15 @@ scalar GraphQLDate
 enum Increments {
   Daily
   Weekly
-  Monthly
 }
 
 type User {
   _id: ID!
   name: String!
   email: String!
-  signedIn: Boolean!
   habitList: [Habit!]
   deletedHabits: [Habit!]
+  completedHabits: [Habit!]
 }
 
 type Habit {
@@ -22,35 +21,51 @@ type Habit {
   created: GraphQLDate!
   isGood: Boolean!
   count: Int!
+  isDone: Boolean!
 }
 
-"Toned down Issue, used as inputs, without server generated values."
+input UserInput {
+  name: String!
+  email: String!
+}
+
+" Mandatory inputs for creating a new Habit"
 input HabitInputs {
   title: String!
   increments: Increments!
   isGood: Boolean!
 }
 
-"""
-Inputs for issueUpdate: all are optional. Whichever is specified will
-be set to the given value, undefined fields will remain unmodified.
-"""
+"Optional Inputs for Editing/Updating an existing habit"
 input HabitUpdateInputs {
   title: String
   increments: Increments
   isGood: Boolean
+  isDone: Boolean
 }
 
 ##### Top level declarations
 type Query {
+  user(email: String): User
   users: [User!]
-  userHabits(_id: ID!): [Habit!]
-  habitsList(title: String, isGood: Boolean, increments: Increments): [Habit!]!
+  habitsList(
+    title: String
+    isGood: Boolean
+    increments: Increments
+    count: Int
+    created: GraphQLDate
+    id: Int
+    isDone: Boolean
+  ): [Habit!]!
+  userHabits(email: String!): [Habit!]
   habit(id: Int!): Habit!
+  completedHabits(
+    id: Int
+    title: String
+    isGood: Boolean
+    isDone: Boolean
+  ): [Habit!]!
 }
 type Mutation {
-  habitAdd(habit: HabitInputs!): Habit!
-  habitUpdate(id: Int!, changes: HabitUpdateInputs!): Habit!
-  habitDelete(id: Int!): Boolean!
-  habitRestore(id: Int!): Boolean!
+  insertUser(user: UserInput!): User!
 }

@@ -18,11 +18,14 @@ export default class Habit extends React.Component {
 		this.isGood = props.isGood;
 		this.created = props.created;
 		this.done = false;
+		this.isDone = props.isDone;
 		this.completedTask.bind(this);
 	}
 
 	completedTask(e) {
 		// TODO code for disabling the button
+
+
 	}
 
 	
@@ -31,10 +34,6 @@ export default class Habit extends React.Component {
 
 	render() {
 		const habitDetails = `/details/${this.id},${this.title},${this.count},${this.increments}`; 
-
-		const FancyLink = React.forwardRef((props, ref) => (
-			<a ref={ref} {...props}> {this.props} {props.children}</a>
-		  ));
 		  
 		return (
 			<Container fluid="md">
