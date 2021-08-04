@@ -33,6 +33,14 @@ const browserConfig = {
 					},
 				},
 			},
+			{
+				test: /\.(png|jpe?g|gif)$/i,
+				use: [
+					{
+						loader: 'file-loader',
+					},
+				],
+			},
 		],
 	},
 	optimization: {
@@ -74,6 +82,14 @@ const serverConfig = {
 						],
 					},
 				},
+			},
+			{
+				test: /\.(png|jpe?g|gif)$/i,
+				use: [
+					{
+						loader: 'file-loader',
+					},
+				],
 			},
 		],
 	},

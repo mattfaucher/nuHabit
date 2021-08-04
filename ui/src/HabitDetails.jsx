@@ -1,5 +1,6 @@
 import React from 'react';
 import Badges from './badges.js';
+import img from '../badges/gold.jpg';
 
 const badgeArray = Badges.badgeArray;
 const badges = Badges.badges;
@@ -35,7 +36,7 @@ export default class HabitDetails extends React.Component {
             <div className="card w-50" style={cardStyle}>
               <div className="card-img-top d-flex align-items-center bg-light">
                 <div>
-                  <img className="img-fluid" src={badgeArray[0]} alt="Card image" />
+                  <img className="img-fluid" src={img.toString() + '/100x100'} alt="Card image" />
                 </div>
                 <p className="col p-2 me-auto">{this.state.increments}: </p>
               </div>
