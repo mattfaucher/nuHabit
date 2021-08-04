@@ -18,11 +18,14 @@ export default class Habit extends React.Component {
 		this.isGood = props.isGood;
 		this.created = props.created;
 		this.done = false;
+		this.isDone = props.isDone;
 		this.completedTask.bind(this);
 	}
 
 	completedTask(e) {
 		// TODO code for disabling the button
+
+
 	}
 
 	

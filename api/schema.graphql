@@ -11,6 +11,7 @@ type User {
   email: String!
   habitList: [Habit!]
   deletedHabits: [Habit!]
+  completedHabits: [Habit!]
 }
 
 type Habit {
@@ -20,6 +21,7 @@ type Habit {
   created: GraphQLDate!
   isGood: Boolean!
   count: Int!
+  isDone: Boolean!
 }
 
 "Toned down Issue, used as inputs, without server generated values."
@@ -37,12 +39,12 @@ input HabitUpdateInputs {
   title: String
   increments: Increments
   isGood: Boolean
+  isDone: Boolean
 }
 
 ##### Top level declarations
 type Query {
   users: [User!]
-  userHabits(_id: ID!): [Habit!]
   habitsList(
     title: String
     isGood: Boolean
@@ -50,10 +52,16 @@ type Query {
     count: Int
     created: GraphQLDate
     id: Int
+    isDone: Boolean
   ): [Habit!]!
   userHabits(email: String!): [Habit!]
-  habitsList(title: String, isGood: Boolean, increments: Increments): [Habit!]!
   habit(id: Int!): Habit!
+  completedHabits(
+    id: Int
+    title: String
+    isGood: Boolean
+    isDone: Boolean
+  ): [Habit!]!
 }
 type Mutation {
   habitAdd(habit: HabitInputs!): Habit!

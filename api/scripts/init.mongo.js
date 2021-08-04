@@ -27,7 +27,7 @@ const users = [
 	},
 	{
 		'name': 'Ciara',
-		'email': 'ciara@gmail.com',
+		'email': 'cwil290831@gmail.com',
 		'habitList': [
 			{
 				'id': 1,
