@@ -1,6 +1,12 @@
 const { UserInputError } = require('apollo-server-express');
 const { getDb } = require('./db');
 
+async function findUser(_, email) {
+	const db = getDb();
+	const user = await db.collection('users').findOne(email);
+	return user;
+}
+
 async function getUsers(_, { }) {
 	const db = getDb();
 	const users = await db.collection('users').find().toArray();
@@ -31,5 +37,5 @@ async function insertUser(_, args) {
 }
 
 module.exports = {
-	getUsers, getHabits, insertUser,
+	findUser, getUsers, getHabits, insertUser,
 };
