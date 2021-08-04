@@ -38,9 +38,16 @@ class HabitList extends React.Component {
 	// Query to find if user exists
 	async userExists(email) {
 		const vars = { 'email': email };
+
+		const query = `query (
+			$email: String!) {
+			userHabits(email: $email) {
+				id title increments count isGood created isDone
+
 		const query = `query ($email: String!) {
 			user (email: $email) {
 				name email
+
 			}
 		}`;
 		const data = await graphQLFetch(query, vars);
