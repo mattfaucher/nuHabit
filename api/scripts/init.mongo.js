@@ -13,7 +13,8 @@ const users = [
 				'increments': 'Daily',
 				'created': new Date(),
 				'isGood': true,
-				'count': 5
+				'count': 5,
+				'isDone': false
 			},
 			{
 				'id': 2,
@@ -21,11 +22,10 @@ const users = [
 				'increments': 'Daily',
 				'created': new Date(),
 				'isGood': true,
-				'count': 10
+				'count': 10,
+				'isDone': false
 			},
-		],
-		'deletedHabits': [],
-		'completedHabits': [],
+		]
 	},
 	{
 		'name': 'Ciara',
@@ -37,7 +37,8 @@ const users = [
 				'increments': 'Daily',
 				'created': new Date(),
 				'isGood': true,
-				'count': 5
+				'count': 20,
+				'isDone': false
 			},
 		]
 	}
@@ -49,10 +50,3 @@ const count = db.users.count();
 print('Inserted', count, 'issues');
 
 db.deleted_habits.remove({});
-
-db.users.createIndex({ id: 1 }, { unique: true });
-db.users.createIndex({ status: 1 });
-db.users.createIndex({ created: 1 });
-db.users.createIndex({ title: 'text', description: 'text' });
-
-db.deleted_habits.createIndex({ id: 1 }, { unique: true });
