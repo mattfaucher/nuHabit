@@ -33,6 +33,6 @@ export default class HabitDetails extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }

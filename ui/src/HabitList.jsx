@@ -13,7 +13,7 @@ class HabitList extends React.Component {
 		// get the user if they exist
 		const user = await this.userExists(email);
 		// if null, create new user
-		if (!user) {
+		if (!user.user) {
 			const newUser = {
 				name: this.props.auth0.user.name,
 				email: this.props.auth0.user.email,
@@ -23,9 +23,6 @@ class HabitList extends React.Component {
 				insertUser(user: $user) {
 					name
 					email
-					habitList {
-						title
-					}
 				}
 			}`;
 			const data = await graphQLFetch(mutation, vars);
