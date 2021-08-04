@@ -10,29 +10,59 @@ import AddHabit from './AddHabit.jsx';
 
 class HabitList extends React.Component {
 	async fetchData(email) {
-		let vars = { 'email': email };
-		const query = `query ($email: String!) {
-			userHabits(email: $email) {
-				id title increments count isGood created
-			}
-		}`;
-		const data = await graphQLFetch(query, vars);
+		// get the user if they exist
+		const user = await this.userExists(email);
 		// if null, create new user
-		if (!data.userHabits) {
+		if (!user) {
 			const newUser = {
 				name: this.props.auth0.user.name,
 				email: this.props.auth0.user.email,
 			};
-
-			vars = { 'user': newUser }
+			const vars = { 'user': newUser };
 			const mutation = `mutation ($user: UserInput!) {
 				insertUser(user: $user) {
-					name email
+					name
+					email
+					habitList {
+						title
+					}
 				}
 			}`;
 			const data = await graphQLFetch(mutation, vars);
-			return data;
+			if (!data.habitList) return [];
+			else return data.habitList;
+		} else {
+			// query the habitsList
+			const habits = await this.getHabits(email);
+			return habits;
 		}
+	}
+
+	// Query to find if user exists
+	async userExists(email) {
+		const vars = { 'email': email };
+		const query = `query ($email: String!) {
+			user (email: $email) {
+				name email
+			}
+		}`;
+		const data = await graphQLFetch(query, vars);
+		return data;
+	}
+
+	// Query to get the habits for a user
+	async getHabits(email) {
+		const vars = { 'email': email };
+		const query = `query ($email: String!){
+			userHabits(email:$email) {
+				id
+				title
+				isGood
+				count
+				increments
+			}
+		}`;
+		const data = await graphQLFetch(query, vars);
 		return data;
 	}
 
