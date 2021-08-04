@@ -13,7 +13,8 @@ const users = [
 				'increments': 'Daily',
 				'created': new Date(),
 				'isGood': true,
-				'count': 5
+				'count': 5,
+				'isDone': false
 			},
 			{
 				'id': 2,
@@ -21,7 +22,8 @@ const users = [
 				'increments': 'Daily',
 				'created': new Date(),
 				'isGood': true,
-				'count': 10
+				'count': 10,
+				'isDone': false
 			},
 		],
 		'deletedHabits': [],
@@ -37,7 +39,8 @@ const users = [
 				'increments': 'Daily',
 				'created': new Date(),
 				'isGood': true,
-				'count': 5
+				'count': 20,
+				'isDone': false
 			},
 		]
 	}
