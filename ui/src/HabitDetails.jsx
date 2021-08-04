@@ -1,9 +1,8 @@
 import React from 'react';
-import Badges from './badges.js';
-import img from '../badges/gold.jpg';
+import { badgeArray } from './badges';
+import { badges } from './badges';
 
-const badgeArray = Badges.badgeArray;
-const badges = Badges.badges;
+import bronze from '../badges/bronze.jpg';
 
 export default class HabitDetails extends React.Component {
 
@@ -14,14 +13,15 @@ export default class HabitDetails extends React.Component {
       count: this.props.match.params.count,
       increments: this.props.match.params.increments
     };
+
+  }
+
+  correctBadges() {
+    let correct = []; //the list of the correct badges to render
+
   }
 
   render() {
-    const cardStyle = {
-      display: "flex",
-      flex: "1 1 auto"
-    }
-
     return (
       <div className=".container-fluid">
         <div className="d-grid gap-3">
@@ -31,19 +31,8 @@ export default class HabitDetails extends React.Component {
               <p className="card-text">Count: {this.state.count}</p>
             </div>
           </div>
-
-          <div className="col d-flex align-items-center">
-            <div className="card w-50" style={cardStyle}>
-              <div className="card-img-top d-flex align-items-center bg-light">
-                <div>
-                  <img className="img-fluid" src={img.toString() + '/100x100'} alt="Card image" />
-                </div>
-                <p className="col p-2 me-auto">{this.state.increments}: </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
-    );
+    )
   }
 }
