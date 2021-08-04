@@ -1,26 +1,18 @@
-import { func } from 'prop-types';
-import React from 'react';
-import BadgeCard from './BadgeCard.jsx';
-import {badgeArray} from './badges';
-import {badges} from './badges';
-
-import bronze from '../badges/bronze.jpg'
+import React from "react";
+import BadgeCard from "./BadgeCard.jsx";
+import { badgeArray, badgeArr } from "./badges";
+import { badges } from "./badges";
 
 export default class HabitDetails extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
       title: this.props.match.params.title,
       count: this.props.match.params.count,
       increments: this.props.match.params.increments,
-      collection: []
+      collection: [],
     };
-
-	}
-
-  
-  
+  }
 
   /* correctBadges() {
     for (let i = 0; i < this.state.count; i++) {
@@ -35,42 +27,37 @@ export default class HabitDetails extends React.Component {
   }
 }
  */
-	render() {
+  render() {
     console.log(this.state.collection);
-  
-    for (let i = 0; i < this.state.count; i++) {
-      if(badges.day[i] <= this.state.count) {
-        if(Number(Object.keys(badges.day)[i]) === badgeArray[i].key) {
-          this.state.collection.push(bronze);
-        } 
-      }
-  }
-    
-    console.log(this.state.collection[0]);
 
-      return (
-        <div className=".container-fluid">
-          
-          <div className="d-grid gap-3">
-            <div className="card text-center" style={{width: "100%"}}>
-              <div className="card-body">
-                    {this.state.title}
-                <p className="card-text">Count: {this.state.count}</p>
-              </div>
+    for (let i = this.state.count; i >= 0; i--) {
+      if (badges.day[i] <= this.state.count) {
+        this.state.collection.push(badgeArr[i]);
+      }
+    }
+
+    console.log(this.state.collection);
+
+    return (
+      <div className=".container-fluid">
+        <div className="d-grid gap-3">
+          <div className="card text-center" style={{ width: "100%" }}>
+            <div className="card-body">
+              {this.state.title}
+              <p className="card-text">Count: {this.state.count}</p>
             </div>
-            </div>
-            <div>
-              {this.state.collection.map( badge =>
-                <BadgeCard 
-                  key = {badges.day}
-                  badge = {badge.earnedBadge}
-                  increments = {this.state.increments}
-                />
-               )}
-            </div>
-            
-            </div>
-     
-      );
+          </div>
+        </div>
+        <div>
+          {this.state.collection.map((badge, index) => (
+            <BadgeCard
+              key={index}
+              badge={this.state.collection[index]}
+              increments={this.state.increments}
+            />
+          ))}
+        </div>
+      </div>
+    );
   }
 }
