@@ -41,13 +41,30 @@ export const badgeArr = [
   "https://i.imgur.com/DTOm7lr.jpeg", //1 star trophy
 ];
 
-// map each badge to create the file path
-export const badgeArray = badgeArr.map((file, index) => {
-  const collections = {
-    key: index,
-    badge: file,
-  };
-  return collections;
-});
+export const encouragement = {
+  daily: {
+    0: "Day 1 In The Bag!",
+    1: "A week? No Sweat",
+    2: "A quarter of the way there!",
+    3: "You GOT This!",
+    4: "HALF WAY!!",
+    5: "Over the HUMP!",
+    6: "Three quarters! Keep it UP!",
+    7: "Only 10 More Days!",
+    8: "CONGRATS!! You Have a New Habit!",
+  },
 
-export default { badgeArray, badges, badgeArr };
+  weekly: {
+    0: "Week 1 In The Bag!",
+    1: "You GOT This!",
+    2: "One Third Down!",
+    3: "Four weeks? No Sweat",
+    4: "Keep it UP!",
+    5: "HALF WAY!!",
+    6: "Over the HUMP!",
+    7: "Two Thirds in the Bag!",
+    8: "CONGRATS!! You Have a New Habit!",
+  },
+};
+
+export default { badges, badgeArr, encouragement };
