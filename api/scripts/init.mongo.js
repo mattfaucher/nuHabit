@@ -36,10 +36,10 @@ const users = [
       {
         id: 1,
         title: "Eat Healthy",
-        increments: "Daily",
+        increments: "Weekly",
         created: new Date(),
-        isGood: true,
-        count: 20,
+        isGood: false,
+        count: 7,
         isDone: false,
       },
     ],
