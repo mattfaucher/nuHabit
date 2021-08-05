@@ -1,5 +1,6 @@
 const { UserInputError } = require('apollo-server-express');
 const { getDb } = require('./db');
+const { ObjectID } = require('mongodb').ObjectID;
 
 async function findUser(_, email) {
 	const db = getDb();
@@ -36,6 +37,32 @@ async function insertUser(_, args) {
 	return savedUser;
 }
 
+const f = false;
+async function insertHabit(_, args, { returnOriginal: f }) {
+	const db = getDb();
+	const newHabit = {
+		_id: new ObjectID(),
+		title: args.habit.title,
+		increments: args.habit.increments,
+		isGood: args.habit.isGood,
+		count: 0,
+		created: new Date(),
+		isDone: false
+	};
+
+	// update the user's habitlist
+	await db.collection('users').updateOne(
+		// filter by email
+		{ email: args.email },
+		{ $push: { habitList: newHabit } }
+	);
+
+	const email = { email: args.email };
+	const user = await db.collection('users').findOne(email);
+	return user.habitList;
+}
+
 module.exports = {
-	findUser, getUsers, getHabits, insertUser,
+	findUser, getUsers, getHabits,
+	insertUser, insertHabit,
 };

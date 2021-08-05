@@ -50,7 +50,7 @@ class HabitList extends React.Component {
     const vars = { email: email };
     const query = `query($email: String!){
 			userHabits(email: $email) {
-				id
+				_id
 				title
 				isGood
 				count
@@ -97,7 +97,7 @@ class HabitList extends React.Component {
           {this.state.habitsList ? (
             this.state.habitsList.map((habit) => (
               <Habit
-                key={habit.id}
+                key={habit._id}
                 title={habit.title}
                 created={JSON.stringify(habit.created)}
                 count={habit.count}
