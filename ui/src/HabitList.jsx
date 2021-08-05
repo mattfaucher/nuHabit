@@ -102,6 +102,7 @@ class HabitList extends React.Component {
                 created={JSON.stringify(habit.created)}
                 count={habit.count}
                 increments={habit.increments}
+                isGood={habit.isGood}
               />
             ))
           ) : (
