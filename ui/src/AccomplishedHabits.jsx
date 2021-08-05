@@ -74,7 +74,7 @@ class AccomplisedHabits extends React.Component {
                 <Card.Body>
                   <Row>
                     <Col className="col-11 col-xs-2" align="center">
-                      Uhoh! You Have No Completed Habits
+                      UhOh! You Have No Completed Habits
                     </Col>
                     <Col className="col-11 col-xs-2" align="center">
                       <Link to={returnToHome}>Click Here to Return Home</Link>
