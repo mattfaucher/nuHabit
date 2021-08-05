@@ -15,7 +15,7 @@ type User {
 }
 
 type Habit {
-  id: Int!
+  _id: ID!
   title: String!
   increments: Increments!
   created: GraphQLDate!
@@ -24,6 +24,7 @@ type Habit {
   isDone: Boolean!
 }
 
+" For inserting a new User into the database"
 input UserInput {
   name: String!
   email: String!
@@ -46,12 +47,13 @@ input HabitUpdateInputs {
 
 ##### Top level declarations
 type Query {
-  user(email: String): User
   users: [User!]
+  user(email: String): User
   userHabits(email: String!): [Habit!]
-  habit(id: Int!): Habit!
-  completedHabits(email: String!): [Habit!]
+  completedHabits(email: String): [Habit!]
+  deletedHabits(email: String): [Habit!]
 }
 type Mutation {
   insertUser(user: UserInput!): User!
+  insertHabit(email: String!, habit: HabitInputs): [Habit!]!
 }
