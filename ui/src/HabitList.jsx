@@ -27,7 +27,7 @@ class HabitList extends React.Component {
       if (!data.habitList) return [];
       else return data.habitList;
     } else {
-      // query the habitsList
+      // query the habitList
       const habits = await this.getHabits(email);
       return habits;
     }
@@ -65,50 +65,43 @@ class HabitList extends React.Component {
   constructor() {
     super();
     this.state = {
-      habitsList: [],
+      habitList: [],
     };
   }
 
   async componentDidMount() {
-    const data = await this.fetchData(this.props.auth0.user.email);
-    if (data.userHabits) {
+    if (this.state.habitList.length == 0) {
+      const data = await this.fetchData(this.props.auth0.user.email);
       this.setState({
-        habitsList: data.userHabits,
+        habitList: data.userHabits,
       });
     }
   }
 
-  async componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
+  async componentDidUpdate(prevProps, prevState) {
+    const old = await this.fetchData(this.props.auth0.user.email);
+    if (old.userHabits.length !== this.state.habitList.length) {
       const data = await this.fetchData(this.props.auth0.user.email);
-      if (data.userHabits) {
-        this.setState({
-          habitsList: data.userHabits,
-        });
-      }
+      this.setState({
+        habitList: data.userHabits,
+      });
     }
   }
 
   render() {
     return (
       <div>
-        <AddHabit />
+        <AddHabit email={this.props.auth0.user.email} />
         <Container fluid>
-          {this.state.habitsList ? (
-            this.state.habitsList.map((habit) => (
-              <Habit
-                key={habit._id}
-                title={habit.title}
-                created={JSON.stringify(habit.created)}
-                count={habit.count}
-                increments={habit.increments}
-                isGood={habit.isGood}
-              />
-            ))
-          ) : (
-            // render empty
-            <div></div>
-          )}
+          {this.state.habitList.map((habit) => (
+            <Habit
+              key={habit._id}
+              title={habit.title}
+              created={JSON.stringify(habit.created)}
+              count={habit.count}
+              increments={habit.increments}
+              isGood={habit.isGood}
+            />))}
         </Container>
       </div>
     );
@@ -117,6 +110,6 @@ class HabitList extends React.Component {
 
 export default withAuth0(
   withAuthenticationRequired(HabitList, {
-    onRedirecting: () => <Alert variant="info">Redirecting...</Alert>,
+    onRedirecting: () => <Alert variant="info">Loading...</Alert>,
   })
 );
