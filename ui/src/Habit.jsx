@@ -6,8 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
-
-
 export default class Habit extends React.Component {
 	constructor(props) {
 		super(props);
@@ -24,17 +22,12 @@ export default class Habit extends React.Component {
 
 	completedTask(e) {
 		// TODO code for disabling the button
-
-
 	}
-
-	
 	// Render a single Habit card, with Title, coloring/progress bar
 	// and input fields
 
 	render() {
-		const habitDetails = `/details/${this.id},${this.title},${this.count},${this.increments}`; 
-		  
+		const habitDetails = `/details/${this.id},${this.title},${this.count},${this.increments}`;
 		return (
 			<Container fluid="md">
 				<Card border='dark' className='shadow-lg p-3 mb-5 bg-white rounded'>
