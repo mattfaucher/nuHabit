@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 export default class Habit extends React.Component {
   constructor(props) {
     super(props);
-    this.id = props.id;
+    this._id = props._id;
     this.title = props.title;
     this.increments = props.increments;
     this.count = props.count;
@@ -37,7 +37,7 @@ export default class Habit extends React.Component {
   // and input fields
 
   render() {
-    const habitDetails = `/details/${this.id},${this.title},${this.count},${this.increments}`;
+    const habitDetails = `/details/${this._id},${this.title},${this.count},${this.increments}`;
 
     if (this.increments === "Daily") {
       this.progress = 100 * (this.count / this.dayCount);
