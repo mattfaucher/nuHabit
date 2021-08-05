@@ -6,9 +6,12 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
+import graphQLFetch from './graphQLFetch.js';
+
 export default class AddHabit extends React.Component {
 	constructor(props) {
 		super(props);
+		this.email = props.email;
 		this.state = {
 			showModal: false,
 			title: '',
@@ -36,12 +39,33 @@ export default class AddHabit extends React.Component {
 		});
 	}
 
-	handleSubmit(e) {
+	async handleSubmit(e) {
 		e.preventDefault();
-
+		// don't allow bad input
+		if (this.state.title.length < 3) {
+			this.setState({
+				showModal: false,
+			});
+			return;
+		}
+		// submit mutation to backend
+		const mutation = `mutation ($email: String!, $habit: HabitInputs!) {
+			insertHabit(email: $email, habit: $habit) {
+				title
+			}
+		}`;
+		const vars = {
+			email: this.email,
+			habit: {
+				title: this.state.title,
+				isGood: this.state.isGood,
+				increments: this.state.isDaily ? "Daily" : "Weekly"		
+			}
+		};
+		const data = await graphQLFetch(mutation, vars);
+		if (!data) throw Error();
 		this.setState({
 			showModal: false,
-			title: '',
 		});
 	}
 
@@ -53,7 +77,6 @@ export default class AddHabit extends React.Component {
 	}
 
 	getInputTitle(e) {
-		if (e.target.value == '') return;
 		this.setState({
 			title: e.target.value,
 		});

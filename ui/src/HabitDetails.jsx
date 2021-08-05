@@ -1,7 +1,6 @@
 import React from "react";
 import BadgeCard from "./BadgeCard.jsx";
-import { badgeArray, badgeArr } from "./badges";
-import { badges } from "./badges";
+import { badges, badgeArr, encouragement } from "./badges";
 
 export default class HabitDetails extends React.Component {
   constructor(props) {
@@ -11,32 +10,19 @@ export default class HabitDetails extends React.Component {
       count: this.props.match.params.count,
       increments: this.props.match.params.increments,
       collection: [],
+      sayings: [],
+      counts: [],
     };
   }
 
-  /* correctBadges() {
-    for (let i = 0; i < this.state.count; i++) {
-      if(badges.day[i] <= this.state.count) {
-        badgeArray.forEach(function(value, j) {
-          if(j === i){
-            this.state.collection.push(value);
-          } 
-        })
-             
-      }
-  }
-}
- */
   render() {
-    console.log(this.state.collection);
-
     for (let i = this.state.count; i >= 0; i--) {
       if (badges.day[i] <= this.state.count) {
         this.state.collection.push(badgeArr[i]);
+        this.state.sayings.push(encouragement.daily[i]);
+        this.state.counts.push(badges.day[i]);
       }
     }
-
-    console.log(this.state.collection);
 
     return (
       <div className=".container-fluid">
@@ -54,6 +40,8 @@ export default class HabitDetails extends React.Component {
               key={index}
               badge={this.state.collection[index]}
               increments={this.state.increments}
+              count={this.state.counts[index]}
+              sayings={this.state.sayings[index]}
             />
           ))}
         </div>

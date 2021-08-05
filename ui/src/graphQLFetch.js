@@ -17,7 +17,7 @@ graphQLFetch(query, variables = {}, showError = null) {
     const response = await fetch(apiEndpoint, {
       method: 'POST',
       // TODO this causes CORS error, need proxy?
-      //credentials: 'include',
+      // credentials: 'include',
       headers,
       body: JSON.stringify({ query, variables }),
     });
