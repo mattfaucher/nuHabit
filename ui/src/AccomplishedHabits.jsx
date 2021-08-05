@@ -8,9 +8,9 @@ import CompletedHabit from "./CompletedHabit.jsx";
 class AccomplisedHabits extends React.Component {
   async fetchData(email) {
     const vars = { email: email };
-    const query = `query($email: String!){
+    const query = `query ($email: String!) {
 				completedHabits(email: $email) {
-					id
+					_id
 					title
 					isGood
 					count
