@@ -17,7 +17,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;The second badge is a collection of all the badges earned from every habit, active or completed, title Badge Collection. The idea behind this page is to have a visual representation of all of the successes of a user. Every time a new badge is earned it is added to this page.
 
-### Accomplishments:
+## Accomplishments:
 
 - Matt
   - Set up MongoDB Atlas database with a cluster and two collections - users and deletedHabits
@@ -42,7 +42,7 @@
 - Matt
   - Setup Authentication using Auth0
 
-### Currently Working On
+## Currently Working On
 
 - Noam
   - Created Badge Collection page
@@ -65,7 +65,7 @@
   - break or form
   - daily or weekly
 
-### Image Documentation
+## Image Documentation
 
 Database
 
