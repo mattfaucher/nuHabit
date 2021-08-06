@@ -7,6 +7,14 @@ import Habit from "./Habit.jsx";
 import AddHabit from "./AddHabit.jsx";
 
 class HabitList extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      habitList: [],
+    };
+  }
+
+  // Grab the data for a user
   async fetchData(email) {
     // get the user if they exist
     const user = await this.userExists(email);
@@ -26,11 +34,10 @@ class HabitList extends React.Component {
       const data = await graphQLFetch(mutation, vars);
       if (!data.habitList) return [];
       else return data.habitList;
-    } else {
-      // query the habitList
-      const habits = await this.getHabits(email);
-      return habits;
     }
+    // query the habitList
+    const habits = await this.getHabits(email);
+    return habits;
   }
 
   // Query to find if user exists
@@ -62,30 +69,11 @@ class HabitList extends React.Component {
     return data;
   }
 
-  constructor() {
-    super();
-    this.state = {
-      habitList: [],
-    };
-  }
-
   async componentDidMount() {
-    if (this.state.habitList.length == 0) {
-      const data = await this.fetchData(this.props.auth0.user.email);
-      this.setState({
-        habitList: data.userHabits,
-      });
-    }
-  }
-
-  async componentDidUpdate(prevProps, prevState) {
-    const old = await this.fetchData(this.props.auth0.user.email);
-    if (old.userHabits.length !== this.state.habitList.length) {
-      const data = await this.fetchData(this.props.auth0.user.email);
-      this.setState({
-        habitList: data.userHabits,
-      });
-    }
+    const data = await this.fetchData(this.props.auth0.user.email);
+    this.setState({
+      habitList: data.userHabits,
+    });
   }
 
   render() {
@@ -93,15 +81,19 @@ class HabitList extends React.Component {
       <div>
         <AddHabit email={this.props.auth0.user.email} />
         <Container fluid>
-          {this.state.habitList.map((habit) => (
+          {this.state.habitList ?
+            this.state.habitList.map((habit) => (
             <Habit
               key={habit._id}
+              _id={habit._id}
               title={habit.title}
               created={JSON.stringify(habit.created)}
               count={habit.count}
               increments={habit.increments}
               isGood={habit.isGood}
-            />))}
+            />
+          )) : <div>No Habits</div>
+        }
         </Container>
       </div>
     );
@@ -109,7 +101,6 @@ class HabitList extends React.Component {
 }
 
 export default withAuth0(
-  withAuthenticationRequired(HabitList, {
-    onRedirecting: () => <Alert variant="info">Loading...</Alert>,
-  })
+  withAuthenticationRequired(HabitList, //{ onRedirecting: () => <Alert variant="info">Loading...</Alert> }
+  )
 );

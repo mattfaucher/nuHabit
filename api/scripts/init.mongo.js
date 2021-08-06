@@ -14,6 +14,8 @@ const users = [
     name: "Ciara",
     email: "cwil290831@gmail.com",
     habitList: [],
+    deletedHabits: [],
+    completedHabits: [],
   },
 ];
 

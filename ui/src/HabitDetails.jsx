@@ -1,5 +1,6 @@
 import React from "react";
 import BadgeCard from "./BadgeCard.jsx";
+import { Container } from "react-bootstrap";
 import { badges, badgeArr, encouragement } from "./badges";
 
 export default class HabitDetails extends React.Component {
@@ -17,20 +18,30 @@ export default class HabitDetails extends React.Component {
 
   render() {
     for (let i = this.state.count; i >= 0; i--) {
-      if (badges.day[i] <= this.state.count) {
-        this.state.collection.push(badgeArr[i]);
-        this.state.sayings.push(encouragement.daily[i]);
-        this.state.counts.push(badges.day[i]);
+      if (this.state.increments === "Daily") {
+        if (badges.day[i] <= this.state.count) {
+          this.state.collection.push(badgeArr[i]);
+          this.state.counts.push(badges.day[i]);
+          this.state.sayings.push(encouragement.daily[i]);
+        }
+      }
+      if (this.state.increments === "Weekly") {
+        if (badges.week[i] <= this.state.count) {
+          this.state.collection.push(badgeArr[i]);
+          this.state.counts.push(badges.week[i]);
+          this.state.sayings.push(encouragement.weekly[i]);
+        }
       }
     }
 
     return (
-      <div className=".container-fluid">
+      <Container fluid>
         <div className="d-grid gap-3">
           <div className="card text-center" style={{ width: "100%" }}>
             <div className="card-body">
               {this.state.title}
               <p className="card-text">Count: {this.state.count}</p>
+              <p className="card-text">{this.state.increments}</p>
             </div>
           </div>
         </div>
@@ -45,7 +56,7 @@ export default class HabitDetails extends React.Component {
             />
           ))}
         </div>
-      </div>
+      </Container>
     );
   }
 }
