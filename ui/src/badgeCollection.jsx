@@ -1,58 +1,36 @@
 import React from "react";
+import {
+    Card,
+    Row,
+    Col,
+    Container,
+  } from "react-bootstrap";
+import {badges, badgeArr} from "./badges";
 
 export default class Collection extends React.Component {
 	constructor(props) {
 		super(props);
+        this.count = props.count;
+        this.increments = props.increments;
+        collection = [];
+
+      
 	}
-
-	handleShow() {
-		this.setState({
-			showModal: true,
-			title: this.state.title,
-		});
-	}
-
-	handleClose() {
-		this.setState({
-			showModal: false,
-			title: '',
-		});
-	}
-
-	handleSubmit(e) {
-		e.preventDefault();
-
-		this.setState({
-			showModal: false,
-			title: '',
-		});
-	}
-
-	getInputTitle(e) {
-		this.setState({
-			title: e.target.value,
-		});
-	}
-
-    getGrid(habbits) {
-        for (let i = 0; i < habbits; i++) {
-            <div class="col">Sample Badge</div>
-        }
-    }
 
 	render() {
-        const habbits = 5;
-        const badges = 9;
-
-        for (i = 0; i < cars.length; i++) {
-                        
-        }
         return (
             
             <Container fluid="md">
                 <div class="row row-cols-9"></div>
-                    getGrid(habbits);
-
+                <div class="col">badge1</div>
+                <div class="col">badge2</div>
+                <div class="col">badge3</div>
+                <div class="col">badge4</div>
+                <div class="col">badge5</div>
+                <div class="col">badge6</div>
+                <div class="col">badge7</div>
+                <div class="col">badge8</div>
+                <div class="col">badge9</div>
             </Container>
             )
         }
