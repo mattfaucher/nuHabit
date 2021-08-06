@@ -121,3 +121,7 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 ## Accomplished Habits
 
 ![Accomplished](/readme-images/NoAccomplishedHabits.png)
+
+## Collections
+
+![Collections](/readme-images/SH_Collections.png)
