@@ -6,6 +6,11 @@
 
 ## **_nuHabit_**
 
+Heroku Link: https://nuhabit-ui.herokuapp.com
+
+<br>
+<br>
+
 &nbsp;&nbsp;&nbsp;&nbsp;nuHabit was designed with the idea that having the ability to track gaining a new habit or breaking a bad one would create more active participation in the process, thus increasing the chance of success.
 
 &nbsp;&nbsp;&nbsp;&nbsp;nuHabit features a list of habits readily available on the home page, nuHabit, with the ability to add, edit, and delete a habit is located directly on the habit card. A user clicks on the "Done" button to say they have completed the habit. Additional information on the habit can be found by clicking on the habits title in the card. We included a progress bar for a quick visual representation of a users success with the color of the bar representing whether a user is forming, green, or breaking, yellow, a habit.
