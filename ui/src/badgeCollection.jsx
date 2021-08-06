@@ -18,6 +18,23 @@ export default class Collection extends React.Component {
 	}
 
 	render() {
+        for (let i = this.state.count; i >= 0; i--) {
+            if (this.state.increments === "Daily") {
+              if (badges.day[i] <= this.state.count) {
+                this.state.collection.push(badgeArr[i]);
+                this.state.counts.push(badges.day[i]);
+                this.state.sayings.push(encouragement.daily[i]);
+              }
+            }
+            if (this.state.increments === "Weekly") {
+              if (badges.week[i] <= this.state.count) {
+                this.state.collection.push(badgeArr[i]);
+                this.state.counts.push(badges.week[i]);
+                this.state.sayings.push(encouragement.weekly[i]);
+              }
+            }
+          }
+
         return (
             
             <Container fluid="md">

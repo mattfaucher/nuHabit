@@ -1,8 +1,7 @@
 import React from "react";
 import Collection from "./badgeCollection.jsx";
-import {
-    Container,
-  } from "react-bootstrap";
+import {badges, badgeArr} from "./badges";
+import {Container} from "react-bootstrap";
 export default class BadgeCollectionList extends React.Component {
     async fetchData(email) {
         const vars = { email: email };

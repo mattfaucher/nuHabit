@@ -4,7 +4,7 @@
 
 ---
 
-## ***nuHabit***
+## **_nuHabit_**
 
 &nbsp;&nbsp;&nbsp;&nbsp;nuHabit was designed with the idea that having the ability to track gaining a new habit or breaking a bad one would create more active participation in the process, thus increasing the chance of success.
 
@@ -102,9 +102,9 @@
 
 ## Habit Details
 
-![Daily](/readme-images/DailyDetails.png)
+![Daily](/readme-images/Daily.png)
 
-![Weekly](/readme-images/WeeklyDetails.png)
+![Weekly](/readme-images/Weekly.png)
 
 ---
 
