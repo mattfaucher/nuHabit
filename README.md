@@ -48,13 +48,15 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
   - Created NavBar
 - Matt
   - Setup Authentication using Auth0
+- Noam
+  - Created Badge Collection page
 
 ## **Currently Working On**
 
 ---
 
 - Noam
-  - Created Badge Collection page
+  - Connect front and backend to display correct badges
 - Ciara and Matt
   - Implement "Done" button fuctionality
   - Creating a completedHabits array in the user
@@ -69,7 +71,7 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ---
 
-- Add design to Ui
+- Add design to UI
 - Add Toast notifications
 - Logo
 - Add filtering to Habits and Accomplished habits
