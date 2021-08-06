@@ -2,6 +2,9 @@
 
 ## Ciara Williams, Noam Gal, Matt Faucher
 
+<br>
+<br>
+
 ### nuHabit
 
     nuHabit was designed with the idea that having the ability to track gaining a new habit or breaking a bad one would create more active participation in the process, thus increasing the chance of success.
