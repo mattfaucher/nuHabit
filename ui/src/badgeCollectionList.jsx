@@ -1,8 +1,12 @@
 import React from "react";
 import Collection from "./badgeCollection.jsx";
 import {badges, badgeArr} from "./badges";
-import {Container} from "react-bootstrap";
-export default class BadgeCollectionList extends React.Component {
+import {Container, Alert} from "react-bootstrap";
+import { withAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import graphQLFetch from "./graphQLFetch.js";
+
+
+class BadgeCollectionList extends React.Component {
     async fetchData(email) {
         const vars = { email: email };
         const query = `query ($email: String!) {
@@ -22,6 +26,7 @@ export default class BadgeCollectionList extends React.Component {
       }
 
     constructor() {
+      super();
         this.state = {
             habitList: [],
         }
@@ -29,11 +34,11 @@ export default class BadgeCollectionList extends React.Component {
     }
 
     async componentDidMount() {
-        const data = await this.fetchData(this.props.auth0.user.email);
-        const userData = await data;
-        this.setState({
-         habitList: userData.habitList,
-        });
+      const data = await this.fetchData(this.props.auth0.user.email);
+      const userData = await data;
+      this.setState({
+        habitList: userData.userHabits,
+      });
       }
 
     render(){
@@ -53,6 +58,13 @@ export default class BadgeCollectionList extends React.Component {
 
 }
 }
+
+export default withAuth0(
+  withAuthenticationRequired(BadgeCollectionList, {
+    onRedirecting: () => <Alert variant="info">Redirecting...</Alert>,
+  })
+);
+
 
 /**
  * Pull from the database
