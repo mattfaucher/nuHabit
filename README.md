@@ -42,7 +42,7 @@
 - Matt
   - Created NavBar
 - Matt
-  - Setup Authentication using - [ ]
+  - Setup Authentication using Auth0
 
 ### Currently Working On
 
@@ -54,6 +54,7 @@
   - Mutation of a habit from habitList to completedHabits
 - Matt
   - Bug fix in the add modal
+  - Bug fix after adding new habit
 - Ciara
   - Landing page design
 
@@ -65,4 +66,37 @@
 - Add filtering to Habits and Accomplished habits
   - break or form
   - daily or weekly
--
+
+### Image Documentation
+
+Database
+![DB](/readMe-images/DB.png)
+
+<br>
+<br>
+
+Login
+![login](/readMe-images/Login.png)
+
+<br>
+<br>
+
+Home Page
+![Exist](/readMe-images/Existing.png)
+![Blank](/readMe-images/BlankModal.png)
+![Filled](/readMe-images/FilledModal.png)
+![New](/readMe-images/NewHabitAdded.png)
+![Progress](/readMe-images/ProgressBarDifference.png)
+
+<br>
+<br>
+
+Habit Details
+![Daily](/readMe-images/DailyDetails.png)
+![Weekly](/readMe-images/WeeklyDetails.png)
+
+<br>
+<br>
+
+Accomplished Habits
+![Accomplished](/readMe-images/NoAccomplishedHabits.png)
