@@ -1,8 +1,7 @@
 import React from "react";
 import BadgeCard from "./BadgeCard.jsx";
-import { Container, Spinner, Card, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { badges, badgeArr, encouragement } from "./badges";
-import { Link } from "react-router-dom";
 
 export default class HabitDetails extends React.Component {
   constructor(props) {
