@@ -6,6 +6,8 @@
 
 ## **_nuHabit_**
 
+Please note that our web app is currently incompatible with Safari and Mobile we will hopefully have both of these options available by interation 3.
+
 Heroku Link: https://nuhabit-ui.herokuapp.com
 
 Git Repo: https://github.com/mattfaucher/nuHabit.git
