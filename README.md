@@ -13,7 +13,7 @@
 
 * nuHabit has two additional pages. The first is a list of all accomplished habits, titled Completed Habits. The idea behind having this page is to allow the user to not only see their accomplishments but also be able to find past ones without having to look hard. The link to the additional information page is still active and will render the same.
 
-\*The second badge is a collection of all the badges earned from every habit, active or completed, title Badge Collection. The idea behind this page is to have a visual representation of all of the successes of a user. Every time a new badge is earned it is added to this page.
+* The second badge is a collection of all the badges earned from every habit, active or completed, title Badge Collection. The idea behind this page is to have a visual representation of all of the successes of a user. Every time a new badge is earned it is added to this page.
 
 ### Accomplishments:
 
