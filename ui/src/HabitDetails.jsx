@@ -41,6 +41,7 @@ export default class HabitDetails extends React.Component {
             <div className="card-body">
               {this.state.title}
               <p className="card-text">Count: {this.state.count}</p>
+              <p className="card-text">{this.state.increments}</p>
             </div>
           </div>
         </div>
