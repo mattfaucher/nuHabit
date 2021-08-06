@@ -19,6 +19,11 @@ export default class BadgeCard extends React.Component {
       flex: "1 1 auto",
     };
 
+    const checkout = {
+      position: "relative",
+      left: "80px",
+    };
+
     return (
       <div className=".container-fluid">
         <div className="col d-flex align-items-center">
@@ -33,7 +38,10 @@ export default class BadgeCard extends React.Component {
                   roundedCircle
                 />
               </div>
-              <p className="col p-2 m-0"> Checkpoint: {this.count}</p>
+              <p className="col p-2 m-0" style={checkout}>
+                {" "}
+                Checkpoint: {this.count}
+              </p>
               <p className="col p-3 m-0"> {this.encouragment}</p>
             </div>
           </div>

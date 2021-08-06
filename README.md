@@ -6,6 +6,8 @@
 
 ## **_nuHabit_**
 
+Please note that our web app is currently incompatible with Safari and Mobile we will hopefully have both of these options available by interation 3.
+
 Heroku Link: https://nuhabit-ui.herokuapp.com
 
 Git Repo: https://github.com/mattfaucher/nuHabit.git
@@ -48,13 +50,15 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
   - Created NavBar
 - Matt
   - Setup Authentication using Auth0
+- Noam
+  - Created Badge Collection page
 
 ## **Currently Working On**
 
 ---
 
 - Noam
-  - Created Badge Collection page
+  - Connect front and backend to display correct badges
 - Ciara and Matt
   - Implement "Done" button fuctionality
   - Creating a completedHabits array in the user
@@ -69,7 +73,7 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ---
 
-- Add design to Ui
+- Add design to UI
 - Add Toast notifications
 - Logo
 - Add filtering to Habits and Accomplished habits
