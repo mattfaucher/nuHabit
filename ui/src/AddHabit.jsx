@@ -20,9 +20,9 @@ export default class AddHabit extends React.Component {
 		};
 		this.handleShow = this.handleShow.bind(this);
 		this.handleClose = this.handleClose.bind(this);
+		this.handleTextSubmit = this.handleTextSubmit.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.getInputTitle = this.getInputTitle.bind(this);
-		this.handleTextSubmit = this.handleTextSubmit.bind(this);
 	}
 
 	handleShow() {
@@ -38,9 +38,17 @@ export default class AddHabit extends React.Component {
 			title: '',
 		});
 	}
+	
+	handleTextSubmit(e) {
+		e.preventDefault();
+		this.setState({
+			showModal: true,
+		});
+	}
 
 	async handleSubmit(e) {
-		e.preventDefault();
+		console.log('SUBMIT');
+		//e.preventDefault();
 		// don't allow bad input
 		if (this.state.title.length < 3) {
 			this.setState({
@@ -59,21 +67,17 @@ export default class AddHabit extends React.Component {
 			habit: {
 				title: this.state.title,
 				isGood: this.state.isGood,
-				increments: this.state.isDaily ? "Daily" : "Weekly"		
+				increments: this.state.isDaily ? "Daily" : "Weekly"
 			}
 		};
 		const data = await graphQLFetch(mutation, vars);
 		if (!data) throw Error();
 		this.setState({
 			showModal: false,
+			title: '',
 		});
-	}
-
-	handleTextSubmit(e) {
-		e.preventDefault();
-		this.setState({
-			showModal: true,
-		});
+		// force reload to refresh new habits
+		window.location.reload();
 	}
 
 	getInputTitle(e) {
@@ -94,7 +98,8 @@ export default class AddHabit extends React.Component {
 					<Card.Body>
 						<Row>
 							<Col className="col-10" align="left">
-								<form onSubmit={this.handleTextSubmit}
+								<form
+									onSubmit={this.handleTextSubmit}
 								>
 									<Form.Control
 										type="text"
@@ -105,54 +110,57 @@ export default class AddHabit extends React.Component {
 							</Col>
 							<Col className="col-2" align="right">
 								<Button variant='success' onClick={this.handleShow}>
-									<FontAwesomeIcon icon={faPlus} />
+									<FontAwesomeIcon size={'2x'} icon={faPlus} />
 								</Button>
-								<Modal show={this.state.showModal} onHide={this.handleClose}>
-									<Modal.Header>
-										<Modal.Title>Create a new habit</Modal.Title>
-									</Modal.Header>
-									<Modal.Body>
-										<InputGroup style={inputCenter}>
-											<InputGroup.Text id="title-input">Title</InputGroup.Text>
-											<FormControl
-												defaultValue={this.state.title}
-												aria-label="Add your new habit"
-												aria-describedby="title-input"
-											/>
-										</InputGroup>
-										<InputGroup style={inputCenter}>
-											<InputGroup.Text>Form</InputGroup.Text>
-											<InputGroup.Radio
-												aria-label="Form a habit"
-												checked={true === this.state.isGood}
-												onChange={e => { this.setState({ isGood: true }); }}
-											/>
-											<InputGroup.Text>Break</InputGroup.Text>
-											<InputGroup.Radio
-												aria-label="Break a habit"
-												checked={false === this.state.isGood}
-												onChange={e => { this.setState({ isGood: false }); }}
-											/>
-										</InputGroup>
-										<InputGroup style={inputCenter}>
-											<InputGroup.Text>Daily</InputGroup.Text>
-											<InputGroup.Radio
-												aria-label="Increment Selection"
-												checked={true === this.state.isDaily}
-												onChange={e => { this.setState({ isDaily: true }); }}
-											/>
-											<InputGroup.Text>Weekly</InputGroup.Text>
-											<InputGroup.Radio
-												aria-label="Increment Selection"
-												checked={false === this.state.isDaily}
-												onChange={e => { this.setState({ isDaily: false }); }}
-											/>
-										</InputGroup>
-									</Modal.Body>
-									<Modal.Footer style={{ justifyContent: 'center' }}>
-										<Button variant='secondary' onClick={this.handleClose}>Close</Button>
-										<Button variant='primary' onClick={this.handleSubmit}>Submit</Button>
-									</Modal.Footer>
+								<Modal
+								show={this.state.showModal}
+								onHide={this.handleClose}
+								>
+								<Modal.Header>
+									<Modal.Title>Create a new habit</Modal.Title>
+								</Modal.Header>
+								<Modal.Body>
+									<InputGroup style={inputCenter}>
+										<InputGroup.Text id="title-input">Title</InputGroup.Text>
+										<FormControl
+											defaultValue={this.state.title}
+											aria-label="Add your new habit"
+											aria-describedby="title-input"
+										/>
+									</InputGroup>
+									<InputGroup style={inputCenter}>
+										<InputGroup.Text>Form</InputGroup.Text>
+										<InputGroup.Radio
+											aria-label="Form a habit"
+											checked={true === this.state.isGood}
+											onChange={e => { this.setState({ isGood: true }); }}
+										/>
+										<InputGroup.Text>Break</InputGroup.Text>
+										<InputGroup.Radio
+											aria-label="Break a habit"
+											checked={false === this.state.isGood}
+											onChange={e => { this.setState({ isGood: false }); }}
+										/>
+									</InputGroup>
+									<InputGroup style={inputCenter}>
+										<InputGroup.Text>Daily</InputGroup.Text>
+										<InputGroup.Radio
+											aria-label="Increment Selection"
+											checked={true === this.state.isDaily}
+											onChange={e => { this.setState({ isDaily: true }); }}
+										/>
+										<InputGroup.Text>Weekly</InputGroup.Text>
+										<InputGroup.Radio
+											aria-label="Increment Selection"
+											checked={false === this.state.isDaily}
+											onChange={e => { this.setState({ isDaily: false }); }}
+										/>
+									</InputGroup>
+								</Modal.Body>
+								<Modal.Footer style={{ justifyContent: 'center' }}>
+									<Button variant='secondary' onClick={this.handleClose}>Close</Button>
+									<Button variant='primary' onClick={this.handleSubmit}>Submit</Button>
+								</Modal.Footer>
 								</Modal>
 							</Col>
 						</Row>
