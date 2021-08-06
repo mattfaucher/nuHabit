@@ -111,3 +111,7 @@
 ## Accomplished Habits
 
 ![Accomplished](/readme-images/NoAccomplishedHabits.png)
+
+## Collections
+
+![Collections](/readme-images/SH_Collections.png)

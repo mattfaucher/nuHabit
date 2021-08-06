@@ -28,6 +28,7 @@ class BadgeCollectionList extends React.Component {
     constructor() {
       super();
         this.state = {
+            collection: [],
             habitList: [],
         }
 
@@ -42,7 +43,7 @@ class BadgeCollectionList extends React.Component {
       }
 
     render(){
-
+      for (let i = 0; i < 9; i++) {
         return(
             <div>
             <Container fluid>
@@ -55,8 +56,8 @@ class BadgeCollectionList extends React.Component {
         </Container>
       </div>
         );
-
-}
+    }
+  }
 }
 
 export default withAuth0(
