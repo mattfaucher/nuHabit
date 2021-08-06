@@ -24,9 +24,6 @@ export const badges = {
   },
 };
 
-const path = "../badges/";
-const jpg = ".jpg";
-
 // add all the badge img urls into array, 0->8 indexed (9) badges
 
 export const badgeArr = [
