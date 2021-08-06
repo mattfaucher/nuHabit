@@ -33,10 +33,7 @@ export default class BadgeCard extends React.Component {
                   roundedCircle
                 />
               </div>
-              <p className="col p-2 m-0">
-                {" "}
-                {this.increments}: {this.count}
-              </p>
+              <p className="col p-2 m-0"> Checkpoint: {this.count}</p>
               <p className="col p-3 m-0"> {this.encouragment}</p>
             </div>
           </div>
