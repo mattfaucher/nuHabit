@@ -10,13 +10,6 @@ const users = [
     deletedHabits: [],
     completedHabits: [],
   },
-  {
-    name: "Ciara",
-    email: "cwil290831@gmail.com",
-    habitList: [],
-    deletedHabits: [],
-    completedHabits: [],
-  },
 ];
 
 db.users.insertMany(users);

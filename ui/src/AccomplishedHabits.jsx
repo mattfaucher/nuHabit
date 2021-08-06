@@ -7,9 +7,14 @@ import CompletedHabit from "./CompletedHabit.jsx";
 
 class AccomplisedHabits extends React.Component {
   async fetchData(email) {
+    const habits = await this.getCompletedHabits(email);
+    return habits;
+  }
+
+  async getCompletedHabits(email) {
     const vars = { email: email };
     const query = `query ($email: String!) {
-				completedHabits(email: $email) {
+      completedHabits(email: $email) {
 					_id
 					title
 					isGood
@@ -33,21 +38,10 @@ class AccomplisedHabits extends React.Component {
 
   async componentDidMount() {
     const data = await this.fetchData(this.props.auth0.user.email);
-    const userData = await data;
-    this.setState({
-      completed: userData.completedHabits,
-    });
-  }
 
-  async componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      const data = await this.fetchData(this.props.auth0.user.email);
-      if (data.userHabits) {
-        this.setState({
-          completed: data.completedHabits,
-        });
-      }
-    }
+    this.setState({
+      completed: data.completedHabits,
+    });
   }
 
   render() {
@@ -56,10 +50,10 @@ class AccomplisedHabits extends React.Component {
     return (
       <div>
         <Container fluid>
-          {this.state.completedHabits ? (
-            this.state.completedHabits.map((habit) => (
+          {this.state.completed ? (
+            this.state.completed.map((habit, index) => (
               <CompletedHabit
-                key={habit.id}
+                key={index}
                 title={habit.title}
                 count={habit.count}
                 increments={habit.increments}

@@ -16,24 +16,20 @@ export default class Habit extends React.Component {
   }
 
   render() {
-    console.log(this.count);
-
     const habitDetails = `/details/${this.id},${this.title},${this.count},${this.increments}`;
-    if (this.count === this.dayCount || this.count === this.weekCount) {
-      return (
-        <Container fluid="md">
-          <Card border="dark" className="shadow-lg p-3 mb-5 bg-white rounded">
-            <Card.Body>
-              <Row>
-                <Col className="col-6 col-xs-2" align="center">
-                  <Link to={habitDetails}> {this.title}</Link>
-                </Col>
-                <Col>COMPLETED</Col>
-              </Row>
-            </Card.Body>
-          </Card>
-        </Container>
-      );
-    }
+    return (
+      <Container fluid="md">
+        <Card border="dark" className="shadow-lg p-3 mb-5 bg-white rounded">
+          <Card.Body>
+            <Row>
+              <Col className="col-6 col-xs-2" align="center">
+                <Link to={habitDetails}> {this.title}</Link>
+              </Col>
+              <Col>COMPLETED</Col>
+            </Row>
+          </Card.Body>
+        </Card>
+      </Container>
+    );
   }
 }
