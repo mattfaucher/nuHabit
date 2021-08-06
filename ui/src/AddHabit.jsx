@@ -47,7 +47,6 @@ export default class AddHabit extends React.Component {
 	}
 
 	async handleSubmit(e) {
-		console.log('SUBMIT');
 		//e.preventDefault();
 		// don't allow bad input
 		if (this.state.title.length < 3) {
@@ -113,8 +112,8 @@ export default class AddHabit extends React.Component {
 									<FontAwesomeIcon size={'2x'} icon={faPlus} />
 								</Button>
 								<Modal
-								show={this.state.showModal}
-								onHide={this.handleClose}
+									show={this.state.showModal}
+									onHide={this.handleClose}
 								>
 								<Modal.Header>
 									<Modal.Title>Create a new habit</Modal.Title>
@@ -126,6 +125,7 @@ export default class AddHabit extends React.Component {
 											defaultValue={this.state.title}
 											aria-label="Add your new habit"
 											aria-describedby="title-input"
+											onChange={this.getInputTitle}
 										/>
 									</InputGroup>
 									<InputGroup style={inputCenter}>
