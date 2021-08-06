@@ -101,7 +101,8 @@ class HabitList extends React.Component {
               count={habit.count}
               increments={habit.increments}
               isGood={habit.isGood}
-            />))}
+            />
+          ))}
         </Container>
       </div>
     );

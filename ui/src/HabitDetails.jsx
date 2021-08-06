@@ -1,6 +1,8 @@
 import React from "react";
 import BadgeCard from "./BadgeCard.jsx";
+import { Container, Spinner, Card, Row, Col } from "react-bootstrap";
 import { badges, badgeArr, encouragement } from "./badges";
+import { Link } from "react-router-dom";
 
 export default class HabitDetails extends React.Component {
   constructor(props) {
@@ -17,15 +19,24 @@ export default class HabitDetails extends React.Component {
 
   render() {
     for (let i = this.state.count; i >= 0; i--) {
-      if (badges.day[i] <= this.state.count) {
-        this.state.collection.push(badgeArr[i]);
-        this.state.sayings.push(encouragement.daily[i]);
-        this.state.counts.push(badges.day[i]);
+      if (this.state.increments === "Daily") {
+        if (badges.day[i] <= this.state.count) {
+          this.state.collection.push(badgeArr[i]);
+          this.state.counts.push(badges.day[i]);
+          this.state.sayings.push(encouragement.daily[i]);
+        }
+      }
+      if (this.state.increments === "Weekly") {
+        if (badges.week[i] <= this.state.count) {
+          this.state.collection.push(badgeArr[i]);
+          this.state.counts.push(badges.week[i]);
+          this.state.sayings.push(encouragement.weekly[i]);
+        }
       }
     }
 
     return (
-      <div className=".container-fluid">
+      <Container fluid>
         <div className="d-grid gap-3">
           <div className="card text-center" style={{ width: "100%" }}>
             <div className="card-body">
@@ -45,7 +56,7 @@ export default class HabitDetails extends React.Component {
             />
           ))}
         </div>
-      </div>
+      </Container>
     );
   }
 }

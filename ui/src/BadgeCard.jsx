@@ -19,8 +19,6 @@ export default class BadgeCard extends React.Component {
       flex: "1 1 auto",
     };
 
-    //console.log(this.badge);
-
     return (
       <div className=".container-fluid">
         <div className="col d-flex align-items-center">
