@@ -83,8 +83,8 @@ export default class Habit extends React.Component {
       }
     }`;
 
+    // if user changes increments, reset their count to 0
     if (this.state.isDaily !== this.prevDaily) {
-      console.log('not equal');
       this.state.count = 0;
     }
     
