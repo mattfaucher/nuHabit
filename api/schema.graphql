@@ -43,6 +43,7 @@ input HabitUpdateInputs {
   increments: Increments!
   isGood: Boolean!
   isDone: Boolean
+  count: Int
 }
 
 ##### Top level declarations

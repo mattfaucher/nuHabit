@@ -84,11 +84,17 @@ async function updateHabit(_, args) {
       }
     }
   );
-  
+
   // Validate and return the habit
   const email = { email: args.email };
   const user = await db.collection('users').findOne(email);
-  return user.habitList.find(habit => habit._id === args._id);
+  // Filter and return the updated habit
+  const updatedHabit = user.habitList.find(habit => {
+    if (habit._id == args._id) {
+      return habit;
+    }
+  });
+  return updatedHabit;
 }
 
 module.exports = {

@@ -19,8 +19,9 @@ import graphQLFetch from "./graphQLFetch";
 export default class Habit extends React.Component {
   constructor(props) {
     super(props);
-    this.dayCount = 60,
-    this.weekCount = 12,
+    this.dayCount = 60;
+    this.weekCount = 12;
+    this.prevDaily = props.isDaily;
     // set the state for all properties
     this.state = {
       _id: props._id,
@@ -35,6 +36,7 @@ export default class Habit extends React.Component {
       progress: 0,
       form: "",
       showModal: false,
+      email: props.email
     };
     this.completedTask = this.completedTask.bind(this);
     this.handleShow = this.handleShow.bind(this);
@@ -81,18 +83,24 @@ export default class Habit extends React.Component {
       }
     }`;
 
+    if (this.state.isDaily !== this.prevDaily) {
+      console.log('not equal');
+      this.state.count = 0;
+    }
+    
     const vars = {
       email: this.state.email,
       _id: this.state._id,
       habit: {
-        title: this.state.updateTitle,
+        title: this.state.updateTitle ? this.state.updateTitle : this.state.title,
         isGood: this.state.isGood,
-        increments: this.state.isDaily ? "Daily" : "Weekly",
-        count: this.state.increments === this.props.increments ? this.state.count : 0
+        increments: this.state.isDaily ? 'Daily' : 'Weekly',
+        count: this.state.count
       }
     };
     const data = await graphQLFetch(mutation, vars);
-    if (!data) throw Error();
+    // throw error if necessary
+    if (!data) throw Error(e.message);
     this.setState({
       showModal: false,
     });
