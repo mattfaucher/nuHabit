@@ -26,6 +26,7 @@ export default class Habit extends React.Component {
       _id: props._id,
       title: props.title,
       increments: props.increments,
+      isDaily: props.increments === 'Daily',
       count: props.count,
       isGood: props.isGood,
       created: props.created,
@@ -60,7 +61,7 @@ export default class Habit extends React.Component {
   }
 
   async handleSubmit(e) {
-    //e.preventDefault();
+    e.preventDefault();
     // don't allow bad input
     if (this.state.title.length < 3) {
       this.setState({
@@ -68,16 +69,26 @@ export default class Habit extends React.Component {
       });
       return;
     }
-    // TODO
-    // Update the habit
-    // use updateHabit mutation
-    const mutation = ``;
+
+    // Mutation for updating a specific habit for a user
+    const mutation = `mutation($email: String!, $_id: ID!, $habit: HabitUpdateInputs!) {
+      updateHabit(email:$email, _id:$_id, habit:$habit) {
+        _id
+        title
+        increments
+        isGood
+        count
+      }
+    }`;
+
     const vars = {
-      email: this.email,
+      email: this.state.email,
+      _id: this.state._id,
       habit: {
-        title: this.state.title,
+        title: this.state.updateTitle,
         isGood: this.state.isGood,
-        increments: this.state.isDaily ? "Daily" : "Weekly"
+        increments: this.state.isDaily ? "Daily" : "Weekly",
+        count: this.state.increments === this.props.increments ? this.state.count : 0
       }
     };
     const data = await graphQLFetch(mutation, vars);
@@ -89,11 +100,11 @@ export default class Habit extends React.Component {
     window.location.reload();
   }
 
-	getInputTitle(e) {
-		this.setState({
-			title: e.target.value,
-		});
-	}
+  getInputTitle(e) {
+    this.setState({
+      updateTitle: e.target.value,
+    });
+  }
 
   // Render a single Habit card, with Title, coloring/progress bar
   // and input fields

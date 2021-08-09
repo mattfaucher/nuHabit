@@ -39,9 +39,9 @@ input HabitInputs {
 
 "Optional Inputs for Editing/Updating an existing habit"
 input HabitUpdateInputs {
-  title: String
-  increments: Increments
-  isGood: Boolean
+  title: String!
+  increments: Increments!
+  isGood: Boolean!
   isDone: Boolean
 }
 
@@ -56,4 +56,5 @@ type Query {
 type Mutation {
   insertUser(user: UserInput!): User!
   insertHabit(email: String!, habit: HabitInputs): [Habit!]!
+  updateHabit(email: String!, _id: ID!, habit: HabitUpdateInputs): Habit!
 }
