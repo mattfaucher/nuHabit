@@ -8,7 +8,7 @@ async function findUser(_, email) {
   return user;
 }
 
-async function getUsers(_, {}) {
+async function getUsers(_, { }) {
   const db = getDb();
   const users = await db.collection("users").find().toArray();
   return users;
@@ -68,6 +68,35 @@ async function insertHabit(_, args, { returnOriginal: f }) {
   return user.habitList;
 }
 
+async function updateHabit(_, args) {
+  const db = getDb();
+  const { title, isGood, increments, count } = args.habit;
+
+  // Update the data for the habit
+  await db.collection('users').updateOne(
+    { email: args.email, 'habitList._id': ObjectID(args._id) },
+    {
+      $set: {
+        'habitList.$.title': title,
+        'habitList.$.isGood': isGood,
+        'habitList.$.increments': increments,
+        'habitList.$.count': count
+      }
+    }
+  );
+
+  // Validate and return the habit
+  const email = { email: args.email };
+  const user = await db.collection('users').findOne(email);
+  // Filter and return the updated habit
+  const updatedHabit = user.habitList.find(habit => {
+    if (habit._id == args._id) {
+      return habit;
+    }
+  });
+  return updatedHabit;
+}
+
 module.exports = {
   findUser,
   getUsers,
@@ -75,4 +104,5 @@ module.exports = {
   insertUser,
   insertHabit,
   getCompletedHabits,
+  updateHabit,
 };

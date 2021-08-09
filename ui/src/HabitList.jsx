@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Alert } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { withAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 import graphQLFetch from "./graphQLFetch.js";
@@ -60,7 +60,7 @@ class HabitList extends React.Component {
 				_id
 				title
 				isGood
-				count
+        count
 				increments
 				isDone
 			}
@@ -91,6 +91,7 @@ class HabitList extends React.Component {
               count={habit.count}
               increments={habit.increments}
               isGood={habit.isGood}
+              email={this.props.auth0.user.email}
             />
           )) : <div>No Habits</div>
         }
