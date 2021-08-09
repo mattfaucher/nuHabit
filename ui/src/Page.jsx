@@ -1,3 +1,4 @@
+import React from 'react';
 import { Alert, Container } from 'react-bootstrap';
 import { Auth0Provider, withAuth0 } from '@auth0/auth0-react';
 
