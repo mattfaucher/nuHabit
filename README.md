@@ -6,7 +6,7 @@
 
 ## **_nuHabit_**
 
-Please note that our web app is currently incompatible with Safari and Mobile we will hopefully have both of these options available by interation 3.
+Please note that our web app is currently incompatible with Safari and Mobile.
 
 Heroku Link: https://nuhabit-ui.herokuapp.com
 
@@ -121,3 +121,7 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 ## Accomplished Habits
 
 ![Accomplished](/readme-images/NoAccomplishedHabits.png)
+
+## Collections
+
+![Collections](/readme-images/SH_Collections.png)

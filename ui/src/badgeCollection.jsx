@@ -14,12 +14,22 @@ export default class Collection extends React.Component {
         this.count = props.count;
         this.increments = props.increments;
         this.collection = [];
-
-      
+        this.numberBadges = 0;
 	}
 
+
 	render() {
+    for (let i = 0; i <= this.count; i++) {
+      if (this.increments === "Daily") {
+        if (badges.day[i] <= this.count) {
+          this.collection.push(badgeArr[i])
+          this.numberBadges++;
+        }
+      }
+    }
     
+    console.log(this.collection);
+    console.log(this.numberBadges);
 /*         for (let i = this.state.count; i >= 0; i--) {
             if (this.state.increments === "Daily") {
               if (badges.day[i] <= this.state.count) {
@@ -90,6 +100,13 @@ export default class Collection extends React.Component {
                   src={badgeArr[8]}
                   alt="Earned Badge"
                   roundedCircle/></div>
+                {/*if (this.collection.numberBadges >= 0) {
+                <div className="col"><Image style={{ width: "18rem" }}
+                  className="img-fluid"
+                  src={badgeArr[0]}
+                  alt="Earned Badge"
+                  roundedCircle/></div>                 
+                } */}
                 </div>
             </Container>
             )

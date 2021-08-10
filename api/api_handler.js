@@ -15,6 +15,8 @@ const resolvers = {
   Mutation: {
     insertUser: users.insertUser,
     insertHabit: users.insertHabit,
+    updateHabit: users.updateHabit,
+    deleteHabit: users.deleteHabit,
   },
   GraphQLDate,
 };
