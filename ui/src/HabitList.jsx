@@ -63,6 +63,7 @@ class HabitList extends React.Component {
         count
 				increments
 				isDone
+        created
 			}
 		} `;
     const data = await graphQLFetch(query, vars);
@@ -81,7 +82,7 @@ class HabitList extends React.Component {
       <div>
         <AddHabit email={this.props.auth0.user.email} />
         <Container fluid>
-          {this.state.habitList ?
+          {this.state.habitList ? (
             this.state.habitList.map((habit) => (
             <Habit
               key={habit._id}
@@ -102,6 +103,7 @@ class HabitList extends React.Component {
 }
 
 export default withAuth0(
-  withAuthenticationRequired(HabitList, //{ onRedirecting: () => <Alert variant="info">Loading...</Alert> }
+  withAuthenticationRequired(
+    HabitList //{ onRedirecting: () => <Alert variant="info">Loading...</Alert> }
   )
 );

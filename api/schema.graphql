@@ -57,6 +57,10 @@ type Query {
 type Mutation {
   insertUser(user: UserInput!): User!
   insertHabit(email: String!, habit: HabitInputs): [Habit!]!
+
+  updateCount(habit: HabitUpdateInputs): [Habit!]
+
   updateHabit(email: String!, _id: ID!, habit: HabitUpdateInputs): Habit!
   deleteHabit(email: String!, _id: ID!): Habit!
+
 }

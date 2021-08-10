@@ -13,12 +13,21 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import DoneButton from "./DoneButton.jsx";
 
 import graphQLFetch from "./graphQLFetch";
 
 export default class Habit extends React.Component {
   constructor(props) {
     super(props);
+    this._id = props._id;
+    this.title = props.title;
+    this.increments = props.increments;
+    this.count = props.count;
+    this.isGood = props.isGood;
+    this.created = props.created;
+    this.doneHabit = false; //boolean for incremental completion of a habit
+    this.isDone = props.isDone; //boolean for total completion of a habit
     this.dayCount = 60;
     this.weekCount = 12;
     this.prevDaily = props.isDaily;
@@ -45,6 +54,7 @@ export default class Habit extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.getInputTitle = this.getInputTitle.bind(this);
   }
+
 
   completedTask(e) {
     // TODO code for disabling the button
@@ -143,6 +153,7 @@ export default class Habit extends React.Component {
     });
   }
 
+
   // Render a single Habit card, with Title, coloring/progress bar
   // and input fields
 
@@ -182,21 +193,20 @@ export default class Habit extends React.Component {
                 <Link to={habitDetails}> {this.state.title}</Link>
               </Col>
               <Col className="col-6 col-xs-2" align="right">
-                <Button
-                  onClick={this.completedTask}
-                  size="sm"
-                  variant="primary"
-                  // use variable here based on completion time interval
-                  disabled={this.state.done}
-                // change disabled to true when done
-                >
-                  Done
-                </Button>{" "}
+
+                <DoneButton
+                  created={this.created}
+                  count={this.count}
+                  done={this.doneHabit}
+                />
+                {" "}
+       
                 <Button
                   variant="secondary"
                   size="sm"
                   onClick={this.handleShow}
                 >
+
                   <FontAwesomeIcon icon={faBars} />
                 </Button>
                 <Modal
