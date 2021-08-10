@@ -20,45 +20,27 @@ import graphQLFetch from "./graphQLFetch";
 export default class Habit extends React.Component {
   constructor(props) {
     super(props);
-    this._id = props._id;
-    this.title = props.title;
-    this.increments = props.increments;
-    this.count = props.count;
-    this.isGood = props.isGood;
-    this.created = props.created;
-    this.doneHabit = false; //boolean for incremental completion of a habit
-    this.isDone = props.isDone; //boolean for total completion of a habit
-    this.dayCount = 60;
-    this.weekCount = 12;
-    this.prevDaily = props.isDaily;
     // set the state for all properties
     this.state = {
       _id: props._id,
       title: props.title,
       increments: props.increments,
-      isDaily: props.increments === 'Daily',
+      isDaily: props.increments === "Daily",
       count: props.count,
       isGood: props.isGood,
       created: props.created,
-      done: false,
-      isDone: props.isDone,
+      done: false, //boolean for incremental completion of a habit
+      isDone: props.isDone, //boolean for total completion of a habit
       progress: 0,
       form: "",
       showModal: false,
-      email: props.email
+      email: props.email,
     };
-    this.completedTask = this.completedTask.bind(this);
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.getInputTitle = this.getInputTitle.bind(this);
-  }
-
-
-  completedTask(e) {
-    // TODO code for disabling the button
-    console.log("done");
   }
 
   handleShow() {
@@ -103,11 +85,13 @@ export default class Habit extends React.Component {
       email: this.state.email,
       _id: this.state._id,
       habit: {
-        title: this.state.updateTitle ? this.state.updateTitle : this.state.title,
+        title: this.state.updateTitle
+          ? this.state.updateTitle
+          : this.state.title,
         isGood: this.state.isGood,
-        increments: this.state.isDaily ? 'Daily' : 'Weekly',
-        count: this.state.count
-      }
+        increments: this.state.isDaily ? "Daily" : "Weekly",
+        count: this.state.count,
+      },
     };
     const data = await graphQLFetch(mutation, vars);
     // throw error if necessary
@@ -134,7 +118,7 @@ export default class Habit extends React.Component {
     }`;
     const vars = {
       email: this.state.email,
-      _id: this.state._id
+      _id: this.state._id,
     };
     const data = await graphQLFetch(mutation, vars);
     // throw error if no data
@@ -153,13 +137,11 @@ export default class Habit extends React.Component {
     });
   }
 
-
   // Render a single Habit card, with Title, coloring/progress bar
   // and input fields
 
   render() {
-    const habitDetails =
-      `/details/${this._id},${this.state.title},${this.state.count},${this.state.increments}`;
+    const habitDetails = `/details/${this._id},${this.state.title},${this.state.count},${this.state.increments}`;
 
     if (this.state.increments === "Daily") {
       this.state.progress = 100 * (this.state.count / this.dayCount);
@@ -175,8 +157,8 @@ export default class Habit extends React.Component {
     }
 
     const inputCenter = {
-      justifyContent: 'center',
-      marginTop: '20px'
+      justifyContent: "center",
+      marginTop: "20px",
     };
 
     return (
@@ -185,7 +167,11 @@ export default class Habit extends React.Component {
           <Card.Body>
             <Row>
               <Col>
-                <ProgressBar striped variant={this.state.form} now={this.state.progress} />
+                <ProgressBar
+                  striped
+                  variant={this.state.form}
+                  now={this.state.progress}
+                />
               </Col>
             </Row>
             <Row>
@@ -193,28 +179,22 @@ export default class Habit extends React.Component {
                 <Link to={habitDetails}> {this.state.title}</Link>
               </Col>
               <Col className="col-6 col-xs-2" align="right">
-
                 <DoneButton
-                  created={this.created}
-                  count={this.count}
-                  done={this.doneHabit}
-                />
-                {" "}
-       
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={this.handleShow}
-                >
-
+                  created={this.state.created}
+                  count={this.state.count}
+                  done={this.state.done}
+                  _id={this.state.id}
+                  title={this.state.title}
+                  isDone={this.state.isDone}
+                  isGood={this.state.isGood}
+                  email={this.state.email}
+                  increments={this.state.increments}
+                />{" "}
+                <Button variant="secondary" size="sm" onClick={this.handleShow}>
                   <FontAwesomeIcon icon={faBars} />
                 </Button>
-                <Modal
-                  show={this.state.showModal}
-                  onHide={this.handleClose}
-
-                >
-                  <Modal.Header className='mx-auto'>
+                <Modal show={this.state.showModal} onHide={this.handleClose}>
+                  <Modal.Header className="mx-auto">
                     <Modal.Title>Edit your habit</Modal.Title>
                   </Modal.Header>
                   <Modal.Body>
@@ -232,13 +212,17 @@ export default class Habit extends React.Component {
                       <InputGroup.Radio
                         aria-label="Form a habit"
                         checked={true === this.state.isGood}
-                        onChange={e => { this.setState({ isGood: true }); }}
+                        onChange={(e) => {
+                          this.setState({ isGood: true });
+                        }}
                       />
                       <InputGroup.Text>Break</InputGroup.Text>
                       <InputGroup.Radio
                         aria-label="Break a habit"
                         checked={false === this.state.isGood}
-                        onChange={e => { this.setState({ isGood: false }); }}
+                        onChange={(e) => {
+                          this.setState({ isGood: false });
+                        }}
                       />
                     </InputGroup>
                     <InputGroup style={inputCenter}>
@@ -246,26 +230,36 @@ export default class Habit extends React.Component {
                       <InputGroup.Radio
                         aria-label="Increment Selection"
                         checked={true === this.state.isDaily}
-                        onChange={e => { this.setState({ isDaily: true }); }}
+                        onChange={(e) => {
+                          this.setState({ isDaily: true });
+                        }}
                       />
                       <InputGroup.Text>Weekly</InputGroup.Text>
                       <InputGroup.Radio
                         aria-label="Increment Selection"
                         checked={false === this.state.isDaily}
-                        onChange={e => { this.setState({ isDaily: false }); }}
+                        onChange={(e) => {
+                          this.setState({ isDaily: false });
+                        }}
                       />
                     </InputGroup>
                   </Modal.Body>
-                  <Modal.Footer className='mx-auto'>
+                  <Modal.Footer className="mx-auto">
                     <Row>
                       <Col>
-                        <Button variant='danger' onClick={this.handleDelete}>Delete</Button>
+                        <Button variant="danger" onClick={this.handleDelete}>
+                          Delete
+                        </Button>
                       </Col>
                       <Col>
-                        <Button variant='secondary' onClick={this.handleClose}>Close</Button>
+                        <Button variant="secondary" onClick={this.handleClose}>
+                          Close
+                        </Button>
                       </Col>
                       <Col>
-                        <Button variant='primary' onClick={this.handleSubmit}>Submit</Button>
+                        <Button variant="primary" onClick={this.handleSubmit}>
+                          Submit
+                        </Button>
                       </Col>
                     </Row>
                   </Modal.Footer>
