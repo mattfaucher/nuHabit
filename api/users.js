@@ -97,6 +97,33 @@ async function updateHabit(_, args) {
   return updatedHabit;
 }
 
+// Delete a habit from habitList and append to deletedHabits
+async function deleteHabit(_, args) {
+  const db = getDb();
+  // save deleted habit
+  const deleteObject = await db.collection('users').findOneAndUpdate(
+    { email: args.email },
+    { $pull: { habitList: { _id: ObjectID(args._id) } } },
+    { 'returnOriginal': true }
+  );
+  
+  // Get the deleted habit from deleteObject
+  const deletedHabit = deleteObject.value.habitList.find(habit => {
+    if (habit._id == args._id) {
+      return habit;
+    }
+  });
+  
+  // Push deleted habit on to deletedhabits list
+  await db.collection('users').updateOne(
+    { email: args.email },
+    { $push: { deletedHabits: deletedHabit } }
+  );
+  
+  // return the habit object
+  return deletedHabit;
+}
+
 module.exports = {
   findUser,
   getUsers,
@@ -105,4 +132,5 @@ module.exports = {
   insertHabit,
   getCompletedHabits,
   updateHabit,
+  deleteHabit,
 };

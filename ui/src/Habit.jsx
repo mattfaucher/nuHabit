@@ -42,6 +42,7 @@ export default class Habit extends React.Component {
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.getInputTitle = this.getInputTitle.bind(this);
   }
 
@@ -87,7 +88,7 @@ export default class Habit extends React.Component {
     if (this.state.isDaily !== this.prevDaily) {
       this.state.count = 0;
     }
-    
+
     const vars = {
       email: this.state.email,
       _id: this.state._id,
@@ -100,11 +101,39 @@ export default class Habit extends React.Component {
     };
     const data = await graphQLFetch(mutation, vars);
     // throw error if necessary
-    if (!data) throw Error(e.message);
+    if (!data) throw Error();
     this.setState({
       showModal: false,
     });
     // force reload to refresh new habits
+    window.location.reload();
+  }
+
+  async handleDelete(e) {
+    // mutation to delete habit
+    const mutation = `mutation ($email: String!, $_id: ID!){
+      deleteHabit(email: $email, _id: $_id){
+        _id
+        title
+        increments
+        isGood
+        isDone
+        created
+        count
+      }
+    }`;
+    const vars = {
+      email: this.state.email,
+      _id: this.state._id
+    };
+    const data = await graphQLFetch(mutation, vars);
+    // throw error if no data
+    if (!data) throw Error();
+    // hide modal
+    this.setState({
+      showModal: false,
+    });
+    // refresh
     window.location.reload();
   }
 
@@ -173,8 +202,9 @@ export default class Habit extends React.Component {
                 <Modal
                   show={this.state.showModal}
                   onHide={this.handleClose}
+
                 >
-                  <Modal.Header>
+                  <Modal.Header className='mx-auto'>
                     <Modal.Title>Edit your habit</Modal.Title>
                   </Modal.Header>
                   <Modal.Body>
@@ -216,9 +246,18 @@ export default class Habit extends React.Component {
                       />
                     </InputGroup>
                   </Modal.Body>
-                  <Modal.Footer style={{ justifyContent: 'center' }}>
-                    <Button variant='secondary' onClick={this.handleClose}>Close</Button>
-                    <Button variant='primary' onClick={this.handleSubmit}>Submit</Button>
+                  <Modal.Footer className='mx-auto'>
+                    <Row>
+                      <Col>
+                        <Button variant='danger' onClick={this.handleDelete}>Delete</Button>
+                      </Col>
+                      <Col>
+                        <Button variant='secondary' onClick={this.handleClose}>Close</Button>
+                      </Col>
+                      <Col>
+                        <Button variant='primary' onClick={this.handleSubmit}>Submit</Button>
+                      </Col>
+                    </Row>
                   </Modal.Footer>
                 </Modal>
               </Col>

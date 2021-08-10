@@ -58,4 +58,5 @@ type Mutation {
   insertUser(user: UserInput!): User!
   insertHabit(email: String!, habit: HabitInputs): [Habit!]!
   updateHabit(email: String!, _id: ID!, habit: HabitUpdateInputs): Habit!
+  deleteHabit(email: String!, _id: ID!): Habit!
 }
