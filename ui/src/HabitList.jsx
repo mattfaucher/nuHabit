@@ -94,7 +94,7 @@ class HabitList extends React.Component {
               isGood={habit.isGood}
               email={this.props.auth0.user.email}
             />
-          )) : <div>No Habits</div>
+          )) ): <div>No Habits</div>
         }
         </Container>
       </div>
