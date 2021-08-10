@@ -115,7 +115,7 @@ export default class AddHabit extends React.Component {
 									show={this.state.showModal}
 									onHide={this.handleClose}
 								>
-								<Modal.Header>
+								<Modal.Header className='mx-auto'>
 									<Modal.Title>Create a new habit</Modal.Title>
 								</Modal.Header>
 								<Modal.Body>
@@ -157,7 +157,7 @@ export default class AddHabit extends React.Component {
 										/>
 									</InputGroup>
 								</Modal.Body>
-								<Modal.Footer style={{ justifyContent: 'center' }}>
+								<Modal.Footer className='mx-auto'>
 									<Button variant='secondary' onClick={this.handleClose}>Close</Button>
 									<Button variant='primary' onClick={this.handleSubmit}>Submit</Button>
 								</Modal.Footer>

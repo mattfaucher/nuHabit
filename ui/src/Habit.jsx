@@ -173,8 +173,9 @@ export default class Habit extends React.Component {
                 <Modal
                   show={this.state.showModal}
                   onHide={this.handleClose}
+        
                 >
-                  <Modal.Header>
+                  <Modal.Header className='mx-auto'>
                     <Modal.Title>Edit your habit</Modal.Title>
                   </Modal.Header>
                   <Modal.Body>
@@ -216,9 +217,18 @@ export default class Habit extends React.Component {
                       />
                     </InputGroup>
                   </Modal.Body>
-                  <Modal.Footer style={{ justifyContent: 'center' }}>
-                    <Button variant='secondary' onClick={this.handleClose}>Close</Button>
-                    <Button variant='primary' onClick={this.handleSubmit}>Submit</Button>
+                  <Modal.Footer className='mx-auto'>
+                    <Row>
+                     <Col>
+                      <Button variant='danger' onClick={this.handleDelete}>Delete</Button>
+                     </Col> 
+                     <Col>
+                      <Button variant='secondary' onClick={this.handleClose}>Close</Button>
+                     </Col> 
+                     <Col>
+                      <Button variant='primary' onClick={this.handleSubmit}>Submit</Button>
+                     </Col> 
+                    </Row>
                   </Modal.Footer>
                 </Modal>
               </Col>
