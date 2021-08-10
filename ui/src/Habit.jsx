@@ -42,6 +42,7 @@ export default class Habit extends React.Component {
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.getInputTitle = this.getInputTitle.bind(this);
   }
 
@@ -100,11 +101,29 @@ export default class Habit extends React.Component {
     };
     const data = await graphQLFetch(mutation, vars);
     // throw error if necessary
-    if (!data) throw Error(e.message);
+    if (!data) throw Error();
     this.setState({
       showModal: false,
     });
     // force reload to refresh new habits
+    window.location.reload();
+  }
+  
+  async handleDelete(e) {
+    // mutation to delete habit
+    const mutation = ``;
+    const vars = {
+      email: this.state.email,
+      _id: this.state._id
+    };
+    const data = await graphQLFetch(mutation, vars);
+    // throw error if no data
+    if (!data) throw Error();
+    // hide modal
+    this.setState({
+      showModal: false,
+    });
+    // refresh
     window.location.reload();
   }
 
