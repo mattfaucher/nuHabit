@@ -43,6 +43,7 @@ input HabitUpdateInputs {
   increments: Increments
   isGood: Boolean
   isDone: Boolean
+  count: Int
 }
 
 ##### Top level declarations
@@ -56,4 +57,5 @@ type Query {
 type Mutation {
   insertUser(user: UserInput!): User!
   insertHabit(email: String!, habit: HabitInputs): [Habit!]!
+  updateCount(habit: HabitUpdateInputs): [Habit!]
 }

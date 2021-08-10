@@ -56,6 +56,10 @@ async function insertHabit(_, args, { returnOriginal: f }) {
     isDone: false,
   };
 
+  async function updateCount(_, args) {
+    const db = getDb();
+  }
+
   // update the user's habitlist
   await db.collection("users").updateOne(
     // filter by email

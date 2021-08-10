@@ -10,6 +10,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import DoneButton from "./DoneButton.jsx";
 
 export default class Habit extends React.Component {
   constructor(props) {
@@ -20,17 +21,12 @@ export default class Habit extends React.Component {
     this.count = props.count;
     this.isGood = props.isGood;
     this.created = props.created;
-    this.done = false;
-    this.isDone = props.isDone;
-    this.completedTask.bind(this);
+    this.doneHabit = false; //boolean for incremental completion of a habit
+    this.isDone = props.isDone; //boolean for total completion of a habit
     this.dayCount = 60;
     this.weekCount = 12;
     this.progress = 0;
     this.form = "";
-  }
-
-  completedTask(e) {
-    // TODO code for disabling the button
   }
 
   // Render a single Habit card, with Title, coloring/progress bar
@@ -66,16 +62,11 @@ export default class Habit extends React.Component {
                 <Link to={habitDetails}> {this.title}</Link>
               </Col>
               <Col className="col-6 col-xs-2" align="right">
-                <Button
-                  onClick={this.completedTask}
-                  size="sm"
-                  variant="primary"
-                  // use variable here based on completion time interval
-                  disabled={this.done}
-                // change disabled to true when done
-                >
-                  Done
-                </Button>{" "}
+                <DoneButton
+                  created={this.created}
+                  count={this.count}
+                  done={this.doneHabit}
+                />{" "}
                 <Button variant="secondary" size="sm">
                   <FontAwesomeIcon icon={faBars} />
                 </Button>
