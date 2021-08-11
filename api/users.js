@@ -103,6 +103,7 @@ async function updateCount(_, args) {
   const db = getDb();
   const { count, increments } = args.habit;
 
+
   // Check for completed habit DAILY
   if (increments === 'Daily' && count === 60) {
     // Update the data for the habit
@@ -110,6 +111,7 @@ async function updateCount(_, args) {
       { email: args.email, "habitList._id": ObjectID(args._id) },
       { $set: { "habitList.$.count": count } }
     );
+
     // remove from habitList
     const deleteObject = await db
       .collection("users")
@@ -119,12 +121,15 @@ async function updateCount(_, args) {
         { returnOriginal: true }
       );
     // Get the deleted habit from deleteObject
+
     const completedHabit = deleteObject.value.habitList.find(habit => {
+
       if (habit._id == args._id) {
         return habit;
       }
     });
     // push on to completedHabits
+
     await db.collection('users').updateOne(
       { email: args.email },
       { $push: { completedHabits: completedHabit } }
@@ -138,6 +143,7 @@ async function updateCount(_, args) {
       { email: args.email, "habitList._id": ObjectID(args._id) },
       { $set: { "habitList.$.count": count } }
     );
+
     // remove from habitList
     const deleteObject = await db
       .collection("users")
@@ -148,11 +154,13 @@ async function updateCount(_, args) {
       );
     // Get the deleted habit from deleteObject
     const completedHabit = deleteObject.value.habitList.find(habit => {
+
       if (habit._id == args._id) {
         return habit;
       }
     });
     // push on to completedHabits
+
     await db.collection('users').updateOne(
       { email: args.email },
       { $push: { completedHabits: completedHabit } }
@@ -173,6 +181,7 @@ async function updateCount(_, args) {
 
   // Filter and return the updated habit
   const updatedHabit = user.habitList.find(habit => {
+
     if (habit._id == args._id) {
       return habit;
     }

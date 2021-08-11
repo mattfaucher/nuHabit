@@ -11,47 +11,53 @@ export default class DoneButton extends React.Component {
       currentDate: Date.now(),
       _id: props._id,
       email: props.email,
+      increments: props.increments,
+      difference: 0,
     };
 
     this.completedTask = this.completedTask.bind(this);
+    this.updateCount = this.updateCount.bind(this);
   }
+ 
+completedTask(e) {
+    e.preventDefault();
+    if (this.state.increments === "Daily") {
+      this.setState({
+        done: true,
+        count: this.state.count + 1,
+        difference: 86400,
+      });
 
-  /*  calculateTimeLeftDaily() {
-    let countDownDate = this.state.currentDate / 60000 + 60 * 24;
-    let now = this.state.currentDate / 60000;
-    let dif = countDownDate - now;
+      this.updateCount();
 
-    return dif;
-  } */
-
-  async completedTask(e) {
-    let countDownDate = this.state.currentDate / 60000 + 60 * 24;
-    let now = this.state.currentDate / 60000;
-    //let dif = countDownDate - now;
-
-    let dif = 10000;
-    this.setState({
-      done: true,
-      count: this.state.count + 1,
-    });
-
-    const data = await this.updateCount();
-    
-    if (data) {
-      console.log(data);
       setTimeout(() => {
         this.setState({
           done: false,
         });
-      }, dif);
+      }, this.state.difference);
+    }
+
+    if (this.state.increments === "Weekly") {
+      this.setState({
+        done: true,
+        count: this.state.count + 1,
+        difference: 86400 * 7,
+      });
+      this.updateCount();
+
+      setTimeout(() => {
+        this.setState({
+          done: false,
+        });
+      }, this.state.difference);
     }
   }
-
+  
   async updateCount() {
     const mutation = `mutation($email: String!, $_id: ID!, $habit: HabitCountInput!) {
         updateCount(email:$email, _id:$_id, habit:$habit) {
-          increments
           count
+          increments
         }
       }`;
 
@@ -61,6 +67,7 @@ export default class DoneButton extends React.Component {
       habit: {
         count: this.state.count,
         increments: this.state.increments
+
       },
     };
 
