@@ -10,12 +10,7 @@ export default class DoneButton extends React.Component {
       count: props.count,
       currentDate: Date.now(),
       _id: props._id,
-      title: props.title,
-      created: props.created,
-      isGood: props.isGood,
       email: props.email,
-      isDone: props.isDone,
-      increments: props.increments,
     };
 
     this.completedTask = this.completedTask.bind(this);

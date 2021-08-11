@@ -5,15 +5,16 @@ import {
   Row,
   Col,
   Container,
-  ProgressBar,
   Modal,
   InputGroup,
   FormControl,
+  ProgressBar,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import DoneButton from "./DoneButton.jsx";
+import Progress from "./Progress.jsx";
 
 import graphQLFetch from "./graphQLFetch";
 
@@ -30,11 +31,10 @@ export default class Habit extends React.Component {
       isGood: props.isGood,
       created: props.created,
       done: false, //boolean for incremental completion of a habit
-      isDone: false, //boolean for total completion of a habit
-      progress: 0,
-      form: "",
       showModal: false,
       email: props.email,
+      progress: 0,
+      form: "",
     };
     this.dayCount = 60;
     this.weekCount = 12;
@@ -146,10 +146,14 @@ export default class Habit extends React.Component {
     const habitDetails = `/details/${this._id},${this.state.title},${this.state.count},${this.state.increments}`;
 
     if (this.state.increments === "Daily") {
-      this.state.progress = 100 * (this.state.count / this.dayCount);
+      this.state.progress = Math.floor(
+        100 * (this.state.count / this.dayCount)
+      );
     }
     if (this.state.increments === "Weekly") {
-      this.state.progress = 100 * (this.state.count / this.weekCount);
+      this.state.progress = Math.floor(
+        100 * (this.state.count / this.weekCount)
+      );
     }
     if (this.state.isGood == true) {
       this.state.form = "success";
@@ -162,6 +166,9 @@ export default class Habit extends React.Component {
       justifyContent: "center",
       marginTop: "20px",
     };
+
+    console.log(this.state.progress);
+    console.log(this.state.form);
 
     return (
       <Container fluid="md">
@@ -182,13 +189,9 @@ export default class Habit extends React.Component {
               </Col>
               <Col className="col-6 col-xs-2" align="right">
                 <DoneButton
-                  created={this.state.created}
                   count={this.state.count}
                   done={this.state.done}
                   _id={this.state._id}
-                  title={this.state.title}
-                  isDone={this.state.isDone}
-                  isGood={this.state.isGood}
                   email={this.state.email}
                   increments={this.state.increments}
                 />
