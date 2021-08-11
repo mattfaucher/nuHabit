@@ -18,13 +18,9 @@ export default class DoneButton extends React.Component {
     this.completedTask = this.completedTask.bind(this);
     this.updateCount = this.updateCount.bind(this);
   }
-
-  completedTask(e) {
+ 
+completedTask(e) {
     e.preventDefault();
-
-    let dif;
-    /*  let countDownDate = this.state.currentDate / 6000 + 60 * 24;
-    let now = this.state.currentDate / 6000; */
     if (this.state.increments === "Daily") {
       this.setState({
         done: true,
@@ -56,11 +52,10 @@ export default class DoneButton extends React.Component {
       }, this.state.difference);
     }
   }
-
+  
   async updateCount() {
     const mutation = `mutation($email: String!, $_id: ID!, $habit: HabitCountInput!) {
         updateCount(email:$email, _id:$_id, habit:$habit) {
-            _id
           count
           increments
         }
@@ -71,7 +66,8 @@ export default class DoneButton extends React.Component {
       _id: this.state._id,
       habit: {
         count: this.state.count,
-        increments: this.state.increments,
+        increments: this.state.increments
+
       },
     };
 
@@ -88,7 +84,7 @@ export default class DoneButton extends React.Component {
         variant="primary"
         // use variable here based on completion time interval
         disabled={this.state.done}
-        // change disabled to true when done
+      // change disabled to true when done
       >
         Done
       </Button>
