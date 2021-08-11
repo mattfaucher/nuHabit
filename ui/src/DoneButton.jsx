@@ -5,54 +5,55 @@ import graphQLFetch from "./graphQLFetch";
 export default class DoneButton extends React.Component {
   constructor(props) {
     super(props);
+    this.dayMilliseconds = 86400000;
+    this.weekMilliseconds = this.dayMilliseconds * 7;
+    // determine if done button should be enabled
+    let isDone = this.chooseTime(props.increments, props._id);
     this.state = {
-      done: props.done,
+      done: isDone,
       count: props.count,
       currentDate: Date.now(),
       _id: props._id,
       email: props.email,
-      increments: props.increments,
-      difference: 0,
+      increments: props.increments
     };
-
-    this.completedTask = this.completedTask.bind(this);
+    this.handleDone = this.handleDone.bind(this);
     this.updateCount = this.updateCount.bind(this);
+    this.chooseTime = this.chooseTime.bind(this);
   }
- 
-completedTask(e) {
-    e.preventDefault();
-    if (this.state.increments === "Daily") {
-      this.setState({
-        done: true,
-        count: this.state.count + 1,
-        difference: 86400,
-      });
 
-      this.updateCount();
-
-      setTimeout(() => {
-        this.setState({
-          done: false,
-        });
-      }, this.state.difference);
+  // Function to choose which calculation for done
+  chooseTime(increments, _id) {
+    let isDone = false;
+    if (increments === 'Daily') {
+      const old = parseInt(localStorage.getItem(_id), 10);
+      if (old + this.dayMilliseconds < Date.now()) {
+        isDone = false;
+      } else {
+        isDone = true;
+      }
+      return isDone;
     }
-
-    if (this.state.increments === "Weekly") {
-      this.setState({
-        done: true,
-        count: this.state.count + 1,
-        difference: 86400 * 7,
-      });
-      this.updateCount();
-
-      setTimeout(() => {
-        this.setState({
-          done: false,
-        });
-      }, this.state.difference);
+    if (increments === 'Weekly') {
+      const old = parseInt(localStorage.getItem(_id), 10);
+      if (old + this.weekMilliseconds < Date.now()) {
+        isDone = false;
+      } else {
+        isDone = true;
+      }
+      return isDone;
     }
   }
-  
+
+  handleDone() {
+    // when clicked set new time to save
+    localStorage.setItem(this.state._id, this.state.currentDate);
+    this.setState({
+      done: true,
+    });
+    this.updateCount();
+  }
+
   async updateCount() {
     const mutation = `mutation($email: String!, $_id: ID!, $habit: HabitCountInput!) {
         updateCount(email:$email, _id:$_id, habit:$habit) {
@@ -65,7 +66,7 @@ completedTask(e) {
       email: this.state.email,
       _id: this.state._id,
       habit: {
-        count: this.state.count,
+        count: this.state.count + 1,
         increments: this.state.increments
 
       },
@@ -73,13 +74,14 @@ completedTask(e) {
 
     const data = await graphQLFetch(mutation, vars);
     if (!data) throw Error();
+    console.log(data);
     return data;
   }
 
   render() {
     return (
       <Button
-        onClick={this.completedTask}
+        onClick={this.handleDone}
         size="sm"
         variant="primary"
         // use variable here based on completion time interval

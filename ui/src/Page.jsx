@@ -19,7 +19,7 @@ class Page extends React.Component {
 		// return loading screen to avoid weird flicker
 		if (isLoading) {
 			return (
-				<Alert variant='info'>Loading!</Alert>
+				<Alert variant='info'>Loading...</Alert>
 			);
 		}
 		// handle any errors output
