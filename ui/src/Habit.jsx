@@ -190,7 +190,9 @@ export default class Habit extends React.Component {
                   _id={this.state._id}
                   email={this.state.email}
                   increments={this.state.increments}
-                />{" "}
+                />
+                {" "}
+
                 <Button variant="secondary" size="sm" onClick={this.handleShow}>
                   <FontAwesomeIcon icon={faBars} />
                 </Button>

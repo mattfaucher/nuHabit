@@ -45,8 +45,8 @@ input HabitUpdateInputs {
 }
 
 input HabitCountInput {
-  count: Int!
   increments: Increments!
+  count: Int!
 }
 
 ##### Top level declarations
