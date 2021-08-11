@@ -12,30 +12,49 @@ export default class DoneButton extends React.Component {
       _id: props._id,
       email: props.email,
       increments: props.increments,
+      difference: 0,
     };
 
     this.completedTask = this.completedTask.bind(this);
+    this.updateCount = this.updateCount.bind(this);
   }
 
   completedTask(e) {
     e.preventDefault();
 
-    let countDownDate = this.state.currentDate / 60000 + 60 * 24;
-    let now = this.state.currentDate / 60000;
-    //let dif = countDownDate - now;
-
-    let dif = 10000;
-    this.setState({
-      done: true,
-      count: this.state.count + 1,
-    });
-    this.updateCount();
-
-    setTimeout(() => {
+    let dif;
+    /*  let countDownDate = this.state.currentDate / 6000 + 60 * 24;
+    let now = this.state.currentDate / 6000; */
+    if (this.state.increments === "Daily") {
       this.setState({
-        done: false,
+        done: true,
+        count: this.state.count + 1,
+        difference: 86400,
       });
-    }, dif);
+
+      this.updateCount();
+
+      setTimeout(() => {
+        this.setState({
+          done: false,
+        });
+      }, this.state.difference);
+    }
+
+    if (this.state.increments === "Weekly") {
+      this.setState({
+        done: true,
+        count: this.state.count + 1,
+        difference: 86400 * 7,
+      });
+      this.updateCount();
+
+      setTimeout(() => {
+        this.setState({
+          done: false,
+        });
+      }, this.state.difference);
+    }
   }
 
   async updateCount() {

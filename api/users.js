@@ -103,14 +103,12 @@ async function updateCount(_, args) {
   // Check for completed habit DAILY
   if (increments === "Daily" && count === 60) {
     // Update the data for the habit
-    await db.collection("users").updateOne(
-      { email: args.email, "habitList._id": ObjectID(args._id) },
-      {
-        $set: {
-          "habitList.$.count": count,
-        },
-      }
-    );
+    await db
+      .collection("users")
+      .updateOne(
+        { email: args.email, "habitList._id": ObjectID(args._id) },
+        { $set: { "habitList.$.count": count } }
+      );
     // remove from habitList
     const deleteObject = await db
       .collection("users")
@@ -137,16 +135,12 @@ async function updateCount(_, args) {
   // Check for completed habit WEEKLY
   if (increments === "Weekly" && count === 12) {
     // Update the data for the habit
-    await db.collection("users").updateOne(
-      { email: args.email, "habitList._id": ObjectID(args._id) },
-      {
-        $set: {
-          "habitList.$.count": count,
-        },
-      }
-    );
-    // set count to final value
-    //count = 12;
+    await db
+      .collection("users")
+      .updateOne(
+        { email: args.email, "habitList._id": ObjectID(args._id) },
+        { $set: { "habitList.$.count": count } }
+      );
     // remove from habitList
     const deleteObject = await db
       .collection("users")
@@ -170,15 +164,16 @@ async function updateCount(_, args) {
       );
     return completedHabit;
   }
-
+  // DEFAULT WHEN NOT COMPLETE HABIT
+  // Update the data for the habit
   await db
     .collection("users")
     .updateOne(
       { email: args.email, "habitList._id": ObjectID(args._id) },
       { $set: { "habitList.$.count": count } }
     );
-  const { email } = args.email;
-  const user = await db.collection("users").findOne(email);
+  const user = await db.collection("users").findOne({ email: args.email });
+  // Filter and return the updated habit
   const updatedHabit = user.habitList.find((habit) => {
     if (habit._id == args._id) {
       return habit;
