@@ -19,6 +19,16 @@ export default class Collection extends React.Component {
 
 
 	render() {
+    const cardStyle = {
+      display: "flex",
+      flex: "1 1 auto",
+    };
+
+    const checkout = {
+      position: "relative",
+      left: "80px",
+    };
+
     for (let i = 0; i <= this.count; i++) {
       if (this.increments === "Daily") {
         if (badges.day[i] <= this.count) {
@@ -50,65 +60,78 @@ export default class Collection extends React.Component {
 
 
         return (
-            
-            <Container fluid="md">
-                <div className="row row-cols-9">
-                <div className="col">
-                  <Image style={{ width: "18rem" }}
-                  className="img-fluid"
-                  src={badgeArr[0]}
-                  alt="Earned Badge"
-                  roundedCircle/>
+          <div className=".container-fluid">
+          <div class="card-group">
+            <div className="row row-cols-1">
+              <div className="col d-flex align-items-center">
+                <div className="card w-60" style={cardStyle}>
+                  <div className="card-img-top d-flex align-items-center bg-light">
+                    <div>
+                      <Image
+                        style={{ width: "18rem" }}
+                        className="img-fluid"
+                        src={badgeArr[0]}
+                        alt="Earned Badge"
+                        roundedCircle
+                      />
+
+                      <h5 class="card-title">Badge 1</h5>
+                      <p class="card-text">You have earned this badge X times</p>
+                      
+                    </div>
+                  </div>
                 </div>
-                <div className="col"><Image style={{ width: "18rem" }}
-                  className="img-fluid"
-                  src={badgeArr[1]}
-                  alt="Earned Badge"
-                  roundedCircle/></div>
-                <div className="col"><Image style={{ width: "18rem" }}
-                  className="img-fluid"
-                  src={badgeArr[2]}
-                  alt="Earned Badge"
-                  roundedCircle/></div>
-                <div className="col"><Image style={{ width: "18rem" }}
-                  className="img-fluid"
-                  src={badgeArr[3]}
-                  alt="Earned Badge"
-                  roundedCircle/></div>
-                <div className="col"><Image style={{ width: "18rem" }}
-                  className="img-fluid"
-                  src={badgeArr[4]}
-                  alt="Earned Badge"
-                  roundedCircle/></div>
-                <div className="col"><Image style={{ width: "18rem" }}
-                  className="img-fluid"
-                  src={badgeArr[5]}
-                  alt="Earned Badge"
-                  roundedCircle/></div>
-                <div className="col"><Image style={{ width: "18rem" }}
-                  className="img-fluid"
-                  src={badgeArr[6]}
-                  alt="Earned Badge"
-                  roundedCircle/></div>
-                <div className="col"><Image style={{ width: "18rem" }}
-                  className="img-fluid"
-                  src={badgeArr[7]}
-                  alt="Earned Badge"
-                  roundedCircle/></div>
-                <div className="col"><Image style={{ width: "18rem" }}
-                  className="img-fluid"
-                  src={badgeArr[8]}
-                  alt="Earned Badge"
-                  roundedCircle/></div>
-                {/*if (this.collection.numberBadges >= 0) {
-                <div className="col"><Image style={{ width: "18rem" }}
-                  className="img-fluid"
-                  src={badgeArr[0]}
-                  alt="Earned Badge"
-                  roundedCircle/></div>                 
-                } */}
+                <div className="card w-60" style={cardStyle}>
+                  <div className="card-img-top d-flex align-items-center bg-light">
+                    <div>
+                      <Image
+                        style={{ width: "18rem" }}
+                        className="img-fluid"
+                        src={badgeArr[1]}
+                        alt="Earned Badge"
+                        roundedCircle
+                      />
+
+                      <h5 class="card-title">Badge 1</h5>
+                      <p class="card-text">You have earned this badge X times</p>
+
+                    </div>
+                  </div>
                 </div>
-            </Container>
-            )
-        }
+                <div className="card w-60" style={cardStyle}>
+                  <div className="card-img-top d-flex align-items-center bg-light">
+                    <div>
+                      <Image
+                        style={{ width: "18rem" }}
+                        className="img-fluid"
+                        src={badgeArr[2]}
+                        alt="Earned Badge"
+                        roundedCircle
+                      />
+                      <h5 class="card-title">Badge 3</h5>
+                      <p class="card-text">You have earned this badge X times</p>
+                    </div>
+                  </div>
+                </div> 
+                  <div className="card w-60" style={cardStyle}>
+                  <div className="card-img-top d-flex align-items-center bg-light">
+                    <div>
+                      <Image
+                        style={{ width: "18rem" }}
+                        className="img-fluid"
+                        src={badgeArr[3]}
+                        alt="Earned Badge"
+                        roundedCircle
+                      />
+                      <h5 class="card-title">Badge 4</h5>
+                      <p class="card-text">You have earned this badge X times</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        )
+  }
 }
