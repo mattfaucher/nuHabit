@@ -29,9 +29,7 @@ export default class DoneButton extends React.Component {
     return dif;
   } */
 
-  completedTask(e) {
-    e.preventDefault();
-
+  async completedTask(e) {
     let countDownDate = this.state.currentDate / 60000 + 60 * 24;
     let now = this.state.currentDate / 60000;
     //let dif = countDownDate - now;
@@ -41,13 +39,17 @@ export default class DoneButton extends React.Component {
       done: true,
       count: this.state.count + 1,
     });
-    this.updateCount();
 
-    setTimeout(() => {
-      this.setState({
-        done: false,
-      });
-    }, dif);
+    const data = await this.updateCount();
+    
+    if (data) {
+      console.log(data);
+      setTimeout(() => {
+        this.setState({
+          done: false,
+        });
+      }, dif);
+    }
   }
 
   async updateCount() {
