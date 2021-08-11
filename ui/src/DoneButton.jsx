@@ -24,24 +24,22 @@ export default class DoneButton extends React.Component {
 
   // Function to choose which calculation for done
   chooseTime(increments, _id) {
-    let isDone = false;
+    if (localStorage.getItem(_id) === null) return false;
     if (increments === 'Daily') {
       const old = parseInt(localStorage.getItem(_id), 10);
       if (old + this.dayMilliseconds < Date.now()) {
-        isDone = false;
+        return false;
       } else {
-        isDone = true;
+        return true;
       }
-      return isDone;
     }
     if (increments === 'Weekly') {
       const old = parseInt(localStorage.getItem(_id), 10);
       if (old + this.weekMilliseconds < Date.now()) {
-        isDone = false;
+        return false;
       } else {
-        isDone = true;
+        return true;
       }
-      return isDone;
     }
   }
 
