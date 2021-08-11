@@ -5,7 +5,7 @@ import graphQLFetch from "./graphQLFetch";
 export default class DoneButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = JSON.parse(window.localStorage.getItem("state")) || {
+    this.state = {
       done: props.done,
       count: props.count,
       currentDate: Date.now(),
@@ -19,11 +19,6 @@ export default class DoneButton extends React.Component {
     };
 
     this.completedTask = this.completedTask.bind(this);
-  }
-
-  setState(state) {
-    window.localStorage.setItem("state", JSON.stringify(state));
-    super.setState(state);
   }
 
   /*  calculateTimeLeftDaily() {
@@ -46,6 +41,7 @@ export default class DoneButton extends React.Component {
       done: true,
       count: this.state.count + 1,
     });
+    this.updateCount();
 
     setTimeout(() => {
       this.setState({
@@ -54,28 +50,35 @@ export default class DoneButton extends React.Component {
     }, dif);
   }
 
-  /*  async updateCount() {
+  async updateCount() {
+    // e.preventDefault();
     const mutation = `mutation($email: String!, $_id: ID!, $habit: HabitUpdateInputs!) {
         updateHabit(email:$email, _id:$_id, habit:$habit) {
-            _id
-            title
-            increments
-            isGood
-            count
+          _id
+          title
+          increments
+          isGood
+          count
+          isDone
         }
       }`;
 
     const vars = {
-        _id: this.state.id,
+      email: this.state.email,
+      _id: this.state._id,
+      habit: {
         title: this.state.title,
-        increments: this.state.increments,
         isGood: this.state.isGood,
-      count: this.state.count,
+        increments: this.state.increments,
+        count: this.state.count,
+        isDone: this.state.isDone,
+      },
     };
 
-    const data = graphQLFetch(mutation, vars);
+    const data = await graphQLFetch(mutation, vars);
     if (!data) throw Error();
-  } */
+  }
+
   render() {
     return (
       <Button

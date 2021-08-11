@@ -97,6 +97,21 @@ async function updateHabit(_, args) {
   return updatedHabit;
 }
 
+async function updateCount(_, args) {
+  const db = getDb();
+  const { count } = args.habit;
+
+  // Update the data for the habit
+  await db.collection("users").updateOne(
+    { email: args.email, "habitList._id": ObjectID(args._id) },
+    {
+      $set: {
+        "habitList.$.count": count,
+      },
+    }
+  );
+}
+
 // Delete a habit from habitList and append to deletedHabits
 async function deleteHabit(_, args) {
   const db = getDb();
@@ -137,4 +152,5 @@ module.exports = {
   getCompletedHabits,
   updateHabit,
   deleteHabit,
+  updateCount,
 };

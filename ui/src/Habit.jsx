@@ -30,7 +30,7 @@ export default class Habit extends React.Component {
       isGood: props.isGood,
       created: props.created,
       done: false, //boolean for incremental completion of a habit
-      isDone: props.isDone, //boolean for total completion of a habit
+      isDone: false, //boolean for total completion of a habit
       progress: 0,
       form: "",
       showModal: false,
@@ -183,7 +183,7 @@ export default class Habit extends React.Component {
                   created={this.state.created}
                   count={this.state.count}
                   done={this.state.done}
-                  _id={this.state.id}
+                  _id={this.state._id}
                   title={this.state.title}
                   isDone={this.state.isDone}
                   isGood={this.state.isGood}

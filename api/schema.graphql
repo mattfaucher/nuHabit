@@ -42,8 +42,12 @@ input HabitUpdateInputs {
   title: String!
   increments: Increments!
   isGood: Boolean!
-  isDone: Boolean
-  count: Int
+  isDone: Boolean!
+  count: Int!
+}
+
+input HabitCountInput {
+  count: Int!
 }
 
 ##### Top level declarations
@@ -59,4 +63,5 @@ type Mutation {
   insertHabit(email: String!, habit: HabitInputs): [Habit!]!
   updateHabit(email: String!, _id: ID!, habit: HabitUpdateInputs): Habit!
   deleteHabit(email: String!, _id: ID!): Habit!
+  updateCount(email: String!, _id: ID!, habit: HabitCountInput): Habit!
 }
