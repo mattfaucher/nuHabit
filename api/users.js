@@ -110,6 +110,14 @@ async function updateCount(_, args) {
       },
     }
   );
+  const email = { email: args.email };
+  const user = await db.collection("users").findOne(email);
+  const updatedCount = user.habitList.find((habit) => {
+    if (habit._id == args._id) {
+      return habit;
+    }
+  });
+  return updatedCount;
 }
 
 // Delete a habit from habitList and append to deletedHabits

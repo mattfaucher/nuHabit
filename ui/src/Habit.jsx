@@ -180,15 +180,10 @@ export default class Habit extends React.Component {
               </Col>
               <Col className="col-6 col-xs-2" align="right">
                 <DoneButton
-                  created={this.state.created}
                   count={this.state.count}
                   done={this.state.done}
                   _id={this.state._id}
-                  title={this.state.title}
-                  isDone={this.state.isDone}
-                  isGood={this.state.isGood}
                   email={this.state.email}
-                  increments={this.state.increments}
                 />{" "}
                 <Button variant="secondary" size="sm" onClick={this.handleShow}>
                   <FontAwesomeIcon icon={faBars} />
