@@ -167,9 +167,6 @@ export default class Habit extends React.Component {
       marginTop: "20px",
     };
 
-    console.log(this.state.progress);
-    console.log(this.state.form);
-
     return (
       <Container fluid="md">
         <Card border="dark" className="shadow-lg p-3 mb-5 bg-white rounded">

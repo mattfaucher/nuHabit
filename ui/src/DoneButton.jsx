@@ -5,46 +5,53 @@ import graphQLFetch from "./graphQLFetch";
 export default class DoneButton extends React.Component {
   constructor(props) {
     super(props);
+    this.dayMilliseconds = 86400000;
+    this.weekMilliseconds = this.dayMilliseconds * 7;
+    // determine if done button should be enabled
+    let isDone = this.chooseTime(props.increments, props._id);
     this.state = {
-      done: props.done,
+      done: isDone,
       count: props.count,
       currentDate: Date.now(),
       _id: props._id,
       email: props.email,
+      increments: props.increments
     };
-
-    this.completedTask = this.completedTask.bind(this);
+    this.handleDone = this.handleDone.bind(this);
+    this.updateCount = this.updateCount.bind(this);
+    this.chooseTime = this.chooseTime.bind(this);
+  }
+  
+  // Function to choose which calculation for done
+  chooseTime(increments, _id) {
+    let isDone = false;
+    if (increments === 'Daily') {
+      const old = parseInt(localStorage.getItem(_id), 10);
+      if (old + this.dayMilliseconds < Date.now()) {
+        isDone = false;
+      } else {
+        isDone = true;
+      }
+      return isDone;
+    }
+    if (increments === 'Weekly') {
+      const old = parseInt(localStorage.getItem(_id), 10);
+      if (old + this.weekMilliseconds < Date.now()) {
+        isDone = false;
+      } else {
+        isDone = true;
+      }
+      return isDone;
+    }
   }
 
-  /*  calculateTimeLeftDaily() {
-    let countDownDate = this.state.currentDate / 60000 + 60 * 24;
-    let now = this.state.currentDate / 60000;
-    let dif = countDownDate - now;
-
-    return dif;
-  } */
-
-  async completedTask(e) {
-    let countDownDate = this.state.currentDate / 60000 + 60 * 24;
-    let now = this.state.currentDate / 60000;
-    //let dif = countDownDate - now;
-
-    let dif = 10000;
+  async handleDone() {
+    // when clicked set new time to save
+    localStorage.setItem(this.state._id, this.state.currentDate);
     this.setState({
       done: true,
-      count: this.state.count + 1,
     });
-
-    const data = await this.updateCount();
-    
-    if (data) {
-      console.log(data);
-      setTimeout(() => {
-        this.setState({
-          done: false,
-        });
-      }, dif);
-    }
+    this.updateCount();
   }
 
   async updateCount() {
@@ -59,20 +66,21 @@ export default class DoneButton extends React.Component {
       email: this.state.email,
       _id: this.state._id,
       habit: {
-        count: this.state.count,
+        count: this.state.count + 1,
         increments: this.state.increments
       },
     };
 
     const data = await graphQLFetch(mutation, vars);
     if (!data) throw Error();
+    console.log(data);
     return data;
   }
 
   render() {
     return (
       <Button
-        onClick={this.completedTask}
+        onClick={this.handleDone}
         size="sm"
         variant="primary"
         // use variable here based on completion time interval
