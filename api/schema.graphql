@@ -42,11 +42,10 @@ input HabitUpdateInputs {
   title: String!
   increments: Increments!
   isGood: Boolean!
-  isDone: Boolean!
-  count: Int!
 }
 
 input HabitCountInput {
+  increments: Increments!
   count: Int!
 }
 

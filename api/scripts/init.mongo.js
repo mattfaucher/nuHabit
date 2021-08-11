@@ -1,22 +1,6 @@
 /* global db print */
 /* eslint no-restricted-globals: "off" */
 db.users.remove({});
-
-const users = [
-  {
-    name: "Matt",
-    email: "mfauch4444@gmail.com",
-    habitList: [],
-    deletedHabits: [],
-    completedHabits: [],
-  },
-];
-
-db.users.insertMany(users);
-const count = db.users.count();
-// eslint-disable-next-line no-restricted-globals
-print("Inserted", count, "users");
-
 db.deleted_habits.remove({});
 
 db.users.createIndex({ id: 1 }, { unique: true });

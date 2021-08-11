@@ -5,7 +5,6 @@ import { Image } from "react-bootstrap";
 export default class BadgeCard extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props.badge);
     this.day = props.day;
     this.badge = props.badge;
     this.increments = props.increments;

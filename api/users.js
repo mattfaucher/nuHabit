@@ -8,7 +8,7 @@ async function findUser(_, email) {
   return user;
 }
 
-async function getUsers(_, {}) {
+async function getUsers(_, { }) {
   const db = getDb();
   const users = await db.collection("users").find().toArray();
   return users;
@@ -27,6 +27,7 @@ async function getCompletedHabits(_, email) {
   const completedHabits = user.completedHabits;
   return completedHabits;
 }
+
 async function insertUser(_, args) {
   const db = getDb();
   const userExists = await db.collection("users").findOne(args.user);
@@ -97,27 +98,86 @@ async function updateHabit(_, args) {
   return updatedHabit;
 }
 
+// Update the count when a user clicks Done
 async function updateCount(_, args) {
   const db = getDb();
-  const { count } = args.habit;
+  const { count, increments } = args.habit;
 
+  // Check for completed habit DAILY
+  if (increments === 'Daily' && count === 60) {
+    // Update the data for the habit
+    await db.collection("users").updateOne(
+      { email: args.email, "habitList._id": ObjectID(args._id) },
+      { $set: { "habitList.$.count": count } }
+    );
+    // remove from habitList
+    const deleteObject = await db
+      .collection("users")
+      .findOneAndUpdate(
+        { email: args.email },
+        { $pull: { habitList: { _id: ObjectID(args._id) } } },
+        { returnOriginal: true }
+      );
+    // Get the deleted habit from deleteObject
+    const completedHabit = deleteObject.value.habitList.find(habit => {
+      if (habit._id == args._id) {
+        return habit;
+      }
+    });
+    // push on to completedHabits
+    await db.collection('users').updateOne(
+      { email: args.email },
+      { $push: { completedHabits: completedHabit } }
+    );
+    return completedHabit;
+  }
+  // Check for completed habit WEEKLY
+  if (increments === 'Weekly' && count === 12) {
+    // Update the data for the habit
+    await db.collection("users").updateOne(
+      { email: args.email, "habitList._id": ObjectID(args._id) },
+      { $set: { "habitList.$.count": count } }
+    );
+    // remove from habitList
+    const deleteObject = await db
+      .collection("users")
+      .findOneAndUpdate(
+        { email: args.email },
+        { $pull: { habitList: { _id: ObjectID(args._id) } } },
+        { returnOriginal: true }
+      );
+    // Get the deleted habit from deleteObject
+    const completedHabit = deleteObject.value.habitList.find(habit => {
+      if (habit._id == args._id) {
+        return habit;
+      }
+    });
+    // push on to completedHabits
+    await db.collection('users').updateOne(
+      { email: args.email },
+      { $push: { completedHabits: completedHabit } }
+    );
+    return completedHabit;
+  }
+
+  // DEFAULT WHEN NOT COMPLETE HABIT
   // Update the data for the habit
-  await db.collection("users").updateOne(
+  await db.collection('users').updateOne(
     { email: args.email, "habitList._id": ObjectID(args._id) },
-    {
-      $set: {
-        "habitList.$.count": count,
-      },
-    }
+    { $set: { "habitList.$.count": count } }
   );
-  const email = { email: args.email };
-  const user = await db.collection("users").findOne(email);
-  const updatedCount = user.habitList.find((habit) => {
+
+  const user = await db.collection('users').findOne(
+    { email: args.email }
+  );
+
+  // Filter and return the updated habit
+  const updatedHabit = user.habitList.find(habit => {
     if (habit._id == args._id) {
       return habit;
     }
   });
-  return updatedCount;
+  return updatedHabit;
 }
 
 // Delete a habit from habitList and append to deletedHabits
