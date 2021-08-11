@@ -36,6 +36,8 @@ export default class Habit extends React.Component {
       showModal: false,
       email: props.email,
     };
+    this.dayCount = 60;
+    this.weekCount = 12;
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -189,7 +191,8 @@ export default class Habit extends React.Component {
                   isGood={this.state.isGood}
                   email={this.state.email}
                   increments={this.state.increments}
-                />{" "}
+                />
+                {" "}
                 <Button variant="secondary" size="sm" onClick={this.handleShow}>
                   <FontAwesomeIcon icon={faBars} />
                 </Button>

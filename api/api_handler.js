@@ -17,6 +17,7 @@ const resolvers = {
     insertHabit: users.insertHabit,
     updateHabit: users.updateHabit,
     deleteHabit: users.deleteHabit,
+    updateCount: users.updateCount,
   },
   GraphQLDate,
 };

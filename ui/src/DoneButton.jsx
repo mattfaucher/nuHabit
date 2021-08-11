@@ -51,15 +51,10 @@ export default class DoneButton extends React.Component {
   }
 
   async updateCount() {
-    // e.preventDefault();
-    const mutation = `mutation($email: String!, $_id: ID!, $habit: HabitUpdateInputs!) {
-        updateHabit(email:$email, _id:$_id, habit:$habit) {
-          _id
-          title
+    const mutation = `mutation($email: String!, $_id: ID!, $habit: HabitCountInput!) {
+        updateCount(email:$email, _id:$_id, habit:$habit) {
           increments
-          isGood
           count
-          isDone
         }
       }`;
 
@@ -67,16 +62,14 @@ export default class DoneButton extends React.Component {
       email: this.state.email,
       _id: this.state._id,
       habit: {
-        title: this.state.title,
-        isGood: this.state.isGood,
-        increments: this.state.increments,
         count: this.state.count,
-        isDone: this.state.isDone,
+        increments: this.state.increments
       },
     };
 
     const data = await graphQLFetch(mutation, vars);
     if (!data) throw Error();
+    return data;
   }
 
   render() {
@@ -87,7 +80,7 @@ export default class DoneButton extends React.Component {
         variant="primary"
         // use variable here based on completion time interval
         disabled={this.state.done}
-        // change disabled to true when done
+      // change disabled to true when done
       >
         Done
       </Button>
