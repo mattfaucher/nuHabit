@@ -21,10 +21,6 @@ export default class DoneButton extends React.Component {
 
   completedTask(e) {
     e.preventDefault();
-
-    let dif;
-    /*  let countDownDate = this.state.currentDate / 6000 + 60 * 24;
-    let now = this.state.currentDate / 6000; */
     if (this.state.increments === "Daily") {
       this.setState({
         done: true,
