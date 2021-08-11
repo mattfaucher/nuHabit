@@ -10,24 +10,11 @@ export default class DoneButton extends React.Component {
       count: props.count,
       currentDate: Date.now(),
       _id: props._id,
-      title: props.title,
-      created: props.created,
-      isGood: props.isGood,
       email: props.email,
-      isDone: props.isDone,
-      increments: props.increments,
     };
 
     this.completedTask = this.completedTask.bind(this);
   }
-
-  /*  calculateTimeLeftDaily() {
-    let countDownDate = this.state.currentDate / 60000 + 60 * 24;
-    let now = this.state.currentDate / 60000;
-    let dif = countDownDate - now;
-
-    return dif;
-  } */
 
   completedTask(e) {
     e.preventDefault();
@@ -51,15 +38,10 @@ export default class DoneButton extends React.Component {
   }
 
   async updateCount() {
-    // e.preventDefault();
-    const mutation = `mutation($email: String!, $_id: ID!, $habit: HabitUpdateInputs!) {
-        updateHabit(email:$email, _id:$_id, habit:$habit) {
+    const mutation = `mutation($email: String!, $_id: ID!, $habit: HabitCountInput!) {
+        updateCount(email:$email, _id:$_id, habit:$habit) {
           _id
-          title
-          increments
-          isGood
           count
-          isDone
         }
       }`;
 
@@ -67,11 +49,7 @@ export default class DoneButton extends React.Component {
       email: this.state.email,
       _id: this.state._id,
       habit: {
-        title: this.state.title,
-        isGood: this.state.isGood,
-        increments: this.state.increments,
         count: this.state.count,
-        isDone: this.state.isDone,
       },
     };
 
