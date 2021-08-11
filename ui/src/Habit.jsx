@@ -14,7 +14,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import DoneButton from "./DoneButton.jsx";
-import Progress from "./Progress.jsx";
 
 import graphQLFetch from "./graphQLFetch";
 
@@ -193,6 +192,7 @@ export default class Habit extends React.Component {
                   increments={this.state.increments}
                 />
                 {" "}
+
                 <Button variant="secondary" size="sm" onClick={this.handleShow}>
                   <FontAwesomeIcon icon={faBars} />
                 </Button>

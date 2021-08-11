@@ -21,7 +21,7 @@ export default class DoneButton extends React.Component {
     this.updateCount = this.updateCount.bind(this);
     this.chooseTime = this.chooseTime.bind(this);
   }
-  
+
   // Function to choose which calculation for done
   chooseTime(increments, _id) {
     let isDone = false;
@@ -45,7 +45,7 @@ export default class DoneButton extends React.Component {
     }
   }
 
-  async handleDone() {
+  handleDone() {
     // when clicked set new time to save
     localStorage.setItem(this.state._id, this.state.currentDate);
     this.setState({
@@ -57,8 +57,8 @@ export default class DoneButton extends React.Component {
   async updateCount() {
     const mutation = `mutation($email: String!, $_id: ID!, $habit: HabitCountInput!) {
         updateCount(email:$email, _id:$_id, habit:$habit) {
-          increments
           count
+          increments
         }
       }`;
 
@@ -68,6 +68,7 @@ export default class DoneButton extends React.Component {
       habit: {
         count: this.state.count + 1,
         increments: this.state.increments
+
       },
     };
 
