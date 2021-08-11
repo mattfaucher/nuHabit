@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import graphQLFetch from "./graphQLFetch";
 
 export default class DoneButton extends React.Component {
   constructor(props) {
@@ -8,51 +9,80 @@ export default class DoneButton extends React.Component {
       done: props.done,
       count: props.count,
       currentDate: Date.now(),
+      _id: props._id,
+      title: props.title,
+      created: props.created,
+      isGood: props.isGood,
+      email: props.email,
+      isDone: props.isDone,
+      increments: props.increments,
     };
+
+    this.completedTask = this.completedTask.bind(this);
   }
 
-  calculateTimeLeftDaily() {
+  /*  calculateTimeLeftDaily() {
     let countDownDate = this.state.currentDate / 60000 + 60 * 24;
     let now = this.state.currentDate / 60000;
+    let dif = countDownDate - now;
 
-    console.log(countDownDate);
-    console.log(now);
-
-    let difference = countDownDate - now;
-
-    console.log(difference);
-
-    return difference;
-  }
+    return dif;
+  } */
 
   completedTask(e) {
-    let time = this.calculateTimeLeftDaily();
+    e.preventDefault();
 
-    if (time > 0) {
+    let countDownDate = this.state.currentDate / 60000 + 60 * 24;
+    let now = this.state.currentDate / 60000;
+    //let dif = countDownDate - now;
+
+    let dif = 10000;
+    this.setState({
+      done: true,
+      count: this.state.count + 1,
+    });
+    this.updateCount();
+
+    setTimeout(() => {
       this.setState({
-        done: true,
-        count: this.state.count++,
+        done: false,
       });
+    }, dif);
+  }
 
-      const mutationTrue = `mutation ($email: String!, $habit: HabitInputs!) {
-        insertHabit(email: $email, habit: $habit) {
-            title
+  async updateCount() {
+    // e.preventDefault();
+    const mutation = `mutation($email: String!, $_id: ID!, $habit: HabitUpdateInputs!) {
+        updateHabit(email:$email, _id:$_id, habit:$habit) {
+          _id
+          title
+          increments
+          isGood
+          count
+          isDone
         }
-    }`;
-    } else {
-      setTimeout(() => {
-        this.setState({
-          done: false,
-        }),
-          time;
-      });
-    }
+      }`;
+
+    const vars = {
+      email: this.state.email,
+      _id: this.state._id,
+      habit: {
+        title: this.state.title,
+        isGood: this.state.isGood,
+        increments: this.state.increments,
+        count: this.state.count,
+        isDone: this.state.isDone,
+      },
+    };
+
+    const data = await graphQLFetch(mutation, vars);
+    if (!data) throw Error();
   }
 
   render() {
     return (
       <Button
-        onClick={this.completedTask.bind(this)}
+        onClick={this.completedTask}
         size="sm"
         variant="primary"
         // use variable here based on completion time interval

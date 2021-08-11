@@ -84,6 +84,7 @@ class HabitList extends React.Component {
         <Container fluid>
           {this.state.habitList ? (
             this.state.habitList.map((habit) => (
+
             <Habit
               key={habit._id}
               _id={habit._id}
