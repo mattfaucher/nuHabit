@@ -42,12 +42,11 @@ input HabitUpdateInputs {
   title: String!
   increments: Increments!
   isGood: Boolean!
-  isDone: Boolean!
-  count: Int!
 }
 
 input HabitCountInput {
   count: Int!
+  increments: Increments!
 }
 
 ##### Top level declarations

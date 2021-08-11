@@ -14,7 +14,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import DoneButton from "./DoneButton.jsx";
-import Progress from "./Progress.jsx";
 
 import graphQLFetch from "./graphQLFetch";
 
@@ -167,9 +166,6 @@ export default class Habit extends React.Component {
       marginTop: "20px",
     };
 
-    console.log(this.state.progress);
-    console.log(this.state.form);
-
     return (
       <Container fluid="md">
         <Card border="dark" className="shadow-lg p-3 mb-5 bg-white rounded">
@@ -193,6 +189,7 @@ export default class Habit extends React.Component {
                   done={this.state.done}
                   _id={this.state._id}
                   email={this.state.email}
+                  increments={this.state.increments}
                 />{" "}
                 <Button variant="secondary" size="sm" onClick={this.handleShow}>
                   <FontAwesomeIcon icon={faBars} />

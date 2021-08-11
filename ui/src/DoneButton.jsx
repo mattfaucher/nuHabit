@@ -11,6 +11,7 @@ export default class DoneButton extends React.Component {
       currentDate: Date.now(),
       _id: props._id,
       email: props.email,
+      increments: props.increments,
     };
 
     this.completedTask = this.completedTask.bind(this);
@@ -40,8 +41,9 @@ export default class DoneButton extends React.Component {
   async updateCount() {
     const mutation = `mutation($email: String!, $_id: ID!, $habit: HabitCountInput!) {
         updateCount(email:$email, _id:$_id, habit:$habit) {
-          _id
+            _id
           count
+          increments
         }
       }`;
 
@@ -50,11 +52,13 @@ export default class DoneButton extends React.Component {
       _id: this.state._id,
       habit: {
         count: this.state.count,
+        increments: this.state.increments,
       },
     };
 
     const data = await graphQLFetch(mutation, vars);
     if (!data) throw Error();
+    return data;
   }
 
   render() {
