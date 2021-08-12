@@ -1,5 +1,5 @@
 // Key = array index of badgeArray, value = count comparison
-export const badges = {
+const badges = {
   day: {
     0: 1,
     1: 7,
@@ -26,7 +26,7 @@ export const badges = {
 
 // add all the badge img urls into array, 0->8 indexed (9) badges
 
-export const badgeArr = [
+const badgeArr = [
   "https://i.imgur.com/wpREyW2.jpeg", // green check
   "https://i.imgur.com/DX0wWfC.jpeg", // blue check
   "https://i.imgur.com/GvzeID9.jpeg", // gold check
@@ -38,7 +38,7 @@ export const badgeArr = [
   "https://i.imgur.com/DTOm7lr.jpeg", // 1 star trophy
 ];
 
-export const encouragement = {
+const encouragement = {
   daily: {
     0: "Day 1 In The Bag!",
     1: "A week? No Sweat",
@@ -64,4 +64,4 @@ export const encouragement = {
   },
 };
 
-export default { badges, badgeArr, encouragement };
+export { badges, badgeArr, encouragement };

@@ -12,6 +12,7 @@ type User {
   habitList: [Habit!]
   deletedHabits: [Habit!]
   completedHabits: [Habit!]
+  earnedBadges: [Int!]
 }
 
 type Habit {
@@ -21,6 +22,7 @@ type Habit {
   created: GraphQLDate!
   isGood: Boolean!
   count: Int!
+  index: Int!
   isDone: Boolean!
 }
 
@@ -52,15 +54,18 @@ input HabitCountInput {
 ##### Top level declarations
 type Query {
   users: [User!]
-  user(email: String): User
+  user(email: String!): User
   userHabits(email: String!): [Habit!]
-  completedHabits(email: String): [Habit!]
-  deletedHabits(email: String): [Habit!]
+  completedHabits(email: String!): [Habit!]
+  deletedHabits(email: String!): [Habit!]
+  earnedBadges(email: String!): User!
 }
+
 type Mutation {
   insertUser(user: UserInput!): User!
   insertHabit(email: String!, habit: HabitInputs): [Habit!]!
   updateHabit(email: String!, _id: ID!, habit: HabitUpdateInputs): Habit!
   deleteHabit(email: String!, _id: ID!): Habit!
   updateCount(email: String!, _id: ID!, habit: HabitCountInput): Habit!
+  updateBadges(email: String!): User!
 }

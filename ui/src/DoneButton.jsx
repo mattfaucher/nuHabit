@@ -25,7 +25,8 @@ export default class DoneButton extends React.Component {
   // Function to choose which calculation for done
   chooseTime(increments, _id) {
     if (localStorage.getItem(_id) === null) return false;
-    if (increments === "Daily") {
+    if (increments === 'Daily') {
+
       const old = parseInt(localStorage.getItem(_id), 10);
       if (old + this.dayMilliseconds < Date.now()) {
         return false;
