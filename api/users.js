@@ -56,6 +56,7 @@ async function insertHabit(_, args, { returnOriginal: f }) {
     increments: args.habit.increments,
     isGood: args.habit.isGood,
     count: 0,
+    index: 0,
     created: new Date(),
     isDone: false,
   };
@@ -240,7 +241,7 @@ async function updateBadgesEarned(_, args) {
   habitList.forEach(habit => {
     if (habit.increments === "Daily") {
       const days = Object.keys(badges.day);
-      for (let j = 0; j <= days.length; j++) {
+      for (let j = habit.index; j <= days.length; j++) {
         if (habit.count >= badges.day[j]) {
           updatedEarnedBadges[j]++;
         }
@@ -248,7 +249,7 @@ async function updateBadgesEarned(_, args) {
     }
     if (habit.increments === "Weekly") {
       const weeks = Object.keys(badges.week);
-      for (let j = 0; j <= weeks.length; j++) {
+      for (let j = habit.index; j <= weeks.length; j++) {
         if (habit.count >= badges.week[j]) {
           updatedEarnedBadges[j]++;
         }
