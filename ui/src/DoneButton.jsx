@@ -15,7 +15,7 @@ export default class DoneButton extends React.Component {
       currentDate: Date.now(),
       _id: props._id,
       email: props.email,
-      increments: props.increments
+      increments: props.increments,
     };
     this.handleDone = this.handleDone.bind(this);
     this.updateCount = this.updateCount.bind(this);
@@ -26,6 +26,7 @@ export default class DoneButton extends React.Component {
   chooseTime(increments, _id) {
     if (localStorage.getItem(_id) === null) return false;
     if (increments === 'Daily') {
+
       const old = parseInt(localStorage.getItem(_id), 10);
       if (old + this.dayMilliseconds < Date.now()) {
         return false;
@@ -33,7 +34,7 @@ export default class DoneButton extends React.Component {
         return true;
       }
     }
-    if (increments === 'Weekly') {
+    if (increments === "Weekly") {
       const old = parseInt(localStorage.getItem(_id), 10);
       if (old + this.weekMilliseconds < Date.now()) {
         return false;
@@ -65,14 +66,13 @@ export default class DoneButton extends React.Component {
       _id: this.state._id,
       habit: {
         count: this.state.count + 1,
-        increments: this.state.increments
-
+        increments: this.state.increments,
       },
     };
 
     const data = await graphQLFetch(mutation, vars);
     if (!data) throw Error();
-    console.log(data);
+
     return data;
   }
 
@@ -84,7 +84,7 @@ export default class DoneButton extends React.Component {
         variant="primary"
         // use variable here based on completion time interval
         disabled={this.state.done}
-      // change disabled to true when done
+        // change disabled to true when done
       >
         Done
       </Button>
