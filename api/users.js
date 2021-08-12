@@ -1,8 +1,8 @@
-import {badges} from "..ui/src/badges";
-
 const { UserInputError } = require("apollo-server-express");
 const { getDb } = require("./db");
 const { ObjectID } = require("mongodb").ObjectID;
+
+const { badges } = require('./badges');
 
 async function findUser(_, email) {
   const db = getDb();
@@ -225,41 +225,45 @@ async function deleteHabit(_, args) {
 
 async function getBadgesEarned(_, args) {
   const db = getDb();
-  const {email} = args;
-  const user = await db.collection("users").findOne(email);
-  const earnedBadges = user.earnedBadges;
-  
-  return earnedBadges;
+  const user = await db.collection("users").findOne(args);
+  return user;
 }
 
 async function updateBadgesEarned(_, args) {
   const db = getDb();
-  const {email} = args;
-  const user = await findUser(email);
+  const user = await db.collection('users').findOne(args);
+  if (user.habitList === []) return null;
   let habitList = user.habitList;
   let updatedEarnedBadges = user.earnedBadges;
-  for (let i = 0; i <= habitList.length; i++) {
-    if (habitList[i].increments === "Daily") {
+
+  // loop over all the habits
+  habitList.forEach(habit => {
+    if (habit.increments === "Daily") {
       const days = Object.keys(badges.day);
-      for (let i = 0; i <= days.length; i++) {
-        if (habitList[i].count >= badges.day[i]) {
-          updatedEarnedBadges[i]++;
+      for (let j = 0; j <= days.length; j++) {
+        if (habit.count >= badges.day[j]) {
+          updatedEarnedBadges[j]++;
         }
       }
     }
-    if (habitList[i].increments === "Weekly") {
-      const days = Object.keys(badges.week);
-      for (let i = 0; i <= days.length; i++) {
-        if (habitList[i].count >= badges.week[i]) {
-          updatedEarnedBadges[i]++;
+
+    if (habit.increments === "Weekly") {
+      const weeks = Object.keys(badges.week);
+      for (let j = 0; j <= weeks.length; j++) {
+        if (habit.count >= badges.week[j]) {
+          updatedEarnedBadges[j]++;
         }
       }
     }
-  }
+  });
+
+  // set the new array to be the users badge array
   await db.collection("users").updateOne(
-    {email: email},
-    {$set: {earnedBadges: updatedEarnedBadges}}
-  )
+    { email: args.email },
+    { $set: { earnedBadges: updatedEarnedBadges } }
+  );
+
+  return user;
 }
 
 module.exports = {

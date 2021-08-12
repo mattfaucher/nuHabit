@@ -11,6 +11,7 @@ const resolvers = {
     users: users.getUsers,
     userHabits: users.getHabits,
     completedHabits: users.getCompletedHabits,
+    earnedBadges: users.getBadgesEarned,
   },
   Mutation: {
     insertUser: users.insertUser,
@@ -18,6 +19,7 @@ const resolvers = {
     updateHabit: users.updateHabit,
     deleteHabit: users.deleteHabit,
     updateCount: users.updateCount,
+    updateBadges: users.updateBadgesEarned,
   },
   GraphQLDate,
 };
