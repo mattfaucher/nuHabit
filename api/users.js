@@ -246,7 +246,6 @@ async function updateBadgesEarned(_, args) {
         }
       }
     }
-
     if (habit.increments === "Weekly") {
       const weeks = Object.keys(badges.week);
       for (let j = 0; j <= weeks.length; j++) {
