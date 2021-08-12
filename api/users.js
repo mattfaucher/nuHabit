@@ -1,3 +1,5 @@
+import {badges} from "..ui/src/badges";
+
 const { UserInputError } = require("apollo-server-express");
 const { getDb } = require("./db");
 const { ObjectID } = require("mongodb").ObjectID;
@@ -37,6 +39,7 @@ async function insertUser(_, args) {
     name: args.user.name,
     email: args.user.email,
     habitList: [],
+    earnedBadges: [0, 0, 0, 0, 0, 0, 0, 0, 0]
   };
   await db.collection("users").insertOne(newUser);
   // find it make sure it exists
@@ -220,6 +223,45 @@ async function deleteHabit(_, args) {
   return deletedHabit;
 }
 
+async function getBadgesEarned(_, args) {
+  const db = getDb();
+  const {email} = args;
+  const user = await db.collection("users").findOne(email);
+  const earnedBadges = user.earnedBadges;
+  
+  return earnedBadges;
+}
+
+async function updateBadgesEarned(_, args) {
+  const db = getDb();
+  const {email} = args;
+  const user = await findUser(email);
+  let habitList = user.habitList;
+  let updatedEarnedBadges = user.earnedBadges;
+  for (let i = 0; i <= habitList.length; i++) {
+    if (habitList[i].increments === "Daily") {
+      const days = Object.keys(badges.day);
+      for (let i = 0; i <= days.length; i++) {
+        if (habitList[i].count >= badges.day[i]) {
+          updatedEarnedBadges[i]++;
+        }
+      }
+    }
+    if (habitList[i].increments === "Weekly") {
+      const days = Object.keys(badges.week);
+      for (let i = 0; i <= days.length; i++) {
+        if (habitList[i].count >= badges.week[i]) {
+          updatedEarnedBadges[i]++;
+        }
+      }
+    }
+  }
+  await db.collection("users").updateOne(
+    {email: email},
+    {$set: {earnedBadges: updatedEarnedBadges}}
+  )
+}
+
 module.exports = {
   findUser,
   getUsers,
@@ -230,4 +272,6 @@ module.exports = {
   updateHabit,
   deleteHabit,
   updateCount,
+  updateBadgesEarned,
+  getBadgesEarned,
 };

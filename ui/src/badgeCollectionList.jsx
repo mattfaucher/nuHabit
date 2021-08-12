@@ -9,7 +9,8 @@ import graphQLFetch from "./graphQLFetch.js";
 class BadgeCollectionList extends React.Component {
     async fetchData(email) {
         const vars = { email: email };
-        const query = `query ($email: String!) {
+        const query = `u
+        query ($email: String!) {
                     userHabits(email: $email) {
                         _id
                         title
