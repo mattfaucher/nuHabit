@@ -51,6 +51,7 @@ class BadgeCollectionList extends React.Component {
           {this.state.habitList.map((habit) => (
             <Collection
               key={habit._id}
+              email={this.props.auth0.user.email}
               count={habit.count}
               increments={habit.increments}
             />))}
