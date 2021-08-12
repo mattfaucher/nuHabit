@@ -98,7 +98,7 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ## Login/Landing Page
 
-![landing1](/readme-images/Landing1.png)
+
 ![landing2](/readme-images/Landing2.png)
 ---
 
