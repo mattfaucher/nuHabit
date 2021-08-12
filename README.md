@@ -66,7 +66,7 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ## **Currently Working On**
 
-- Noam
+- Noam and Matt
   - Connect front and backend to display correct badges
 - Ciara
   - Stylize Accomplised Habits
@@ -76,11 +76,12 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ## **Next Steps**
 
----
-
-
+- Stylize Collection
+- Stylize Home page
 - Add Toast notifications
-- Logo
+
+
+## **If We Have Time**
 - Add filtering to Habits and Accomplished habits
   - break or form
   - daily or weekly
@@ -97,8 +98,8 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ## Login/Landing Page
 
-![login](/readme-images/Login.png)
-
+![landing1](/readme-images/Landing1.png)
+![landing2](/readme-images/Landing2.png)
 ---
 
 ## Home Page
