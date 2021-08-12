@@ -52,13 +52,6 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
   - Setup Authentication using Auth0
 - Noam
   - Created Badge Collection page
-
-## **Currently Working On**
-
----
-
-- Noam
-  - Connect front and backend to display correct badges
 - Ciara and Matt
   - Implement "Done" button fuctionality
   - Creating a completedHabits array in the user
@@ -68,12 +61,24 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
   - Bug fix after adding new habit
 - Ciara
   - Landing page design
+-Noam and Matt
+  - Collection backend completed
+
+## **Currently Working On**
+
+- Noam
+  - Connect front and backend to display correct badges
+- Ciara
+  - Stylize Accomplised Habits
+  - Stylize Habit details
+
+
 
 ## **Next Steps**
 
 ---
 
-- Add design to UI
+
 - Add Toast notifications
 - Logo
 - Add filtering to Habits and Accomplished habits
