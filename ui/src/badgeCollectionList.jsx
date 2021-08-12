@@ -1,16 +1,15 @@
 import React from "react";
 import Collection from "./badgeCollection.jsx";
-import {badges, badgeArr} from "./badges";
-import {Container, Alert} from "react-bootstrap";
+import { badges, badgeArr } from "./badges";
+import { Container, Alert } from "react-bootstrap";
 import { withAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import graphQLFetch from "./graphQLFetch.js";
 
 
 class BadgeCollectionList extends React.Component {
-    async fetchData(email) {
-        const vars = { email: email };
-        const query = `u
-        query ($email: String!) {
+  async fetchData(email) {
+    const vars = { email: email };
+    const query = `query ($email: String!) {
                     userHabits(email: $email) {
                         _id
                         title
@@ -21,43 +20,43 @@ class BadgeCollectionList extends React.Component {
                         created
                     }
                 } `;
-    
-        const data = await graphQLFetch(query, vars);
-        return data;
-      }
 
-    constructor() {
-      super();
-        this.state = {
-            collection: [],
-            habitList: [],
-        }
+    const data = await graphQLFetch(query, vars);
+    return data;
+  }
 
+  constructor() {
+    super();
+    this.state = {
+      collection: [],
+      habitList: [],
     }
 
-    async componentDidMount() {
-      const data = await this.fetchData(this.props.auth0.user.email);
-      const userData = await data;
-      this.setState({
-        habitList: userData.userHabits,
-      });
-      }
+  }
 
-    render(){
-      for (let i = 0; i < 9; i++) {
-        return(
-            <div>
-            <Container fluid>
-          {this.state.habitList.map((habit) => (
-            <Collection
-              key={habit._id}
-              email={this.props.auth0.user.email}
-              count={habit.count}
-              increments={habit.increments}
-            />))}
-        </Container>
-      </div>
-        );
+  async componentDidMount() {
+    const data = await this.fetchData(this.props.auth0.user.email);
+    const userData = await data;
+    this.setState({
+      habitList: userData.userHabits,
+    });
+  }
+
+  render() {
+    for (let i = 0; i < 9; i++) {
+      return (
+        <div>
+          <Container fluid>
+            {this.state.habitList.map((habit) => (
+              <Collection
+                key={habit._id}
+                email={this.props.auth0.user.email}
+                count={habit.count}
+                increments={habit.increments}
+              />))}
+          </Container>
+        </div>
+      );
     }
   }
 }
