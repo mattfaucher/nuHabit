@@ -66,5 +66,5 @@ type Mutation {
   updateHabit(email: String!, _id: ID!, habit: HabitUpdateInputs): Habit!
   deleteHabit(email: String!, _id: ID!): Habit!
   updateCount(email: String!, _id: ID!, habit: HabitCountInput): Habit!
-  updateEarnedBadges(email: String!, _id: ID!, user:
+  updateEarnedBadges(email: String!): [Int!]!
 }
