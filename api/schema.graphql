@@ -12,6 +12,7 @@ type User {
   habitList: [Habit!]
   deletedHabits: [Habit!]
   completedHabits: [Habit!]
+  earnedBadges: [Int!]
 }
 
 type Habit {
@@ -52,10 +53,11 @@ input HabitCountInput {
 ##### Top level declarations
 type Query {
   users: [User!]
-  user(email: String): User
+  user(email: String!): User
   userHabits(email: String!): [Habit!]
-  completedHabits(email: String): [Habit!]
-  deletedHabits(email: String): [Habit!]
+  completedHabits(email: String!): [Habit!]
+  deletedHabits(email: String!): [Habit!]
+  earnedBadges(email: String!): [Int!]
 }
 
 type Mutation {
@@ -64,4 +66,5 @@ type Mutation {
   updateHabit(email: String!, _id: ID!, habit: HabitUpdateInputs): Habit!
   deleteHabit(email: String!, _id: ID!): Habit!
   updateCount(email: String!, _id: ID!, habit: HabitCountInput): Habit!
+  updateEarnedBadges(email: String!, _id: ID!, user:
 }
