@@ -107,7 +107,6 @@ async function updateCount(_, args) {
   const db = getDb();
   const { count, increments } = args.habit;
 
-
   // Check for completed habit DAILY
   if (increments === 'Daily' && count === 60) {
     // Update the data for the habit
@@ -127,7 +126,6 @@ async function updateCount(_, args) {
     // Get the deleted habit from deleteObject
 
     const completedHabit = deleteObject.value.habitList.find(habit => {
-
       if (habit._id == args._id) {
         return habit;
       }
@@ -233,15 +231,52 @@ async function getBadgesEarned(_, args) {
 async function updateBadgesEarned(_, args) {
   const db = getDb();
   const user = await db.collection('users').findOne(args);
-  if (user.habitList === []) return null;
+  // if the user has no habits just return 
+  if (user.habitList === []) return user;
   let habitList = user.habitList;
   let updatedEarnedBadges = user.earnedBadges;
+  
+  // determine the habit index and update accordingly
+  habitList.forEach(async habit => {
+    let index = 0;
+    if (habit.increments === 'Daily') {
+      // loop over daily badges
+      // if current count is >= then increment index
+      const days = Object.keys(badges.day);
+      for (let i = 0; i < days.length; i++) {
+        if (habit.count >= badges.day[i]) {
+          index++;
+        }
+      }
+      // update the index for next time around
+      await db.collection('users').updateOne(
+        { email: args.email, 'habitList._id': habit._id },
+        { $set: { 'habitList.$.index': index } },
+      );
+    }
+    if (habit.increments === 'Weekly') {
+      // loop over daily badges
+      // if current count is >= then increment index
+      const weeks = Object.keys(badges.week);
+      for (let i = 0; i < weeks.length; i++) {
+        if (habit.count >= badges.week[i]) {
+          index++;
+        }
+      }
+      // update the index for next time around
+      await db.collection('users').updateOne(
+        { email: args.email, 'habitList._id': habit._id },
+        { $set: { 'habitList.$.index': index } },
+      );
+    }
+  });
 
   // loop over all the habits
-  habitList.forEach(habit => {
+  habitList.forEach(async habit => {
     if (habit.increments === "Daily") {
       const days = Object.keys(badges.day);
-      for (let j = habit.index; j <= days.length; j++) {
+      // start looping from the index
+      for (let j = habit.index; j < days.length; j++) {
         if (habit.count >= badges.day[j]) {
           updatedEarnedBadges[j]++;
         }
@@ -249,7 +284,7 @@ async function updateBadgesEarned(_, args) {
     }
     if (habit.increments === "Weekly") {
       const weeks = Object.keys(badges.week);
-      for (let j = habit.index; j <= weeks.length; j++) {
+      for (let j = habit.index; j < weeks.length; j++) {
         if (habit.count >= badges.week[j]) {
           updatedEarnedBadges[j]++;
         }
