@@ -7,6 +7,7 @@ import {
     Image,
   } from "react-bootstrap";
 import {badges, badgeArr} from "./badges";
+import graphQLFetch from "./graphQLFetch";
 
 export default class Collection extends React.Component {
 	constructor(props) {
@@ -15,7 +16,21 @@ export default class Collection extends React.Component {
         this.increments = props.increments;
         this.collection = [];
         this.numberBadges = 0;
+        this.email = props.email;
 	}
+
+  async componentDidMount() {
+    const query = `query($email:String!){
+      earnedBadges(email:$email){
+      earnedBadges
+      }
+    }`;
+    const vars = {email: this.email}
+    const user = await graphQLFetch(qury, vars)
+    this.setState({
+      badgeCounts:user.earnedBadges
+    });
+  }
 
 
 	render() {
@@ -37,27 +52,6 @@ export default class Collection extends React.Component {
         }
       }
     }
-    
-    console.log(this.collection);
-    console.log(this.numberBadges);
-/*         for (let i = this.state.count; i >= 0; i--) {
-            if (this.state.increments === "Daily") {
-              if (badges.day[i] <= this.state.count) {
-                this.state.collection.push(badgeArr[i]);
-                this.state.counts.push(badges.day[i]);
-                this.state.sayings.push(encouragement.daily[i]);
-              }
-            }
-            if (this.state.increments === "Weekly") {
-              if (badges.week[i] <= this.state.count) {
-                this.state.collection.push(badgeArr[i]);
-                this.state.counts.push(badges.week[i]);
-                this.state.sayings.push(encouragement.weekly[i]);
-              }
-            }
-          } */
-          
-
 
         return (
           <div className=".container-fluid">
@@ -76,7 +70,7 @@ export default class Collection extends React.Component {
                       />
 
                       <h5 class="card-title">Badge 1</h5>
-                      <p class="card-text">You have earned this badge X times</p>
+                      <p class="card-text">You have earned this badge {this.state.badgeCounts[0]} times</p>
                       
                     </div>
                   </div>
