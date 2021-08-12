@@ -12,41 +12,37 @@ class Page extends React.Component {
   constructor(props) {
     super(props);
   }
-	render() {
-		const { isAuthenticated, isLoading, error, user } = this.props.auth0;
-		// Get's current user data
-		// return loading screen to avoid weird flicker
-		if (isLoading) {
-			return (
-				<Alert variant='info'>Loading...</Alert>
-			);
-		}
-		// handle any errors output
-		if (error) {
-			return (
-				<Alert variant='danger'>Oops! Something went wrong!</Alert>
-			);
-		}
-		return (
-			<Auth0Provider
-				domain={config.domain}
-				clientId={config.clientId}
-				redirectUri={config.redirectUri}
-			>
-				{isAuthenticated ?
-					<div>
-						<Navigation user={user} />
-						<Container fluid style={{ marginTop: '25px' }}>
-							<Contents user={this.props.auth0.user} />
-						</Container>
-						<Footer />
-					</div>
-					: <LandingPage />
-				}
-			</Auth0Provider>
-		);
-	}
->>>>>>> 2bf1fcd863cfe9a7d8fbd4ce0add0fc93003b6c3
+  render() {
+    const { isAuthenticated, isLoading, error, user } = this.props.auth0;
+    // Get's current user data
+    // return loading screen to avoid weird flicker
+    if (isLoading) {
+      return <Alert variant="info">Loading...</Alert>;
+    }
+    // handle any errors output
+    if (error) {
+      return <Alert variant="danger">Oops! Something went wrong!</Alert>;
+    }
+    return (
+      <Auth0Provider
+        domain={config.domain}
+        clientId={config.clientId}
+        redirectUri={config.redirectUri}
+      >
+        {isAuthenticated ? (
+          <div>
+            <Navigation user={user} />
+            <Container fluid style={{ marginTop: "25px" }}>
+              <Contents user={this.props.auth0.user} />
+            </Container>
+            <Footer />
+          </div>
+        ) : (
+          <LandingPage />
+        )}
+      </Auth0Provider>
+    );
+  }
 }
 
 export default withAuth0(Page);

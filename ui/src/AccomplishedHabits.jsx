@@ -73,11 +73,6 @@ class AccomplisedHabits extends React.Component {
                     <Col className="col-11 col-xs-2" align="center">
                       <Link to={returnToHome}>Click Here to Return Home</Link>
                     </Col>
-                    <Col className="col-11 col-xs-2" align="center">
-                      <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                      </Spinner>
-                    </Col>
                   </Row>
                 </Card.Body>
               </Card>
