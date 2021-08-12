@@ -5,9 +5,9 @@ import LoginButton from "./LoginButton.jsx";
 import LogoutButton from "./LogoutButton.jsx";
 
 const AuthenticationButton = () => {
-	const { isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
-	return isAuthenticated ? <LogoutButton /> : <LoginButton />;
+  return isAuthenticated ? <LogoutButton /> : <LoginButton />;
 };
 
 export default AuthenticationButton;

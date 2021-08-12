@@ -1,9 +1,9 @@
-import HabitDetails from './HabitDetails.jsx';
-import LandingPage from './LandingPage.jsx';
-import HabitList from './HabitList.jsx';
-import NotFound from './NotFound.jsx';
-import AccomplishedHabits from './AccomplishedHabits.jsx';
-import BadgeCollectionList from './badgeCollectionList.jsx';
+import HabitDetails from "./HabitDetails.jsx";
+import LandingPage from "./LandingPage.jsx";
+import HabitList from "./HabitList.jsx";
+import NotFound from "./NotFound.jsx";
+import AccomplishedHabits from "./AccomplishedHabits.jsx";
+import BadgeCollectionList from "./badgeCollectionList.jsx";
 
 const routes = [
   { path: '/home', component: LandingPage },
