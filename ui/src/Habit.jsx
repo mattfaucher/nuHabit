@@ -187,7 +187,8 @@ export default class Habit extends React.Component {
                     key={1}
                   />
                   <ProgressBar
-                    variant='info'
+                    striped
+                    variant='primary'
                     now={100 - this.state.progress}
                     key={2}
                   />
