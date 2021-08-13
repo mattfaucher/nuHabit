@@ -19,7 +19,7 @@ class Navigation extends React.Component {
   
   render() {
     return (
-      <Navbar sticky="top" collapseOnSelect expand="md" bg="dark" variant="dark">
+      <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="/habits">
           <img 
