@@ -88,6 +88,8 @@ export default class AddHabit extends React.Component {
 	render() {
 		const inputCenter = {
 			justifyContent: 'center',
+			marginTop: '5px',
+			marginBottom: '10px'
 		};
 
     const cardStyle = {
@@ -112,7 +114,7 @@ export default class AddHabit extends React.Component {
 									/>
 								</form>
 							</Col>
-							<Col className="col-2" align="right">
+							<Col className="col-2" align="center">
 								<Button variant='success' onClick={this.handleShow}>
 									<FontAwesomeIcon size={'lg'} icon={faPlus} />
 								</Button>
