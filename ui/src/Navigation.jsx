@@ -18,32 +18,34 @@ class Navigation extends React.Component {
 
   render() {
     return (
-      <Navbar sticky="top" expand="lg" bg="dark" variant="dark">
+      <Navbar sticky="top" collapseOnSelect expand="md" bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="/habits">nuHabit</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="/completed">Completed Habits</Nav.Link>
-
-            <Nav.Link href="/collection">Collection</Nav.Link>
-          </Nav>
-          <Nav className="ml-auto">
-            <Nav.Item style={{ color: "white", marginRight: "10px" }}>
-              <img
-                src={this.state.picture}
-                style={{
-                  width: "40px",
-                  borderRadius: "100px",
-                  marginRight: "5px",
-                }}
-              ></img>
-              {this.state.name}
-            </Nav.Item>
-          </Nav>
-          <Nav className="ml-auto">
-            <Nav.Item>
-              <LogoutButton />
-            </Nav.Item>
-          </Nav>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="mx-auto">
+              <Nav.Link href="/completed">Completed Habits</Nav.Link>
+              <Nav.Link href="/collection">Collection</Nav.Link>
+            </Nav>
+            <Nav className="mx-auto">
+              <Nav.Item style={{ color: "white", marginRight: "10px" }}>
+                <img
+                  src={this.state.picture}
+                  style={{
+                    width: "30px",
+                    borderRadius: "100px",
+                    margin: "5px 5px 5px 0px"
+                  }}
+                ></img>
+                {this.state.name}
+              </Nav.Item>
+            </Nav>
+            <Nav className="ml-auto">
+              <Nav.Item>
+                <LogoutButton />
+              </Nav.Item>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     );
