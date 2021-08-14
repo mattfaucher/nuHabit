@@ -13,16 +13,38 @@ export default class CollectionCard extends React.Component {
 	}
 
 	render() {
-    const imgStyle = {
-      width: "100px",
-      height: "100px"
+    const cardStyle = {
+      width: 'auto',
+      height: 'auto',
+      margin: '5px 5px 5px 5px',
+      boxShadow: '5px 5px 5px 5px #888888',
+      display: 'flex'
+    };
+
+    const headStyle = {
+      textAlign: 'center',
+      fontWeight: '800',
+      textDecorationLine: 'underline',
     }
+
+    const imgStyle = {
+      width: "40%",
+      height: "40%",
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    };
+
+    const footerStyle = {
+      textAlign: 'center',
+      fontWeight: '600',
+    };
+
     return (
-      <Container>
-        <Card>
+      <Container fluid="xs">
+        <Card style={cardStyle}>
+          <Card.Header style={headStyle}>Badge {this.index + 1}</Card.Header>
           <Card.Img variant="top" src={badgeArr[this.index]} style={imgStyle}/>
-          <Card.Body>Badge {this.index+1}</Card.Body>
-          <Card.Text>{`You have earned this badge ${this.badgeCount} times!`}</Card.Text>
+          <Card.Footer style={footerStyle}>{`You have earned this badge ${this.badgeCount} times!`}</Card.Footer>
         </Card>
       </Container>
     );

@@ -41,9 +41,9 @@ class BadgeCollection extends React.Component {
 
   render() {
     return (
-      <Container fluid>
+      <Container fluid="md">
         {this.state.collection !== undefined ?
-          (<Row className="row-cols-3">
+          (<Row className="row-cols-md-3 row-cols-sm-2">
             <Col>
               <CollectionCard badgesEarned={this.state.collection[0]} index={0} />
             </Col>
