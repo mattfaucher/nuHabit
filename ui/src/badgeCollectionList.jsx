@@ -1,7 +1,7 @@
 import React from "react";
 import Collection from "./badgeCollection.jsx";
 import { badges, badgeArr } from "./badges";
-import { Container, Alert } from "react-bootstrap";
+import { Container, Alert, Card } from "react-bootstrap";
 import { withAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import graphQLFetch from "./graphQLFetch.js";
 
@@ -9,15 +9,9 @@ import graphQLFetch from "./graphQLFetch.js";
 class BadgeCollectionList extends React.Component {
   async fetchData(email) {
     const vars = { email: email };
-    const query = `query ($email: String!) {
-                    userHabits(email: $email) {
-                        _id
-                        title
-                        isGood
-                        count
-                        increments
-                        isDone
-                        created
+    const query = `query($email: String!) {
+                    earnedBadges(email: $email){
+                      earnedBadges
                     }
                 } `;
 
@@ -29,7 +23,6 @@ class BadgeCollectionList extends React.Component {
     super();
     this.state = {
       collection: [],
-      habitList: [],
     }
 
   }
@@ -38,22 +31,26 @@ class BadgeCollectionList extends React.Component {
     const data = await this.fetchData(this.props.auth0.user.email);
     const userData = await data;
     this.setState({
-      habitList: userData.userHabits,
+      collection: userData.earnedBadges,
     });
+    const {earnedBadges} = userData;
   }
 
   render() {
+    console.log(this.state.collection);
     for (let i = 0; i < 9; i++) {
       return (
         <div>
           <Container fluid>
-            {this.state.habitList.map((habit) => (
-              <Collection
-                key={habit._id}
-                email={this.props.auth0.user.email}
-                count={habit.count}
-                increments={habit.increments}
-              />))}
+            <Card style={{ width: '18rem' }}>
+              <Card.Img variant="top" src="holder.js/100px180" />
+                <Card.Body>
+                  <Card.Title>Badges Earned</Card.Title>
+                    <Card.Text>
+                      Text.
+                    </Card.Text>
+                </Card.Body>
+            </Card>
           </Container>
         </div>
       );
@@ -66,21 +63,3 @@ export default withAuth0(
     onRedirecting: () => <Alert variant="info">Redirecting...</Alert>,
   })
 );
-
-
-/**
- * Pull from the database
- * querying the database for the habbits
- * Go into a habbit is its count
- * compare the count to increment in badges
- * If the count is 6, only one badge should appear
- * Increments Enum daily/weekly
- * If increments equal daily do daily
- * If increments equal weekly do weekly
- * Matching indices: day1 is key 0->day1 and then use
- * key to compare into the index of the badge array
- * For i = 0, if i < this.count, i++
- * Then, compare the value to the count
- * If the value is greater than count, stop
- * Only one badge will be logged into the array
- **/

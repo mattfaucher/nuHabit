@@ -64,6 +64,7 @@ class HabitList extends React.Component {
 				increments
 				isDone
         created
+        index
 			}
 		} `;
     const data = await graphQLFetch(query, vars);
@@ -93,6 +94,7 @@ class HabitList extends React.Component {
                 increments={habit.increments}
                 isGood={habit.isGood}
                 email={this.props.auth0.user.email}
+                index={habit.index}
               />
             ))) : <div></div>
           }

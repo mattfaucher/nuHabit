@@ -16,6 +16,7 @@ export default class DoneButton extends React.Component {
       _id: props._id,
       email: props.email,
       increments: props.increments,
+      index: props.index
     };
     this.handleDone = this.handleDone.bind(this);
     this.updateCount = this.updateCount.bind(this);
@@ -51,6 +52,24 @@ export default class DoneButton extends React.Component {
       done: true,
     });
     this.updateCount();
+    this.updateBadges();
+  }
+
+  async updateBadges() {
+    const mutation = `mutation($email: String!) {
+      updateBadges(email:$email) {
+        earnedBadges
+      }
+    }
+    `;
+    const vars = {
+      email: this.state.email,
+      earnedBadges: [this.state.index]
+    }
+    const data = await graphQLFetch(mutation, vars);
+    if (!data) throw Error();
+
+    return data;
   }
 
   async updateCount() {
