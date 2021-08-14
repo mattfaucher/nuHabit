@@ -181,15 +181,14 @@ export default class Habit extends React.Component {
               <Col>
                 <ProgressBar>
                   <ProgressBar
-                    animated={true}
-                    striped={true}
                     variant={this.state.form}
                     now={this.state.progress}
                     key={1}
                   />
                   <ProgressBar
                     striped
-                    variant='primary'
+                    animated
+                    variant='info'
                     now={100 - this.state.progress}
                     key={2}
                   />
