@@ -34,6 +34,7 @@ export default class Habit extends React.Component {
       email: props.email,
       progress: 0,
       form: "",
+      index: props.index
     };
     this.dayCount = 60;
     this.weekCount = 12;
@@ -206,6 +207,7 @@ export default class Habit extends React.Component {
                   _id={this.state._id}
                   email={this.state.email}
                   increments={this.state.increments}
+                  index={this.state.index}
                 />
                 {" "}
                 <Button variant="secondary" size="sm" onClick={this.handleShow}>
