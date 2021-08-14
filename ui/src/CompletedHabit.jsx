@@ -11,11 +11,10 @@ export default class Habit extends React.Component {
     this.count = props.count;
     this.isGood = props.isGood;
     this.isDone = props.isDone;
-    this.dayCount = 60;
-    this.weekCount = 12;
   }
 
   render() {
+    //link to habit details
     const habitDetails = `/details/${this.id},${this.title},${this.count},${this.increments}`;
     return (
       <Container fluid="md">

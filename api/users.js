@@ -2,7 +2,7 @@ const { UserInputError } = require("apollo-server-express");
 const { getDb } = require("./db");
 const { ObjectID } = require("mongodb").ObjectID;
 
-const { badges } = require('./badges');
+const { badges } = require("./badges");
 
 async function findUser(_, email) {
   const db = getDb();
@@ -10,7 +10,7 @@ async function findUser(_, email) {
   return user;
 }
 
-async function getUsers(_, { }) {
+async function getUsers(_, {}) {
   const db = getDb();
   const users = await db.collection("users").find().toArray();
   return users;
@@ -39,7 +39,7 @@ async function insertUser(_, args) {
     name: args.user.name,
     email: args.user.email,
     habitList: [],
-    earnedBadges: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    earnedBadges: [0, 0, 0, 0, 0, 0, 0, 0, 0],
   };
   await db.collection("users").insertOne(newUser);
   // find it make sure it exists
@@ -105,15 +105,17 @@ async function updateHabit(_, args) {
 // Update the count when a user clicks Done
 async function updateCount(_, args) {
   const db = getDb();
-  const { count, increments } = args.habit;
+  const { count, increments, index } = args.habit;
 
   // Check for completed habit DAILY
-  if (increments === 'Daily' && count === 60) {
+  if (increments === "Daily" && count === 60) {
     // Update the data for the habit
-    await db.collection("users").updateOne(
-      { email: args.email, "habitList._id": ObjectID(args._id) },
-      { $set: { "habitList.$.count": count } }
-    );
+    await db
+      .collection("users")
+      .updateOne(
+        { email: args.email, "habitList._id": ObjectID(args._id) },
+        { $set: { "habitList.$.count": count, "habitList.$.index": index } }
+      );
 
     // remove from habitList
     const deleteObject = await db
@@ -125,26 +127,30 @@ async function updateCount(_, args) {
       );
     // Get the deleted habit from deleteObject
 
-    const completedHabit = deleteObject.value.habitList.find(habit => {
+    const completedHabit = deleteObject.value.habitList.find((habit) => {
       if (habit._id == args._id) {
         return habit;
       }
     });
     // push on to completedHabits
 
-    await db.collection('users').updateOne(
-      { email: args.email },
-      { $push: { completedHabits: completedHabit } }
-    );
+    await db
+      .collection("users")
+      .updateOne(
+        { email: args.email },
+        { $push: { completedHabits: completedHabit } }
+      );
     return completedHabit;
   }
   // Check for completed habit WEEKLY
-  if (increments === 'Weekly' && count === 12) {
+  if (increments === "Weekly" && count === 12) {
     // Update the data for the habit
-    await db.collection("users").updateOne(
-      { email: args.email, "habitList._id": ObjectID(args._id) },
-      { $set: { "habitList.$.count": count } }
-    );
+    await db
+      .collection("users")
+      .updateOne(
+        { email: args.email, "habitList._id": ObjectID(args._id) },
+        { $set: { "habitList.$.count": count, "habitList.$.index": index } }
+      );
 
     // remove from habitList
     const deleteObject = await db
@@ -155,35 +161,35 @@ async function updateCount(_, args) {
         { returnOriginal: true }
       );
     // Get the deleted habit from deleteObject
-    const completedHabit = deleteObject.value.habitList.find(habit => {
-
+    const completedHabit = deleteObject.value.habitList.find((habit) => {
       if (habit._id == args._id) {
         return habit;
       }
     });
     // push on to completedHabits
 
-    await db.collection('users').updateOne(
-      { email: args.email },
-      { $push: { completedHabits: completedHabit } }
-    );
+    await db
+      .collection("users")
+      .updateOne(
+        { email: args.email },
+        { $push: { completedHabits: completedHabit } }
+      );
     return completedHabit;
   }
 
   // DEFAULT WHEN NOT COMPLETE HABIT
   // Update the data for the habit
-  await db.collection('users').updateOne(
-    { email: args.email, "habitList._id": ObjectID(args._id) },
-    { $set: { "habitList.$.count": count } }
-  );
+  await db
+    .collection("users")
+    .updateOne(
+      { email: args.email, "habitList._id": ObjectID(args._id) },
+      { $set: { "habitList.$.count": count, "habitList.$.index": index } }
+    );
 
-  const user = await db.collection('users').findOne(
-    { email: args.email }
-  );
+  const user = await db.collection("users").findOne({ email: args.email });
 
   // Filter and return the updated habit
-  const updatedHabit = user.habitList.find(habit => {
-
+  const updatedHabit = user.habitList.find((habit) => {
     if (habit._id == args._id) {
       return habit;
     }
@@ -230,16 +236,16 @@ async function getBadgesEarned(_, args) {
 
 async function updateBadgesEarned(_, args) {
   const db = getDb();
-  const user = await db.collection('users').findOne(args);
-  // if the user has no habits just return 
+  const user = await db.collection("users").findOne(args);
+  // if the user has no habits just return
   if (user.habitList === []) return user;
   let habitList = user.habitList;
   let updatedEarnedBadges = user.earnedBadges;
-  
+
   // determine the habit index and update accordingly
-  habitList.forEach(async habit => {
+  habitList.forEach(async (habit) => {
     let index = 0;
-    if (habit.increments === 'Daily') {
+    if (habit.increments === "Daily") {
       // loop over daily badges
       // if current count is >= then increment index
       const days = Object.keys(badges.day);
@@ -249,12 +255,14 @@ async function updateBadgesEarned(_, args) {
         }
       }
       // update the index for next time around
-      await db.collection('users').updateOne(
-        { email: args.email, 'habitList._id': habit._id },
-        { $set: { 'habitList.$.index': index } },
-      );
+      await db
+        .collection("users")
+        .updateOne(
+          { email: args.email, "habitList._id": habit._id },
+          { $set: { "habitList.$.index": index } }
+        );
     }
-    if (habit.increments === 'Weekly') {
+    if (habit.increments === "Weekly") {
       // loop over daily badges
       // if current count is >= then increment index
       const weeks = Object.keys(badges.week);
@@ -264,15 +272,17 @@ async function updateBadgesEarned(_, args) {
         }
       }
       // update the index for next time around
-      await db.collection('users').updateOne(
-        { email: args.email, 'habitList._id': habit._id },
-        { $set: { 'habitList.$.index': index } },
-      );
+      await db
+        .collection("users")
+        .updateOne(
+          { email: args.email, "habitList._id": habit._id },
+          { $set: { "habitList.$.index": index } }
+        );
     }
   });
 
   // loop over all the habits
-  habitList.forEach(async habit => {
+  habitList.forEach(async (habit) => {
     if (habit.increments === "Daily") {
       const days = Object.keys(badges.day);
       // start looping from the index
@@ -293,10 +303,12 @@ async function updateBadgesEarned(_, args) {
   });
 
   // set the new array to be the users badge array
-  await db.collection("users").updateOne(
-    { email: args.email },
-    { $set: { earnedBadges: updatedEarnedBadges } }
-  );
+  await db
+    .collection("users")
+    .updateOne(
+      { email: args.email },
+      { $set: { earnedBadges: updatedEarnedBadges } }
+    );
 
   return user;
 }
