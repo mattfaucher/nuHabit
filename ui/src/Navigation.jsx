@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { withAuth0 } from "@auth0/auth0-react";
 
+import logo from '../listing.png';
 import LogoutButton from "./LogoutButton.jsx";
 
 class Navigation extends React.Component {
@@ -15,35 +16,43 @@ class Navigation extends React.Component {
       id: props.user.sub,
     };
   }
-
+  
   render() {
     return (
-      <Navbar sticky="top" expand="lg" bg="dark" variant="dark">
+      <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="/habits">nuHabit</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="/completed">Completed Habits</Nav.Link>
-
-            <Nav.Link href="/collection">Collection</Nav.Link>
-          </Nav>
-          <Nav className="ml-auto">
-            <Nav.Item style={{ color: "white", marginRight: "10px" }}>
-              <img
-                src={this.state.picture}
-                style={{
-                  width: "40px",
-                  borderRadius: "100px",
-                  marginRight: "5px",
-                }}
-              ></img>
-              {this.state.name}
-            </Nav.Item>
-          </Nav>
-          <Nav className="ml-auto">
-            <Nav.Item>
-              <LogoutButton />
-            </Nav.Item>
-          </Nav>
+          <Navbar.Brand href="/habits">
+          <img 
+            src={logo}
+            width='50'
+            height='50'
+          />{' '}nuHabit
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/completed">Completed Habits</Nav.Link>
+              <Nav.Link href="/collection">Collection</Nav.Link>
+            </Nav>
+            <Nav className="ml-auto">
+              <Nav.Item style={{ color: "white", marginRight: "10px" }}>
+                <img
+                  src={this.state.picture}
+                  style={{
+                    width: "30px",
+                    borderRadius: "100px",
+                    margin: "5px 5px 5px 0px"
+                  }}
+                ></img>
+                {this.state.name}
+              </Nav.Item>
+            </Nav>
+            <Nav className="ml-auto">
+              <Nav.Item>
+                <LogoutButton />
+              </Nav.Item>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     );
