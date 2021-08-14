@@ -1,8 +1,0 @@
-.badgeGrid {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(auto-fill, 120px);
-    grid-row-gap: .5em;
-    grid-column-gap: 1em;
-  }
