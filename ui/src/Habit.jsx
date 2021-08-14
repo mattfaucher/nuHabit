@@ -166,18 +166,34 @@ export default class Habit extends React.Component {
       justifyContent: "center",
       marginTop: "20px",
     };
+    
+    const cardStyle = {
+      boxShadow: '6px 6px 6px #888888',
+      padding: '10px 10px 10px 10px',
+      margin: '30px 0 30px 0'
+    };
 
     return (
       <Container fluid="md">
-        <Card border="dark" className="shadow-lg p-3 mb-5 bg-white rounded">
+        <Card border="secondary" style={cardStyle}>
           <Card.Body>
-            <Row>
+            <Row style={{marginBottom: '5px'}}>
               <Col>
-                <ProgressBar
-                  striped
-                  variant={this.state.form}
-                  now={this.state.progress}
-                />
+                <ProgressBar>
+                  <ProgressBar
+                    animated={true}
+                    striped={true}
+                    variant={this.state.form}
+                    now={this.state.progress}
+                    key={1}
+                  />
+                  <ProgressBar
+                    striped
+                    variant='primary'
+                    now={100 - this.state.progress}
+                    key={2}
+                  />
+                </ProgressBar>
               </Col>
             </Row>
             <Row>
@@ -194,7 +210,6 @@ export default class Habit extends React.Component {
                   index={this.state.index}
                 />
                 {" "}
-
                 <Button variant="secondary" size="sm" onClick={this.handleShow}>
                   <FontAwesomeIcon icon={faBars} />
                 </Button>

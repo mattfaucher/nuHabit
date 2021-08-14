@@ -88,12 +88,19 @@ export default class AddHabit extends React.Component {
 	render() {
 		const inputCenter = {
 			justifyContent: 'center',
-			marginTop: '20px',
+			marginTop: '5px',
+			marginBottom: '10px'
 		};
+
+    const cardStyle = {
+      boxShadow: '6px 6px 6px #888888',
+      padding: '10px 10px 10px 10px',
+			marginBottom: '30px',
+    };
 
 		return (
 			<Container fluid="md">
-				<Card border='dark' className='shadow-lg p-3 mb-5 bg-white rounded'>
+				<Card border='secondary' style={cardStyle}>
 					<Card.Body>
 						<Row>
 							<Col className="col-10" align="left">
@@ -107,9 +114,9 @@ export default class AddHabit extends React.Component {
 									/>
 								</form>
 							</Col>
-							<Col className="col-2" align="right">
+							<Col className="col-2" align="center">
 								<Button variant='success' onClick={this.handleShow}>
-									<FontAwesomeIcon size={'2x'} icon={faPlus} />
+									<FontAwesomeIcon size={'lg'} icon={faPlus} />
 								</Button>
 								<Modal
 									show={this.state.showModal}

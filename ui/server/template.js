@@ -9,6 +9,7 @@ export default function template(body, initialData, userData) {
   <title>nuHabit</title>
   <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
   <link src="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+
   rel="stylesheet" type="text/css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://apis.google.com/js/api:client.js"></script>
