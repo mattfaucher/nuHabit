@@ -54,6 +54,24 @@ export default class DoneButton extends React.Component {
     });
     console.log(this.state.index);
     this.updateCount();
+    this.updateBadges();
+  }
+
+  async updateBadges() {
+    const mutation = `mutation($email: String!) {
+      updateBadges(email:$email) {
+        earnedBadges
+      }
+    }
+    `;
+    const vars = {
+      email: this.state.email,
+      earnedBadges: [this.state.index],
+    };
+    const data = await graphQLFetch(mutation, vars);
+    if (!data) throw Error();
+
+    return data;
   }
 
   async updateCount() {
