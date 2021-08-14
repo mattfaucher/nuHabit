@@ -1,131 +1,100 @@
 import React from "react";
-import {
-    Card,
-    Row,
-    Col,
-    Container,
-    Image,
-  } from "react-bootstrap";
-import {badges, badgeArr} from "./badges";
-import graphQLFetch from "./graphQLFetch";
+import CollectionCard from "./CollectionCard.jsx";
+import { Container, Alert, Card, Row, Col } from "react-bootstrap";
+import { withAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import graphQLFetch from "./graphQLFetch.js";
 
-export default class Collection extends React.Component {
-	constructor(props) {
-		super(props);
-        this.count = props.count;
-        this.increments = props.increments;
-        this.collection = [];
-        this.numberBadges = 0;
-        this.email = props.email;
-	}
+class BadgeCollection extends React.Component {
+  async fetchData(email) {
+    const vars = { email: email };
+    const query = `query($email: String!) {
+                    earnedBadges(email: $email){
+                      earnedBadges
+                    }
+                } `;
 
-  async componentDidMount() {
-    const query = `query($email:String!){
-      earnedBadges(email:$email){
-      earnedBadges
-      }
-    }`;
-    const vars = {email: this.email}
-    const user = await graphQLFetch(qury, vars)
-    this.setState({
-      badgeCounts:user.earnedBadges
-    });
+    const data = await graphQLFetch(query, vars);
+    return data;
+  }
+  
+
+  constructor() {
+    super();
+    this.state = {
+      //collection: undefined,
+    }
   }
 
+  
 
-	render() {
-    const cardStyle = {
-      display: "flex",
-      flex: "1 1 auto",
-    };
-
-    const checkout = {
-      position: "relative",
-      left: "80px",
-    };
-
-    for (let i = 0; i <= this.count; i++) {
-      if (this.increments === "Daily") {
-        if (badges.day[i] <= this.count) {
-          this.collection.push(badgeArr[i])
-          this.numberBadges++;
-        }
-      }
+  componentDidMount() {
+    this.setState( {
+      collection: undefined
     }
+    )
+  }
 
-        return (
-          <div className=".container-fluid">
-          <div class="card-group">
-            <div className="row row-cols-1">
-              <div className="col d-flex align-items-center">
-                <div className="card w-60" style={cardStyle}>
-                  <div className="card-img-top d-flex align-items-center bg-light">
-                    <div>
-                      <Image
-                        style={{ width: "18rem" }}
-                        className="img-fluid"
-                        src={badgeArr[0]}
-                        alt="Earned Badge"
-                        roundedCircle
-                      />
+  async componentDidUpdate(prevProps, prevState) {
+    if (prevState.collection === undefined) {
+      console.log("I want it to work")
+      const data = await this.fetchData(this.props.auth0.user.email);
+      const userData = await data;
+      this.setState(
+        {collection: userData.earnedBadges.earnedBadges}
+      )
+    console.log(this.state.collection)
+    }
+    else {console.log("it didn't work")}
+    //const data = await this.fetchData(this.props.auth0.user.email);
+    //const userData = await data;
+    //const temp = userData.earnedBadges;
+    //this.state.collection = temp.earnedBadges;
+    //this.setState({
+    //  collection: userData.earnedBadges.earnedBadges,
+    //});
+  }
 
-                      <h5 class="card-title">Badge 1</h5>
-                      <p class="card-text">You have earned this badge {this.state.badgeCounts[0]} times</p>
-                      
-                    </div>
-                  </div>
-                </div>
-                <div className="card w-60" style={cardStyle}>
-                  <div className="card-img-top d-flex align-items-center bg-light">
-                    <div>
-                      <Image
-                        style={{ width: "18rem" }}
-                        className="img-fluid"
-                        src={badgeArr[1]}
-                        alt="Earned Badge"
-                        roundedCircle
-                      />
-
-                      <h5 class="card-title">Badge 1</h5>
-                      <p class="card-text">You have earned this badge X times</p>
-
-                    </div>
-                  </div>
-                </div>
-                <div className="card w-60" style={cardStyle}>
-                  <div className="card-img-top d-flex align-items-center bg-light">
-                    <div>
-                      <Image
-                        style={{ width: "18rem" }}
-                        className="img-fluid"
-                        src={badgeArr[2]}
-                        alt="Earned Badge"
-                        roundedCircle
-                      />
-                      <h5 class="card-title">Badge 3</h5>
-                      <p class="card-text">You have earned this badge X times</p>
-                    </div>
-                  </div>
-                </div> 
-                  <div className="card w-60" style={cardStyle}>
-                  <div className="card-img-top d-flex align-items-center bg-light">
-                    <div>
-                      <Image
-                        style={{ width: "18rem" }}
-                        className="img-fluid"
-                        src={badgeArr[3]}
-                        alt="Earned Badge"
-                        roundedCircle
-                      />
-                      <h5 class="card-title">Badge 4</h5>
-                      <p class="card-text">You have earned this badge X times</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-        )
+  render() {
+    return (
+      <Container fluid>
+      {this.state.collection !== undefined ?
+        (<Row className="row-cols-3">
+          <Col>
+            <CollectionCard badgesEarned={this.state.collection[0]} index={0} />
+          </Col>
+          <Col>
+            <CollectionCard badgesEarned={this.state.collection[1]} index={1} />
+          </Col>
+          <Col>
+            <CollectionCard badgesEarned={this.state.collection[2]} index={2} />
+          </Col>
+          <Col>
+            <CollectionCard badgesEarned={this.state.collection[3]} index={3} />
+          </Col>
+          <Col>
+            <CollectionCard badgesEarned={this.state.collection[4]} index={4} />
+          </Col>
+          <Col>
+            <CollectionCard badgesEarned={this.state.collection[5]} index={5} />
+          </Col>
+          <Col>
+            <CollectionCard badgesEarned={this.state.collection[6]} index={6} />
+          </Col>
+          <Col>
+            <CollectionCard badgesEarned={this.state.collection[7]} index={7} />
+          </Col>
+          <Col>
+            <CollectionCard badgesEarned={this.state.collection[8]} index={8} />
+          </Col>
+        </Row>)
+      : <div></div>}
+      </Container>
+    );
   }
 }
+
+export default withAuth0(
+  withAuthenticationRequired(BadgeCollection, {
+    onRedirecting: () => <Alert variant="info">Redirecting...</Alert>,
+  })
+);
