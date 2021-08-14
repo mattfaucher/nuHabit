@@ -77,9 +77,9 @@ export default class Collection extends React.Component {
                 </div>
                 <div className="card w-60" style={cardStyle}>
                   <div className="card-img-top d-flex align-items-center bg-light">
-                    <div>
+                   <div>
                       <Image
-                        style={{ width: "18rem" }}
+                       style={{ width: "18rem" }}
                         className="img-fluid"
                         src={badgeArr[1]}
                         alt="Earned Badge"
