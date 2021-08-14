@@ -1,6 +1,4 @@
 import React from "react";
-import Collection from "./badgeCollection.jsx";
-import { badges, badgeArr } from "./badges";
 import { Container, Alert, Card } from "react-bootstrap";
 import { withAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import graphQLFetch from "./graphQLFetch.js";
