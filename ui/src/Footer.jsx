@@ -8,12 +8,16 @@ export default class Footer extends React.Component {
 			fontSize: "10px",
 		}
 
+    const bgStyle= {
+      backgroundImage: 'linear-gradient(to left, rgb(59, 74, 93), black)',
+    };
+
 		return (
 			<Container>
 				<Navbar
 					fixed="bottom"
 					expand="lg"
-					bg="dark"
+					style={bgStyle}
 					variant="dark"
 				>
 					<Container className="justify-content-left">

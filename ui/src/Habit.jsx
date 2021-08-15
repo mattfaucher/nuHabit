@@ -172,6 +172,10 @@ export default class Habit extends React.Component {
       padding: '10px 10px 10px 10px',
       margin: '30px 0 30px 0'
     };
+    
+    const otherBarStyle = {
+      backgroundColor: '#d9dadb',
+    };
 
     return (
       <Container fluid="md">
@@ -181,14 +185,14 @@ export default class Habit extends React.Component {
               <Col>
                 <ProgressBar>
                   <ProgressBar
+                    animated
                     variant={this.state.form}
                     now={this.state.progress}
                     key={1}
                   />
                   <ProgressBar
                     striped
-                    animated
-                    variant='info'
+                    style={otherBarStyle}
                     now={100 - this.state.progress}
                     key={2}
                   />

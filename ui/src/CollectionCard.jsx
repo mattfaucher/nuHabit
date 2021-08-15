@@ -2,8 +2,9 @@ import React from "react";
 import {
     Card,
     Container,
+    Image,
   } from "react-bootstrap";
-import {badgeArr} from "./badges";
+import { badgeArr } from "./badges";
 
 export default class CollectionCard extends React.Component {
 	constructor(props) {
@@ -17,7 +18,7 @@ export default class CollectionCard extends React.Component {
       width: 'auto',
       height: 'auto',
       margin: '5px 5px 5px 5px',
-      boxShadow: '5px 5px 5px 5px #888888',
+      boxShadow: '8px 5px 8px 0px #888888',
       display: 'flex'
     };
 
@@ -28,10 +29,13 @@ export default class CollectionCard extends React.Component {
     }
 
     const imgStyle = {
-      width: "40%",
-      height: "40%",
+      display: 'block',
+      maxWidth: '120px',
+      maxHeight: '100px',
+      width: 'auto',
+      height: 'auto',
       marginLeft: 'auto',
-      marginRight: 'auto'
+      marginRight: 'auto',
     };
 
     const footerStyle = {
@@ -41,9 +45,11 @@ export default class CollectionCard extends React.Component {
 
     return (
       <Container fluid="xs">
-        <Card style={cardStyle}>
+        <Card style={cardStyle} border='secondary'>
           <Card.Header style={headStyle}>Badge {this.index + 1}</Card.Header>
-          <Card.Img variant="top" src={badgeArr[this.index]} style={imgStyle}/>
+          <Card.Body>
+            <Image src={badgeArr[this.index]} style={imgStyle} />
+          </Card.Body>
           <Card.Footer style={footerStyle}>{`You have earned this badge ${this.badgeCount} times!`}</Card.Footer>
         </Card>
       </Container>

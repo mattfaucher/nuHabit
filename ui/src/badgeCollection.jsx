@@ -40,35 +40,48 @@ class BadgeCollection extends React.Component {
   }
 
   render() {
+    const headerStyle = {
+      background: '-webkit-linear-gradient(rgb(59, 74, 93), white)',
+      webkitBackgroundClip: 'text',
+      webkitTextFillColor: 'transparent',
+      fontWeight: '800',
+      textAlign: 'center',
+    };
+
+    const colSpacing = {
+      margin: '40px auto 20px auto',
+    };
+
     return (
       <Container fluid="md">
+        <h1 style={headerStyle}>Badge Collection</h1>
         {this.state.collection !== undefined ?
-          (<Row className="row-cols-md-3 row-cols-sm-2">
-            <Col>
+          (<Row className="row row-cols-md-3">
+            <Col style={colSpacing}>
               <CollectionCard badgesEarned={this.state.collection[0]} index={0} />
             </Col>
-            <Col>
+            <Col style={colSpacing}>
               <CollectionCard badgesEarned={this.state.collection[1]} index={1} />
             </Col>
-            <Col>
+            <Col style={colSpacing}>
               <CollectionCard badgesEarned={this.state.collection[2]} index={2} />
             </Col>
-            <Col>
+            <Col style={colSpacing}>
               <CollectionCard badgesEarned={this.state.collection[3]} index={3} />
             </Col>
-            <Col>
+            <Col style={colSpacing}>
               <CollectionCard badgesEarned={this.state.collection[4]} index={4} />
             </Col>
-            <Col>
+            <Col style={colSpacing}>
               <CollectionCard badgesEarned={this.state.collection[5]} index={5} />
             </Col>
-            <Col>
+            <Col style={colSpacing}>
               <CollectionCard badgesEarned={this.state.collection[6]} index={6} />
             </Col>
-            <Col>
+            <Col style={colSpacing}>
               <CollectionCard badgesEarned={this.state.collection[7]} index={7} />
             </Col>
-            <Col>
+            <Col style={colSpacing}>
               <CollectionCard badgesEarned={this.state.collection[8]} index={8} />
             </Col>
           </Row>)
