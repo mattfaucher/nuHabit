@@ -1,19 +1,19 @@
 import React from "react";
 import {
-    Card,
-    Container,
-    Image,
-  } from "react-bootstrap";
+  Card,
+  Container,
+  Image,
+} from "react-bootstrap";
 import { badgeArr } from "./badges";
 
 export default class CollectionCard extends React.Component {
-	constructor(props) {
-		super(props);
-      this.badgeCount = props.badgesEarned;
-      this.index = props.index;
-	}
+  constructor(props) {
+    super(props);
+    this.badgeCount = props.badgesEarned;
+    this.index = props.index;
+  }
 
-	render() {
+  render() {
     const cardStyle = {
       width: 'auto',
       height: 'auto',
@@ -50,7 +50,7 @@ export default class CollectionCard extends React.Component {
           <Card.Body>
             <Image src={badgeArr[this.index]} style={imgStyle} />
           </Card.Body>
-          <Card.Footer style={footerStyle}>{`You have earned this badge ${this.badgeCount} times!`}</Card.Footer>
+          <Card.Footer style={footerStyle}>{`Achieved: ${this.badgeCount}`}</Card.Footer>
         </Card>
       </Container>
     );

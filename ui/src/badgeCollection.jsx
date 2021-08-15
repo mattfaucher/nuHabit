@@ -2,6 +2,7 @@ import React from "react";
 import { withAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import { Container, Alert, Row, Col } from "react-bootstrap";
 
+
 import CollectionCard from "./CollectionCard.jsx";
 import graphQLFetch from "./graphQLFetch.js";
 
@@ -41,9 +42,9 @@ class BadgeCollection extends React.Component {
 
   render() {
     const headerStyle = {
-      background: '-webkit-linear-gradient(rgb(59, 74, 93), white)',
-      webkitBackgroundClip: 'text',
-      webkitTextFillColor: 'transparent',
+      background: 'linear-gradient(to left, rgb(59, 74, 93), silver)',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
       fontWeight: '800',
       textAlign: 'center',
     };
