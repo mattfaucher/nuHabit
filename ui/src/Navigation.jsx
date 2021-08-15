@@ -18,14 +18,18 @@ class Navigation extends React.Component {
   }
   
   render() {
+    const bgStyle= {
+      backgroundImage: 'linear-gradient(to right, rgb(59, 74, 93), black)',
+    };
+
     return (
-      <Navbar sticky="top" collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar sticky="top" collapseOnSelect expand="lg" style={bgStyle} variant="dark">
         <Container>
           <Navbar.Brand href="/habits">
           <img 
             src={logo}
-            width='50'
-            height='50'
+            width='40'
+            height='40'
           />{' '}nuHabit
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />

@@ -5,7 +5,7 @@ import graphQLFetch from "./graphQLFetch";
 export default class DoneButton extends React.Component {
   constructor(props) {
     super(props);
-    this.dayMilliseconds = 86400000;
+    this.dayMilliseconds = 86400000 / 2; // 12 hours vs 24 hrs
     this.weekMilliseconds = this.dayMilliseconds * 7;
     // determine if done button should be enabled
     let isDone = this.chooseTime(props.increments, props._id);
