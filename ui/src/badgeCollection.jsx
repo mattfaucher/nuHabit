@@ -1,10 +1,17 @@
 import React from "react";
-import CollectionCard from "./CollectionCard.jsx";
-import { Container, Alert, Card, Row, Col } from "react-bootstrap";
 import { withAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { Container, Alert, Row, Col } from "react-bootstrap";
+
+
+import CollectionCard from "./CollectionCard.jsx";
 import graphQLFetch from "./graphQLFetch.js";
 
 class BadgeCollection extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
   async fetchData(email) {
     const vars = { email: email };
     const query = `query($email: String!) {
@@ -24,9 +31,10 @@ class BadgeCollection extends React.Component {
     };
   }
 
+
   componentDidMount() {
     this.setState({
-      collection: undefined,
+      collection: undefined
     });
   }
 
@@ -34,73 +42,59 @@ class BadgeCollection extends React.Component {
     if (prevState.collection === undefined) {
       const data = await this.fetchData(this.props.auth0.user.email);
       const userData = await data;
-      this.setState({ collection: userData.earnedBadges.earnedBadges });
+      this.setState({
+        collection: userData.earnedBadges.earnedBadges
+      });
     }
   }
 
   render() {
+    const headerStyle = {
+      background: 'linear-gradient(to left, rgb(59, 74, 93), silver)',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+      fontWeight: '800',
+      textAlign: 'center',
+    };
+
+    const colSpacing = {
+      margin: '40px auto 20px auto',
+    };
+
     return (
-      <Container fluid>
-        {this.state.collection !== undefined ? (
-          <Row className="row-cols-3">
-            <Col>
-              <CollectionCard
-                badgesEarned={this.state.collection[0]}
-                index={0}
-              />
+      <Container fluid="md">
+        <h1 style={headerStyle}>Badge Collection</h1>
+        {this.state.collection !== undefined ?
+          (<Row className="row row-cols-md-3">
+            <Col style={colSpacing}>
+              <CollectionCard badgesEarned={this.state.collection[0]} index={0} />
             </Col>
-            <Col>
-              <CollectionCard
-                badgesEarned={this.state.collection[1]}
-                index={1}
-              />
+            <Col style={colSpacing}>
+              <CollectionCard badgesEarned={this.state.collection[1]} index={1} />
             </Col>
-            <Col>
-              <CollectionCard
-                badgesEarned={this.state.collection[2]}
-                index={2}
-              />
+            <Col style={colSpacing}>
+              <CollectionCard badgesEarned={this.state.collection[2]} index={2} />
             </Col>
-            <Col>
-              <CollectionCard
-                badgesEarned={this.state.collection[3]}
-                index={3}
-              />
+            <Col style={colSpacing}>
+              <CollectionCard badgesEarned={this.state.collection[3]} index={3} />
             </Col>
-            <Col>
-              <CollectionCard
-                badgesEarned={this.state.collection[4]}
-                index={4}
-              />
+            <Col style={colSpacing}>
+              <CollectionCard badgesEarned={this.state.collection[4]} index={4} />
             </Col>
-            <Col>
-              <CollectionCard
-                badgesEarned={this.state.collection[5]}
-                index={5}
-              />
+            <Col style={colSpacing}>
+              <CollectionCard badgesEarned={this.state.collection[5]} index={5} />
             </Col>
-            <Col>
-              <CollectionCard
-                badgesEarned={this.state.collection[6]}
-                index={6}
-              />
+            <Col style={colSpacing}>
+              <CollectionCard badgesEarned={this.state.collection[6]} index={6} />
             </Col>
-            <Col>
-              <CollectionCard
-                badgesEarned={this.state.collection[7]}
-                index={7}
-              />
+            <Col style={colSpacing}>
+              <CollectionCard badgesEarned={this.state.collection[7]} index={7} />
             </Col>
-            <Col>
-              <CollectionCard
-                badgesEarned={this.state.collection[8]}
-                index={8}
-              />
+            <Col style={colSpacing}>
+              <CollectionCard badgesEarned={this.state.collection[8]} index={8} />
             </Col>
-          </Row>
-        ) : (
-          <div></div>
-        )}
+          </Row>)
+          : <div></div>}
       </Container>
     );
   }
