@@ -115,6 +115,12 @@ async function updateCount(_, args) {
       { $set: { "habitList.$.count": count } }
     );
 
+    //need to increment badges earned at index 8
+    await db.collection('users').updateOne(
+      {email: args.email },
+      { $inc : { 'earnedBadge.8': 1 } }
+    );
+
     // remove from habitList
     const deleteObject = await db
       .collection("users")
@@ -144,6 +150,12 @@ async function updateCount(_, args) {
     await db.collection("users").updateOne(
       { email: args.email, "habitList._id": ObjectID(args._id) },
       { $set: { "habitList.$.count": count } }
+    );
+
+    // increment final earned badge 1x
+    await db.collection('users').updateOne(
+      {email: args.email },
+      { $inc : { 'earnedBadge.8': 1 } }
     );
 
     // remove from habitList
