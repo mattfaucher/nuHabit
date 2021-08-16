@@ -1,6 +1,6 @@
 import React from "react";
 import BadgeCard from "./BadgeCard.jsx";
-import { Container } from "react-bootstrap";
+import { Container, Card, Row } from "react-bootstrap";
 import { badges, badgeArr, encouragement } from "./badges";
 
 export default class HabitDetails extends React.Component {
@@ -33,22 +33,46 @@ export default class HabitDetails extends React.Component {
         }
       }
     }
+    
+    const cardStyle = {
+      marginBottom: '10px',
+      boxShadow: '5px 5px 5px #888888',
+      backgroundColor: '#F5F2D0',
+    };
+    
+    const headerStyle = {
+      color: 'rgb(59, 74, 93)',
+      textShadow: '2px 3px 3px #888888',
+      fontSize: '5vw',
+      fontWeight: '800',
+      textAlign: 'center',
+      margin: 'auto',
+    };
+    
+    const textStyle = {
+      color: 'rgb(59, 74, 93)',
+      textShadow: '2px 3px 3px #888888',
+      fontSize: '4vw',
+      textAlign: 'center',
+      fontWeight: '600',
+      margin: 'auto',
+      paddingBottom: '1%',
+    };
 
     return (
       <Container fluid>
-        <div className="d-grid gap-3">
-          <div className="card text-center" style={{ width: "100%" }}>
-            <div className="card-body">
-              {this.state.title}
-              <p className="card-text">Count: {this.state.count}</p>
-              <p className="card-text">{this.state.increments}</p>
-            </div>
-          </div>
-        </div>
+        <Card style={cardStyle} border='secondary'>
+          <Card.Header style={headerStyle}>{this.state.title}</Card.Header> 
+          <Row className='row row-cols-2'>
+            <Card.Text style={textStyle}>{this.state.increments} Habit</Card.Text>
+            <Card.Text style={textStyle}>Count: {this.state.count}</Card.Text>
+          </Row>
+        </Card>
         <div>
-          {this.state.collection.map((badge, index) => (
+          {this.state.collection.map((badge, index = this.state.collection.length) => (
             <BadgeCard
               key={index}
+              index={this.state.collection.length - index}
               badge={this.state.collection[index]}
               increments={this.state.increments}
               count={this.state.counts[index]}
