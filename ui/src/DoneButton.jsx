@@ -29,7 +29,7 @@ export default class DoneButton extends React.Component {
     if (increments === 'Daily') {
 
       const old = parseInt(localStorage.getItem(_id), 10);
-      if (old + this.dayMilliseconds < Date.now()) {
+      if (old + 1000 /*this.dayMilliseconds*/ < Date.now()) {
         return false;
       } else {
         return true;
