@@ -143,7 +143,7 @@ export default class Habit extends React.Component {
   // and input fields
 
   render() {
-    const habitDetails = `/details/${this._id},${this.state.title},${this.state.count},${this.state.increments}`;
+    const habitDetails = `/details/${this.state._id},${this.state.title},${this.state.count},${this.state.increments}`;
 
     if (this.state.increments === "Daily") {
       this.state.progress = Math.floor(
@@ -166,22 +166,29 @@ export default class Habit extends React.Component {
       justifyContent: "center",
       marginTop: "20px",
     };
-    
+
     const cardStyle = {
       boxShadow: '6px 6px 6px #888888',
       padding: '10px 10px 10px 10px',
       margin: '30px 0 30px 0'
     };
-    
+
     const otherBarStyle = {
       backgroundColor: '#d9dadb',
+    };
+    
+    const linkStyle = {
+      color: 'rgb(59, 74, 93)',
+      fontSize: '2vh',
+      fontWeight: '600',
+      textDecoration: 'none',
     };
 
     return (
       <Container fluid="md">
         <Card border="secondary" style={cardStyle}>
           <Card.Body>
-            <Row style={{marginBottom: '5px'}}>
+            <Row style={{ marginBottom: '5px' }}>
               <Col>
                 <ProgressBar>
                   <ProgressBar
@@ -201,7 +208,7 @@ export default class Habit extends React.Component {
             </Row>
             <Row>
               <Col className="col-6 col-xs-2" align="left">
-                <Link to={habitDetails}> {this.state.title}</Link>
+                <Link style={linkStyle} to={habitDetails}>{this.state.title}</Link>
               </Col>
               <Col className="col-6 col-xs-2" align="right">
                 <DoneButton
