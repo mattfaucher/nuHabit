@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import graphQLFetch from "./graphQLFetch";
-import { badges } from "./badges";
 
 export default class DoneButton extends React.Component {
   constructor(props) {
@@ -29,7 +28,7 @@ export default class DoneButton extends React.Component {
     if (localStorage.getItem(_id) === null) return false;
     if (increments === "Daily") {
       const old = parseInt(localStorage.getItem(_id), 10);
-      if (old + 100 /*this.dayMilliseconds*/ < Date.now()) {
+      if (old + 1000 /*this.dayMilliseconds*/ < Date.now()) {
         return false;
       } else {
         return true;
@@ -50,9 +49,7 @@ export default class DoneButton extends React.Component {
     localStorage.setItem(this.state._id, this.state.currentDate);
     this.setState({
       done: true,
-      index: this.updateIndex(),
     });
-    console.log(this.state.index);
     this.updateCount();
     this.updateBadges();
   }
@@ -78,7 +75,6 @@ export default class DoneButton extends React.Component {
         updateCount(email:$email, _id:$_id, habit:$habit) {
           count
           increments
-          index
         }
       }`;
 
@@ -88,7 +84,6 @@ export default class DoneButton extends React.Component {
       habit: {
         count: this.state.count + 1,
         increments: this.state.increments,
-        index: this.state.index,
       },
     };
 

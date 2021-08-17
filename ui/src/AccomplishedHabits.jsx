@@ -47,11 +47,11 @@ class AccomplisedHabits extends React.Component {
   render() {
     const returnToHome = `/habits`;
     const headerStyle = {
-      background: 'linear-gradient(to left, rgb(59, 74, 93), silver)',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-      fontWeight: '800',
-      textAlign: 'center',
+      background: "linear-gradient(to left, rgb(59, 74, 93), silver)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      fontWeight: "800",
+      textAlign: "center",
     };
 
     return (
@@ -77,10 +77,10 @@ class AccomplisedHabits extends React.Component {
               >
                 <Card.Body>
                   <Row>
-                    <Col className="col-11 col-xs-2" align="center">
+                    <Col className="col-12 col-xs-2" align="center">
                       UhOh! You Have No Completed Habits
                     </Col>
-                    <Col className="col-11 col-xs-2" align="center">
+                    <Col className="col-12 col-xs-2" align="center">
                       <Link to={returnToHome}>Click Here to Return Home</Link>
                     </Col>
                   </Row>
