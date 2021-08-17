@@ -79,8 +79,18 @@ class HabitList extends React.Component {
   }
 
   render() {
+    const headerStyle = {
+      background: 'linear-gradient(to left, rgb(59, 74, 93), silver)',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+      fontWeight: '800',
+      textAlign: 'center',
+      marginBottom: '10px',
+    };
+
     return (
       <div>
+        <h1 style={headerStyle}>Habits in Progress</h1>
         <AddHabit email={this.props.auth0.user.email} />
         <Container fluid>
           {this.state.habitList ? (
