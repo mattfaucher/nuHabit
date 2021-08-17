@@ -5,7 +5,7 @@ import AuthButton from "./AuthButton.jsx";
 import Footer from "./Footer.jsx";
 import logo from '../listing.png';
 
-export default class LandingPage2 extends React.Component {
+export default class LandingPageM extends React.Component {
 	constructor(props) {
 		super(props);
 	}
