@@ -29,7 +29,7 @@ export default class DoneButton extends React.Component {
     if (localStorage.getItem(_id) === null) return false;
     if (increments === "Daily") {
       const old = parseInt(localStorage.getItem(_id), 10);
-      if (old + this.dayMilliseconds < Date.now()) {
+      if (old + 500 /*this.dayMilliseconds*/ < Date.now()) {
         return false;
       } else {
         return true;
@@ -66,7 +66,6 @@ export default class DoneButton extends React.Component {
     `;
     const vars = {
       email: this.state.email,
-      earnedBadges: [this.state.index],
     };
     const data = await graphQLFetch(mutation, vars);
     if (!data) throw Error();
