@@ -91,6 +91,14 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ---
 
+## All pages
+
+![HP1](/readme-images/HabitProgression1.png)
+![HP2](/readme-images/HabitProgresion2.png)
+![HP3](/readme-images/HabitProgression3.png)
+
+---
+
 ## Database
 
 ![DB](/readme-images/DB.png)
@@ -99,8 +107,18 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ## Login/Landing Page
 
+### Iteration 1
+
+- No Image was taken
+
+### Iteration 2
+
 ![landing1](/readme-images/Landing1.png)
 ![landing2](/readme-images/Landing2.png)
+
+### Iteration 3
+
+![landing3](/readme-images/Landing3.png)
 
 ---
 
@@ -116,6 +134,10 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ![Progress](/readme-images/ProgressBarDifference.png)
 
+### Home Page Style
+
+![HP1](/readme-images/HabitProgression1.png)
+
 ---
 
 ## Habit Details
@@ -124,12 +146,25 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ![Weekly](/readme-images/Weekly.png)
 
+### Habit Details Style
+
+![HP2](/readme-images/HabitProgresion2.png)
+
 ---
 
 ## Accomplished Habits
 
 ![Accomplished](/readme-images/NoAccomplishedHabits.png)
 
+### Accomplised Habits Style
+
+![AStyle](/readme-images/NoCompletedStyle.png)
+![ACStyle](/readme-images/WithCompletedStyle.png)
+
 ## Collections
 
 ![Collections](/readme-images/SH_Collections.png)
+
+### Collections Style
+
+![HP3](/readme-images/HabitProgression3.png)
