@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Alert } from "react-bootstrap";
 import { withAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 import graphQLFetch from "./graphQLFetch.js";
@@ -116,6 +116,6 @@ class HabitList extends React.Component {
 
 export default withAuth0(
   withAuthenticationRequired(
-    HabitList //{ onRedirecting: () => <Alert variant="info">Loading...</Alert> }
+    HabitList, { onRedirecting: () => <Alert variant="info">Loading...</Alert> }
   )
 );
