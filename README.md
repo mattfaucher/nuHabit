@@ -44,6 +44,7 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
   - Created Accomplished Habits page
 - Noam
   - Found badge images
+  - Set up badge images page
 - Everyone
   - Set up Routing
 - Matt
@@ -66,6 +67,7 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
   - Mutation of a habit from habitList to completedHabits
 - Noam and Matt
   - Collection backend completed
+  - Designed and implemented counting badges algorithm
 - Noam, Ciara and Matt
   - Connect front and backend to display correct badges
   - Update done button functionality
@@ -80,6 +82,9 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
   - Stylize Accomplised Habits
   - Stylize Habit details
   - Stylize Landing Page iter 3
+- Noam
+  - Last minute testing of website
+  - Minor stylistic advice
 
 ### **If We Have Time - Unfortunately we did not have time**
 
