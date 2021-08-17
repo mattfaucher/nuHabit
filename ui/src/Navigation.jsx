@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { withAuth0 } from "@auth0/auth0-react";
 
-import logo from '../listing.png';
+import logo from '../nuhabit-logo.png';
 import LogoutButton from "./LogoutButton.jsx";
 
 class Navigation extends React.Component {
