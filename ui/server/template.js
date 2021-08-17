@@ -9,15 +9,9 @@ export default function template(body, initialData, userData) {
   <title>nuHabit</title>
   <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
   <link src="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
-
   rel="stylesheet" type="text/css">
+  <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico'/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://apis.google.com/js/api:client.js"></script>
-
-  <style>
-    table.table.hover tr {cursor: pointer;}
-    .panel-title a {display: block; width: 100%; cursor: pointer;}
-  </style>
 </head>
 
 <body>
