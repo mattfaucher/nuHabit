@@ -143,7 +143,7 @@ export default class Habit extends React.Component {
   // and input fields
 
   render() {
-    const habitDetails = `/details/${this._id},${this.state.title},${this.state.count},${this.state.increments}`;
+    const habitDetails = `/details/${this.state._id},${this.state.title},${this.state.count},${this.state.increments}`;
 
     if (this.state.increments === "Daily") {
       this.state.progress = Math.floor(
@@ -177,6 +177,13 @@ export default class Habit extends React.Component {
       backgroundColor: "#d9dadb",
     };
 
+    const linkStyle = {
+      color: "rgb(59, 74, 93)",
+      fontSize: "2vh",
+      fontWeight: "600",
+      textDecoration: "none",
+    };
+
     return (
       <Container fluid="md">
         <Card border="secondary" style={cardStyle}>
@@ -201,7 +208,9 @@ export default class Habit extends React.Component {
             </Row>
             <Row>
               <Col className="col-6 col-xs-2" align="left">
-                <Link to={habitDetails}> {this.state.title}</Link>
+                <Link style={linkStyle} to={habitDetails}>
+                  {this.state.title}
+                </Link>
               </Col>
               <Col className="col-6 col-xs-2" align="right">
                 <DoneButton

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Alert } from "react-bootstrap";
 import { withAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 import graphQLFetch from "./graphQLFetch.js";
@@ -79,8 +79,18 @@ class HabitList extends React.Component {
   }
 
   render() {
+    const headerStyle = {
+      background: 'linear-gradient(to left, rgb(59, 74, 93), silver)',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+      fontWeight: '800',
+      textAlign: 'center',
+      marginBottom: '10px',
+    };
+
     return (
       <div>
+        <h1 style={headerStyle}>Habits in Progress</h1>
         <AddHabit email={this.props.auth0.user.email} />
         <Container fluid>
           {this.state.habitList ? (
@@ -108,6 +118,6 @@ class HabitList extends React.Component {
 
 export default withAuth0(
   withAuthenticationRequired(
-    HabitList //{ onRedirecting: () => <Alert variant="info">Loading...</Alert> }
+    HabitList, { onRedirecting: () => <Alert variant="info">Loading...</Alert> }
   )
 );
