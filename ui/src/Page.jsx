@@ -32,7 +32,10 @@ class Page extends React.Component {
         {isAuthenticated ? (
           <div>
             <Navigation user={user} />
-            <Container fluid style={{ marginTop: "25px", paddingBottom: '100px' }}>
+            <Container
+              fluid
+              style={{ marginTop: "25px", paddingBottom: "100px" }}
+            >
               <Contents user={this.props.auth0.user} />
             </Container>
             <Footer />

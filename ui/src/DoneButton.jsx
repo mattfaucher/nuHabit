@@ -16,7 +16,7 @@ export default class DoneButton extends React.Component {
       _id: props._id,
       email: props.email,
       increments: props.increments,
-      index: props.index
+      index: props.index,
     };
     this.handleDone = this.handleDone.bind(this);
     this.updateCount = this.updateCount.bind(this);
@@ -26,10 +26,9 @@ export default class DoneButton extends React.Component {
   // Function to choose which calculation for done
   chooseTime(increments, _id) {
     if (localStorage.getItem(_id) === null) return false;
-    if (increments === 'Daily') {
-
+    if (increments === "Daily") {
       const old = parseInt(localStorage.getItem(_id), 10);
-      if (old + 100 /*this.dayMilliseconds*/ < Date.now()) {
+      if (old + 1000 /*this.dayMilliseconds*/ < Date.now()) {
         return false;
       } else {
         return true;
@@ -64,7 +63,7 @@ export default class DoneButton extends React.Component {
     `;
     const vars = {
       email: this.state.email,
-    }
+    };
     const data = await graphQLFetch(mutation, vars);
     if (!data) throw Error();
 

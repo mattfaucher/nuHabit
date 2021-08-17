@@ -6,7 +6,7 @@
 
 ## **_nuHabit_**
 
-Please note that our web app is currently incompatible with Safari and Mobile.
+Please note that our web app is currently incompatible with Safari and Mobile unless you enable cross site tracking.
 
 Heroku Link: https://nuhabit-ui.herokuapp.com
 
@@ -50,14 +50,14 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
   - Created NavBar
 - Matt
   - Setup Authentication using Auth0
-- Noam
+- Noam, Matt and Ciara
   - Created Badge Collection page
 - Matt
   - Bug fix in the add modal
   - Bug fix after adding new habit
   - Added ability to edit and delete a habit
 - Ciara
-  - Landing page design
+  - Landing page design iter 1 & iter 2
   - Bug fix in Accomplished Habits
   - Creating a completedHabits array in the user
   - Done button mutation of count
@@ -66,26 +66,23 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
   - Mutation of a habit from habitList to completedHabits
 - Noam and Matt
   - Collection backend completed
-
-## **Currently Working On**
-
-- Noam and Matt
+- Noam, Ciara and Matt
   - Connect front and backend to display correct badges
+  - Update done button functionality
+  - Add mutation to update earnedBadges
 - Ciara
-  - Stylize Accomplised Habits
-  - Stylize Habit details
+  - ReadMe
 - Matt
   - Attend to Auth0 bugs
+- Matt with some help from Noam and Ciara
+  - Stylize Collection
+  - Stylize Home page
+  - Stylize Accomplised Habits
+  - Stylize Habit details
+  - Stylize Landing Page iter 3
 
+## **If We Have Time - Unfortunately we did not have time**
 
-## **Next Steps**
-
-- Stylize Collection
-- Stylize Home page
-- Add Toast notifications
-
-
-## **If We Have Time**
 - Add filtering to Habits and Accomplished habits
   - break or form
   - daily or weekly
@@ -104,6 +101,7 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ![landing1](/readme-images/Landing1.png)
 ![landing2](/readme-images/Landing2.png)
+
 ---
 
 ## Home Page

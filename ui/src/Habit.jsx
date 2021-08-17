@@ -34,7 +34,7 @@ export default class Habit extends React.Component {
       email: props.email,
       progress: 0,
       form: "",
-      index: props.index
+      index: props.index,
     };
     this.dayCount = 60;
     this.weekCount = 12;
@@ -168,27 +168,27 @@ export default class Habit extends React.Component {
     };
 
     const cardStyle = {
-      boxShadow: '6px 6px 6px #888888',
-      padding: '10px 10px 10px 10px',
-      margin: '30px 0 30px 0'
+      boxShadow: "6px 6px 6px #888888",
+      padding: "10px 10px 10px 10px",
+      margin: "30px 0 30px 0",
     };
 
     const otherBarStyle = {
-      backgroundColor: '#d9dadb',
+      backgroundColor: "#d9dadb",
     };
-    
+
     const linkStyle = {
-      color: 'rgb(59, 74, 93)',
-      fontSize: '2vh',
-      fontWeight: '600',
-      textDecoration: 'none',
+      color: "rgb(59, 74, 93)",
+      fontSize: "2vh",
+      fontWeight: "600",
+      textDecoration: "none",
     };
 
     return (
       <Container fluid="md">
         <Card border="secondary" style={cardStyle}>
           <Card.Body>
-            <Row style={{ marginBottom: '5px' }}>
+            <Row style={{ marginBottom: "5px" }}>
               <Col>
                 <ProgressBar>
                   <ProgressBar
@@ -208,7 +208,9 @@ export default class Habit extends React.Component {
             </Row>
             <Row>
               <Col className="col-6 col-xs-2" align="left">
-                <Link style={linkStyle} to={habitDetails}>{this.state.title}</Link>
+                <Link style={linkStyle} to={habitDetails}>
+                  {this.state.title}
+                </Link>
               </Col>
               <Col className="col-6 col-xs-2" align="right">
                 <DoneButton
@@ -218,8 +220,7 @@ export default class Habit extends React.Component {
                   email={this.state.email}
                   increments={this.state.increments}
                   index={this.state.index}
-                />
-                {" "}
+                />{" "}
                 <Button variant="secondary" size="sm" onClick={this.handleShow}>
                   <FontAwesomeIcon icon={faBars} />
                 </Button>

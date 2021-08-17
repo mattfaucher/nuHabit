@@ -2,7 +2,6 @@ import React from "react";
 import { withAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import { Container, Alert, Row, Col } from "react-bootstrap";
 
-
 import CollectionCard from "./CollectionCard.jsx";
 import graphQLFetch from "./graphQLFetch.js";
 
@@ -26,7 +25,7 @@ class BadgeCollection extends React.Component {
 
   componentDidMount() {
     this.setState({
-      collection: undefined
+      collection: undefined,
     });
   }
 
@@ -35,58 +34,87 @@ class BadgeCollection extends React.Component {
       const data = await this.fetchData(this.props.auth0.user.email);
       const userData = await data;
       this.setState({
-        collection: userData.earnedBadges.earnedBadges
+        collection: userData.earnedBadges.earnedBadges,
       });
     }
   }
 
   render() {
     const headerStyle = {
-      background: 'linear-gradient(to left, rgb(59, 74, 93), silver)',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-      fontWeight: '800',
-      textAlign: 'center',
+      background: "linear-gradient(to left, rgb(59, 74, 93), silver)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      fontWeight: "800",
+      textAlign: "center",
     };
 
     const colSpacing = {
-      margin: '40px auto 20px auto',
+      margin: "40px auto 20px auto",
     };
 
     return (
       <Container fluid="md">
         <h1 style={headerStyle}>Badge Collection</h1>
-        {this.state.collection !== undefined ?
-          (<Row className="row row-cols-md-3">
+        {this.state.collection !== undefined ? (
+          <Row className="row row-cols-md-3">
             <Col style={colSpacing}>
-              <CollectionCard badgesEarned={this.state.collection[0]} index={0} />
+              <CollectionCard
+                badgesEarned={this.state.collection[0]}
+                index={0}
+              />
             </Col>
             <Col style={colSpacing}>
-              <CollectionCard badgesEarned={this.state.collection[1]} index={1} />
+              <CollectionCard
+                badgesEarned={this.state.collection[1]}
+                index={1}
+              />
             </Col>
             <Col style={colSpacing}>
-              <CollectionCard badgesEarned={this.state.collection[2]} index={2} />
+              <CollectionCard
+                badgesEarned={this.state.collection[2]}
+                index={2}
+              />
             </Col>
             <Col style={colSpacing}>
-              <CollectionCard badgesEarned={this.state.collection[3]} index={3} />
+              <CollectionCard
+                badgesEarned={this.state.collection[3]}
+                index={3}
+              />
             </Col>
             <Col style={colSpacing}>
-              <CollectionCard badgesEarned={this.state.collection[4]} index={4} />
+              <CollectionCard
+                badgesEarned={this.state.collection[4]}
+                index={4}
+              />
             </Col>
             <Col style={colSpacing}>
-              <CollectionCard badgesEarned={this.state.collection[5]} index={5} />
+              <CollectionCard
+                badgesEarned={this.state.collection[5]}
+                index={5}
+              />
             </Col>
             <Col style={colSpacing}>
-              <CollectionCard badgesEarned={this.state.collection[6]} index={6} />
+              <CollectionCard
+                badgesEarned={this.state.collection[6]}
+                index={6}
+              />
             </Col>
             <Col style={colSpacing}>
-              <CollectionCard badgesEarned={this.state.collection[7]} index={7} />
+              <CollectionCard
+                badgesEarned={this.state.collection[7]}
+                index={7}
+              />
             </Col>
             <Col style={colSpacing}>
-              <CollectionCard badgesEarned={this.state.collection[8]} index={8} />
+              <CollectionCard
+                badgesEarned={this.state.collection[8]}
+                index={8}
+              />
             </Col>
-          </Row>)
-          : <div></div>}
+          </Row>
+        ) : (
+          <div></div>
+        )}
       </Container>
     );
   }

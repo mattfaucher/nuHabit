@@ -13,23 +13,25 @@ export default class Habit extends React.Component {
     this.isDone = props.isDone;
     this.dayCount = 60;
     this.weekCount = 12;
-    this.color = this.isGood ? 'rgba(75, 181, 67, .7)' : 'rgba(255, 255, 161, .7)';
+    this.color = this.isGood
+      ? "rgba(75, 181, 67, .7)"
+      : "rgba(255, 255, 161, .7)";
   }
 
   render() {
     const cardStyle = {
-      boxShadow: '6px 6px 6px #888888',
-      padding: '10px 10px 10px 10px',
-      margin: '30px 0 30px 0',
-      backgroundColor: this.color
+      boxShadow: "6px 6px 6px #888888",
+      padding: "10px 10px 10px 10px",
+      margin: "30px 0 30px 0",
+      backgroundColor: this.color,
     };
 
     const textStyle = {
-      color: 'rgb(59, 74, 93)',
-      fontSize: '4vh',
-      fontWeight: '600',
-      textAlign: 'center',
-      textDecoration: 'none',
+      color: "rgb(59, 74, 93)",
+      fontSize: "4vh",
+      fontWeight: "600",
+      textAlign: "center",
+      textDecoration: "none",
     };
 
     const habitDetails = `/details/${this._id},${this.title},${this.count},${this.increments}`;
@@ -37,7 +39,7 @@ export default class Habit extends React.Component {
     return (
       <Container fluid="md">
         <Card style={cardStyle} border="success">
-          <Link style={{ textDecoration: 'none' }} to={habitDetails}>
+          <Link style={{ textDecoration: "none" }} to={habitDetails}>
             <Card.Body>
               <Row>
                 <Card.Text style={textStyle}>{this.title}</Card.Text>
