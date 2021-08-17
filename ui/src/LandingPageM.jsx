@@ -1,9 +1,9 @@
 import React from "react";
-import { Container, Navbar, Card, Row, Col, Image } from "react-bootstrap";
+import { Container, Card, Row, Col, Image } from "react-bootstrap";
 
 import AuthButton from "./AuthButton.jsx";
 import Footer from "./Footer.jsx";
-import logo from '../listing.png';
+import logo from '../nuhabit-logo.png';
 
 export default class LandingPageM extends React.Component {
 	constructor(props) {
