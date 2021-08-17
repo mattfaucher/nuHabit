@@ -1,4 +1,3 @@
-//move html from habitdetails into here and have function to check count and render as many badges + cards as necessary
 import React from "react";
 import { Container, Image, Card, Row } from "react-bootstrap";
 

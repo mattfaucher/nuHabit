@@ -106,8 +106,10 @@ class HabitList extends React.Component {
                 email={this.props.auth0.user.email}
                 index={habit.index}
               />
-            ))) : <div></div>
-          }
+            ))
+          ) : (
+            <div></div>
+          )}
         </Container>
       </div>
     );
