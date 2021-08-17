@@ -46,17 +46,27 @@ class AccomplisedHabits extends React.Component {
 
   render() {
     const returnToHome = `/habits`;
+    const headerStyle = {
+      background: 'linear-gradient(to left, rgb(59, 74, 93), silver)',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+      fontWeight: '800',
+      textAlign: 'center',
+    };
 
     return (
       <div>
+        <h1 style={headerStyle}>Completed Habits</h1>
         <Container fluid>
           {this.state.completed ? (
             this.state.completed.map((habit, index) => (
               <CompletedHabit
                 key={index}
+                _id={habit._id}
                 title={habit.title}
                 count={habit.count}
                 increments={habit.increments}
+                isGood={habit.isGood}
               />
             ))
           ) : (
