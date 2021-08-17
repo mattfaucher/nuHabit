@@ -100,7 +100,7 @@ export default class LandingPageM extends React.Component {
 									<Image src={logo} style={headerImgStyle}></Image>
 								</Col>
 								<Col>
-									<h2 style={titleStyle} align='right'>Habit tracking made simple</h2>
+									<h2 style={titleStyle} align='left'>Habit tracking made simple</h2>
 								</Col>
 							</Row>
 						</Container>
