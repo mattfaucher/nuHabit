@@ -12,11 +12,7 @@ export default class LandingPageM extends React.Component {
 
 	render() {
 		const pageBg = {
-			backgroundImage: 'linear-gradient(to bottom right, white, silver)',
-		};
-
-		const bgStyle = {
-			backgroundImage: 'linear-gradient(to right, rgb(59, 74, 93), black)',
+			backgroundImage: 'linear-gradient(white, rgb(220, 220, 255))',
 		};
 
 		const titleStyle = {
@@ -83,8 +79,8 @@ export default class LandingPageM extends React.Component {
 
 		const cardImgStyle = {
 			display: 'block',
-			maxWidth: '10vw',
-			maxHeight: '10vh',
+			maxWidth: '11vw',
+			maxHeight: '11vh',
 			width: 'auto',
 			height: 'auto',
 			marginLeft: 'auto',
@@ -94,7 +90,7 @@ export default class LandingPageM extends React.Component {
 		return (
 			<div>
 				<div style={pageBg}>
-					<Container fluid="md" style={{ paddingBottom: '100px' }}>
+					<Container fluid="md" style={{ paddingBottom: '140px' }}>
 						<Container fluid="md">
 							<Row className="row row-cols-md-3">
 								<Col>
@@ -104,7 +100,7 @@ export default class LandingPageM extends React.Component {
 									<Image src={logo} style={headerImgStyle}></Image>
 								</Col>
 								<Col>
-									<h2 style={titleStyle} align='right'>Habit tracking made simple</h2>
+									<h2 style={titleStyle} align='left'>Habit tracking made simple</h2>
 								</Col>
 							</Row>
 						</Container>
