@@ -2,7 +2,7 @@ import React from "react";
 import { Alert, Container } from "react-bootstrap";
 import { Auth0Provider, withAuth0 } from "@auth0/auth0-react";
 
-import LandingPage from "./LandingPage.jsx";
+import LandingPage from "./LandingPage2.jsx";
 import Navigation from "./Navigation.jsx";
 import Contents from "./Contents.jsx";
 import Footer from "./Footer.jsx";
