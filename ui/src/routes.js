@@ -1,5 +1,5 @@
 import HabitDetails from "./HabitDetails.jsx";
-import LandingPage from "./LandingPage.jsx";
+import LandingPage from "./LandingPageM.jsx";
 import HabitList from "./HabitList.jsx";
 import NotFound from "./NotFound.jsx";
 import AccomplishedHabits from "./AccomplishedHabits.jsx";
