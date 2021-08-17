@@ -81,7 +81,7 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
   - Stylize Habit details
   - Stylize Landing Page iter 3
 
-## **If We Have Time - Unfortunately we did not have time**
+### **If We Have Time - Unfortunately we did not have time**
 
 - Add filtering to Habits and Accomplished habits
   - break or form
@@ -94,7 +94,15 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 ## All pages
 
 ![HP1](/readme-images/HabitProgression1.jpg)
+
+<br>
+<br>
+
 ![HP2](/readme-images/HabitProgresion2.png)
+
+<br>
+<br>
+
 ![HP3](/readme-images/HabitProgression3.jpg)
 
 ---
@@ -114,6 +122,10 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 ### Iteration 2
 
 ![landing1](/readme-images/Landing1.png)
+
+<br>
+<br>
+
 ![landing2](/readme-images/Landing2.png)
 
 ### Iteration 3
@@ -126,13 +138,28 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ![Exist](/readme-images/Existing.png)
 
+<br>
+<br>
+
 ![Blank](/readme-images/BlankModal.png)
+
+<br>
+<br>
 
 ![Filled](/readme-images/FilledModal.png)
 
+<br>
+<br>
+
 ![New](/readme-images/NewHabitAdded.png)
 
+<br>
+<br>
+
 ![Progress](/readme-images/ProgressBarDifference.png)
+
+<br>
+<br>
 
 ### Home Page Style
 
@@ -143,6 +170,9 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 ## Habit Details
 
 ![Daily](/readme-images/Daily.png)
+
+<br>
+<br>
 
 ![Weekly](/readme-images/Weekly.png)
 
@@ -159,6 +189,10 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 ### Accomplised Habits Style
 
 ![AStyle](/readme-images/NoCompletedStyle.png)
+
+<br>
+<br>
+
 ![ACStyle](/readme-images/WithCompletedStyle.jpg)
 
 ## Collections

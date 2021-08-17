@@ -84,6 +84,7 @@ export default class DoneButton extends React.Component {
       habit: {
         count: this.state.count + 1,
         increments: this.state.increments,
+        index: this.state.index,
       },
     };
 
