@@ -93,9 +93,9 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ## All pages
 
-![HP1](/readme-images/HabitProgression1.png)
+![HP1](/readme-images/HabitProgression1.jpg)
 ![HP2](/readme-images/HabitProgresion2.png)
-![HP3](/readme-images/HabitProgression3.png)
+![HP3](/readme-images/HabitProgression3.jpg)
 
 ---
 
@@ -136,7 +136,7 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ### Home Page Style
 
-![HP1](/readme-images/HabitProgression1.png)
+![HP1](/readme-images/HabitProgression1.jpg)
 
 ---
 
@@ -159,7 +159,7 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 ### Accomplised Habits Style
 
 ![AStyle](/readme-images/NoCompletedStyle.png)
-![ACStyle](/readme-images/WithCompletedStyle.png)
+![ACStyle](/readme-images/WithCompletedStyle.jpg)
 
 ## Collections
 
@@ -167,4 +167,4 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ### Collections Style
 
-![HP3](/readme-images/HabitProgression3.png)
+![HP3](/readme-images/HabitProgression3.jpg)
