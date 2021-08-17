@@ -81,13 +81,29 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
   - Stylize Habit details
   - Stylize Landing Page iter 3
 
-## **If We Have Time - Unfortunately we did not have time**
+### **If We Have Time - Unfortunately we did not have time**
 
 - Add filtering to Habits and Accomplished habits
   - break or form
   - daily or weekly
 
 ## **Image Documentation**
+
+---
+
+## All pages
+
+![HP1](/readme-images/HabitProgression1.jpg)
+
+<br>
+<br>
+
+![HP2](/readme-images/HabitProgresion2.png)
+
+<br>
+<br>
+
+![HP3](/readme-images/HabitProgression3.jpg)
 
 ---
 
@@ -99,8 +115,22 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ## Login/Landing Page
 
+### Iteration 1
+
+- No Image was taken
+
+### Iteration 2
+
 ![landing1](/readme-images/Landing1.png)
+
+<br>
+<br>
+
 ![landing2](/readme-images/Landing2.png)
+
+### Iteration 3
+
+![landing3](/readme-images/Landing3.png)
 
 ---
 
@@ -108,13 +138,32 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ![Exist](/readme-images/Existing.png)
 
+<br>
+<br>
+
 ![Blank](/readme-images/BlankModal.png)
+
+<br>
+<br>
 
 ![Filled](/readme-images/FilledModal.png)
 
+<br>
+<br>
+
 ![New](/readme-images/NewHabitAdded.png)
 
+<br>
+<br>
+
 ![Progress](/readme-images/ProgressBarDifference.png)
+
+<br>
+<br>
+
+### Home Page Style
+
+![HP1](/readme-images/HabitProgression1.jpg)
 
 ---
 
@@ -122,7 +171,14 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ![Daily](/readme-images/Daily.png)
 
+<br>
+<br>
+
 ![Weekly](/readme-images/Weekly.png)
+
+### Habit Details Style
+
+![HP2](/readme-images/HabitProgresion2.png)
 
 ---
 
@@ -130,6 +186,19 @@ Git Repo: https://github.com/mattfaucher/nuHabit.git
 
 ![Accomplished](/readme-images/NoAccomplishedHabits.png)
 
+### Accomplised Habits Style
+
+![AStyle](/readme-images/NoCompletedStyle.png)
+
+<br>
+<br>
+
+![ACStyle](/readme-images/WithCompletedStyle.jpg)
+
 ## Collections
 
 ![Collections](/readme-images/SH_Collections.png)
+
+### Collections Style
+
+![HP3](/readme-images/HabitProgression3.jpg)
